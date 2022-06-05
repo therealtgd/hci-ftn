@@ -20,7 +20,12 @@
             </Grid.Background>
         </Grid>
 
-        <Border Padding="30 0 54 0" Grid.Column="1" Background="{DynamicResource MaterialDesignPaper}">
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
                 <TextBlock
                   Margin="24 0 0 0"
@@ -73,9 +78,7 @@
                     Content="_Prijavite se"
                     IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
             </StackPanel>
-        </Border>
-
-
+        </Grid>
 
     </Grid>
 </UserControl>
