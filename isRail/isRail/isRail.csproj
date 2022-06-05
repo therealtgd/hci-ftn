@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Assets\train-bg.jpg" />
+    <None Remove="Assets\train-travel-bg.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <Resource Include="Assets\train-bg.jpg" />
+    <Resource Include="Assets\train-travel-bg.jpg" />
   </ItemGroup>
 
 </Project>

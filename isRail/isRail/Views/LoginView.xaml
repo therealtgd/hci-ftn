@@ -16,7 +16,7 @@
 
         <Grid Grid.Column="0" HorizontalAlignment="Stretch">
             <Grid.Background>
-                <ImageBrush ImageSource="/Assets/train-bg.jpg" Stretch="UniformToFill" AlignmentX="Right"/>
+                <ImageBrush ImageSource="/Assets/train-travel-bg.jpg" Stretch="UniformToFill" AlignmentX="Right"/>
             </Grid.Background>
         </Grid>
 
