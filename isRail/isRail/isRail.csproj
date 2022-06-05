@@ -7,4 +7,21 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\train-bg.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci198" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\train-bg.jpg" />
+  </ItemGroup>
+
 </Project>

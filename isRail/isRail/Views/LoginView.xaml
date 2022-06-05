@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="isRail.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:isRail.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" HorizontalAlignment="Stretch">
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/train-bg.jpg" Stretch="UniformToFill" AlignmentX="Right"/>
+            </Grid.Background>
+        </Grid>
+
+        <Border Padding="30 0 54 0" Grid.Column="1" Background="{DynamicResource MaterialDesignPaper}">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock
+                  Margin="24 0 0 0"
+                  Style="{StaticResource MaterialDesignHeadline4TextBlock}"
+                  Text="Dobrodošli nazad"/>
+                <DockPanel Margin="0 15 0 10">
+                    <materialDesign:PackIcon 
+                        Kind="User"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 0 4"
+                        Width="24" Height="24"
+                    />
+                    <TextBox
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        x:Name="Username"
+                        FontSize="16"
+                        materialDesign:HintAssist.Hint="Korisničko ime" VerticalAlignment="Center">
+                        <TextBox.Text>
+                            <Binding
+                            Path="Name"
+                            UpdateSourceTrigger="PropertyChanged">
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </DockPanel>
+
+                <DockPanel>
+                    <materialDesign:PackIcon 
+                        Kind="Password"
+                        VerticalAlignment="Bottom"
+                        Margin="0 0 0 4"
+                        Width="24" Height="24"
+                    />
+                    <PasswordBox
+                        x:Name="PasswordBox"
+                        FontSize="16"
+                        materialDesign:HintAssist.Hint="Lozinka"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:HintAssist.HelperText="Lozinka mora imati bar 8 karaktera"
+                        materialDesign:HintAssist.HelperTextFontSize="12"
+                        Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                    />
+                </DockPanel>
+               
+                <Button
+                    Margin="24 30 0 0"
+                    FontSize="16"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Resource name: MaterialDesignRaisedButton"
+                    Content="_Prijavite se"
+                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+            </StackPanel>
+        </Border>
+
+
+
+    </Grid>
+</UserControl>
