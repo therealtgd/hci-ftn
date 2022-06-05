@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:isRail" xmlns:views="clr-namespace:isRail.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
+        Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
