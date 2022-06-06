@@ -24,7 +24,7 @@ namespace isRail.Utils
                         RouteAttributeType.ExcludeItinerary
                     }
                 },
-                BingMapsKey = "jcN70CoOBDnsrAlWKqWM~KGgDd7HLbAy2iRafyB9ytw~ApXB3OvpKS1Loo6XUCGodM0rf6U6ph0Jtc-kt3pk3FWMZ8zZVBhOxxMSViza80RG"
+                BingMapsKey = "AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
             };
 
             ProcessRequest(routeRequest, myMap);
