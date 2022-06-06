@@ -4,20 +4,79 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-        xmlns:local="clr-namespace:isRail.Views"
+        xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="ClientRouteMapView" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="0.75*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+        <materialDesign:Card>
+            <TabControl
+                materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                SnapsToDevicePixels="True"
+                Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                TabStripPlacement="Left">
+                <TabItem MinWidth="120">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Train" />
+                            <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Text="Kupi kartu" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--Kupovanje karte-->
+                </TabItem>
+                <TabItem MinWidth="120">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="TicketConfirmation" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Kupljene karte" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--Pregled kupljenih karata-->
+                </TabItem>
+                <TabItem MinWidth="120">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="MapSearch" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Mapa linija" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--Mapa linija-->
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
         <m:Map CredentialsProvider="jcN70CoOBDnsrAlWKqWM~KGgDd7HLbAy2iRafyB9ytw~ApXB3OvpKS1Loo6XUCGodM0rf6U6ph0Jtc-kt3pk3FWMZ8zZVBhOxxMSViza80RG"
                Center="45.2461818273899, 19.85138567223834" ZoomLevel="10" Name="MyMap"
                AllowDrop="True" DragEnter="MapView_DragEnter" Drop="MapView_Drop" Grid.Column="1" Grid.Row="0" Grid.RowSpan="4">
