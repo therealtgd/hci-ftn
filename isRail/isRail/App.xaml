@@ -20,6 +20,7 @@
                 <Setter Property="Foreground" Value="{StaticResource BluePrimary}" />
             </Style>
 
+          
         </ResourceDictionary>
       
     </Application.Resources>
