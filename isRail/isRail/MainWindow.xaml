@@ -23,6 +23,6 @@
             </Style>
         </Window.Resources>    
     <Grid>
-        <views:ClientMainWindow/>
+        <views:ClientMainWindow DataContext="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
