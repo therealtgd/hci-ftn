@@ -7,79 +7,122 @@
         xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="ClientRouteMapView" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="0.75*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="4*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
-        <materialDesign:Card>
-            <TabControl
-                materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
-                SnapsToDevicePixels="True"
-                Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-                TabStripPlacement="Left">
-                <TabItem MinWidth="120">
-                    <TabItem.Header>
-                        <StackPanel
-                            Width="auto"
-                            Height="auto">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                HorizontalAlignment="Center"
-                                Kind="Train" />
-                            <TextBlock
-                                    HorizontalAlignment="Center"
-                                    Text="Kupi kartu" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Kupovanje karte-->
-                </TabItem>
-                <TabItem MinWidth="120">
-                    <TabItem.Header>
-                        <StackPanel
-                            Width="auto"
-                            Height="auto">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                HorizontalAlignment="Center"
-                                Kind="TicketConfirmation" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                Text="Kupljene karte" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Pregled kupljenih karata-->
-                </TabItem>
-                <TabItem MinWidth="120">
-                    <TabItem.Header>
-                        <StackPanel
-                            Width="auto"
-                            Height="auto">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                HorizontalAlignment="Center"
-                                Kind="MapSearch" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                Text="Mapa linija" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <!--Mapa linija-->
-                </TabItem>
-            </TabControl>
-        </materialDesign:Card>
-        <m:Map CredentialsProvider="jcN70CoOBDnsrAlWKqWM~KGgDd7HLbAy2iRafyB9ytw~ApXB3OvpKS1Loo6XUCGodM0rf6U6ph0Jtc-kt3pk3FWMZ8zZVBhOxxMSViza80RG"
+    <StackPanel
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center">
+        <Grid
+            Margin="0 0 0 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <m:Map CredentialsProvider="jcN70CoOBDnsrAlWKqWM~KGgDd7HLbAy2iRafyB9ytw~ApXB3OvpKS1Loo6XUCGodM0rf6U6ph0Jtc-kt3pk3FWMZ8zZVBhOxxMSViza80RG"
                Center="45.2461818273899, 19.85138567223834" ZoomLevel="10" Name="MyMap"
                AllowDrop="True" DragEnter="MapView_DragEnter" Drop="MapView_Drop" Grid.Column="1" Grid.Row="0" Grid.RowSpan="4">
-        </m:Map>
-    </Grid>
+            </m:Map>
+            <TextBox
+                Grid.Column="0"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                FontSize="16"
+                materialDesign:HintAssist.Hint="Polazak"
+                Margin="0 0 15 0">
+            </TextBox>
+            <Button Grid.Column="1"
+                Content="{materialDesign:PackIcon SwapHorizontal}"
+                ToolTip="Icon"/>
+            <TextBox
+                Margin="15 0 0 0"
+                FontSize="16"
+                Grid.Column="2"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Dolazak">
+            </TextBox>
+            <TextBox
+                FontSize="16"
+                Margin="15 0 0 0"
+                Grid.Column="3"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Vreme polaska">
+            </TextBox>
+            <TextBox
+                FontSize="16"
+                Margin="15 0 0 0"
+                Grid.Column="4"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Vreme dolaska">
+            </TextBox>
+
+        </Grid>
+        <DataGrid
+            CanUserResizeColumns="False"
+            ItemsSource="{Binding Rides}"
+            CanUserAddRows="False"
+            IsReadOnly="True"
+            AutoGenerateColumns="False"
+            HeadersVisibility="All"
+            SelectionMode="Single"
+            FontSize="16"
+            >
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding From}"
+                    Header="Polazak">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding To}"
+                    Header="Dolazak">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Header="Vreme polaska">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Header="Vreme dolaska">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Price}"
+                    Header="Cena">
+                </DataGridTextColumn>
+                <DataGridTemplateColumn
+                    Header="Detalji">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="16">Detalji</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    Header="Kupi">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="16">Kupi</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn
+                    Header="Rezerviši">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="16">Rezerviši</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+
 </Window>
