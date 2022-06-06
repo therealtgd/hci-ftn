@@ -15,6 +15,9 @@
 
             <SolidColorBrush x:Key="BluePrimary" Color="#009DFA"></SolidColorBrush>
 
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
 
         </ResourceDictionary>
       

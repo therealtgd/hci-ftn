@@ -24,6 +24,7 @@
                 Grid.Column="0"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
+                FontSize="16"
                 materialDesign:HintAssist.Hint="Polazak"
                 Margin="0 0 15 0">
             </TextBox>
@@ -32,12 +33,14 @@
                 ToolTip="Icon"/>
             <TextBox
                 Margin="15 0 0 0"
+                FontSize="16"
                 Grid.Column="2"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
                 materialDesign:HintAssist.Hint="Dolazak">
             </TextBox>
              <TextBox
+                FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="3"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -45,6 +48,7 @@
                 materialDesign:HintAssist.Hint="Vreme polaska">
             </TextBox>
              <TextBox
+                FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="4"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -61,6 +65,7 @@
             AutoGenerateColumns="False"
             HeadersVisibility="All"
             SelectionMode="Single"
+            FontSize="16"
             >
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
@@ -92,7 +97,7 @@
                     Header="Detalji">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button>Detalji</Button>
+                            <Button FontSize="16">Detalji</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -100,7 +105,7 @@
                     Header="Kupi">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button>Kupi</Button>
+                            <Button FontSize="16">Kupi</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -108,7 +113,7 @@
                     Header="Rezerviši">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button>Rezerviši</Button>
+                            <Button FontSize="16">Rezerviši</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
