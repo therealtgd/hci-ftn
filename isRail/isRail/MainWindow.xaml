@@ -9,6 +9,7 @@
         Title="isRail"
         Height="700"
         Width="1350"
+        Icon="/Assets/thomas-the-train.png"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"

@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\thomas-the-train.png" />
     <None Remove="Assets\train-bg.jpg" />
     <None Remove="Assets\train-travel-bg.jpg" />
   </ItemGroup>
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\thomas-the-train.png" />
     <Resource Include="Assets\train-bg.jpg" />
     <Resource Include="Assets\train-travel-bg.jpg" />
   </ItemGroup>
