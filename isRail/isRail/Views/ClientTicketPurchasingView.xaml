@@ -17,49 +17,69 @@
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.42*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.42*"/>
             </Grid.ColumnDefinitions>
-
             <TextBox
                 Grid.Column="0"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
                 FontSize="16"
                 materialDesign:HintAssist.Hint="Polazak"
+                Text="{Binding Path=FromFilter, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 0 15 0">
             </TextBox>
             <Button Grid.Column="1"
                 Content="{materialDesign:PackIcon SwapHorizontal}"
-                ToolTip="Icon"/>
+                Command="{Binding SwapFromToCommand}"
+                ToolTip="Zameni polazak i dolazak"/>    
             <TextBox
                 Margin="15 0 0 0"
                 FontSize="16"
                 Grid.Column="2"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
+                Text="{Binding Path=ToFilter, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Dolazak">
             </TextBox>
-             <TextBox
+            <TextBox
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="3"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Vreme polaska">
+                materialDesign:HintAssist.Hint="Datum polaska">
             </TextBox>
-             <TextBox
+            <TextBox
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="4"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Vreme dolaska">
+                materialDesign:HintAssist.Hint="Vreme">
             </TextBox>
-         
+            <TextBox
+                FontSize="16"
+                Margin="15 0 0 0"
+                Grid.Column="5"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Datum dolaska">
+            </TextBox>
+            <TextBox
+                FontSize="16"
+                Margin="15 0 0 0"
+                Grid.Column="6"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Vreme">
+            </TextBox>
+
         </Grid>
         <DataGrid
             CanUserResizeColumns="False"
-            ItemsSource="{Binding Rides}"
+            ItemsSource="{Binding RidesCollectionView}"
             CanUserAddRows="False"
             IsReadOnly="True"
             AutoGenerateColumns="False"
