@@ -14,7 +14,7 @@
             <system:Double x:Key="ButtonWidth">100</system:Double>
 
             <SolidColorBrush x:Key="BluePrimary" Color="#009DFA"></SolidColorBrush>
-            <SolidColorBrush x:Key="OrangeSecondary" Color="#43a047"></SolidColorBrush>
+            <SolidColorBrush x:Key="Green" Color="#43a047"></SolidColorBrush>
 
             <Style TargetType="{x:Type TextBox}">
                 <Setter Property="FontSize" Value="16"/>
