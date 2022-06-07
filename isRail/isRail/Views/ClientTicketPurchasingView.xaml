@@ -7,7 +7,12 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:ClientTicketPurchasingViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <Viewbox
+        MinWidth="900"
+        MinHeight="300"
+        MaxWidth="1400">
     <StackPanel
+        Margin="20 0 20 0"
         VerticalAlignment="Center"
         HorizontalAlignment="Center">
         <Grid
@@ -129,4 +134,5 @@
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
+    </Viewbox>
 </UserControl>
