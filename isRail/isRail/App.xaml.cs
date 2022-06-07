@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -17,6 +18,10 @@ namespace isRail
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+
+            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("sr-Latn-CS");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel()

@@ -46,8 +46,8 @@ namespace isRail.ViewModels
             } 
         }
 
-        private DateTime _startDateFilter = DateTime.Now;
-        public DateTime StartDateFilter
+        private DateTime? _startDateFilter = DateTime.UtcNow;
+        public DateTime? StartDateFilter
         {
             get
             { return _startDateFilter; }
@@ -59,8 +59,8 @@ namespace isRail.ViewModels
             }
         }
 
-        private DateTime _startTimeFilter = DateTime.Now;
-        public DateTime StartTimeFilter
+        private DateTime? _startTimeFilter = DateTime.Now;
+        public DateTime? StartTimeFilter
         {
             get
             { return _startTimeFilter; }
@@ -71,33 +71,6 @@ namespace isRail.ViewModels
                 RidesCollectionView.Refresh();
             }
         }
-
-        private DateTime _endDateFilter = DateTime.Today.AddYears(1);
-        public DateTime EndDateFilter
-        {
-            get
-            { return _endDateFilter; }
-            set
-            {
-                _endDateFilter = value;
-                OnPropertyChanged(nameof(EndDateFilter));
-                RidesCollectionView.Refresh();
-            }
-        }
-
-        private DateTime _endTimeFilter = DateTime.Today.AddYears(1);
-        public DateTime EndTimeFilter
-        {
-            get
-            { return _endTimeFilter; }
-            set
-            {
-                _endTimeFilter = value;
-                OnPropertyChanged(nameof(EndTimeFilter));
-                RidesCollectionView.Refresh();
-            }
-        }
-
 
 
         public ClientTicketPurchasingViewModel()
@@ -117,8 +90,8 @@ namespace isRail.ViewModels
                     "Subotica",
                     "Beograd",
                     new List<string> { "Zrenjanin" },
-                    DateTime.Now,
-                    DateTime.Now.AddHours(1),
+                    DateTime.Now.AddDays(1),
+                    DateTime.Now.AddDays(1).AddHours(1),
                     2000)));
                 _rides.Add(new RideViewModel(new Ride(
                     "Orao",
@@ -138,13 +111,10 @@ namespace isRail.ViewModels
         {
             if (o is RideViewModel rideView)
             {
-                Trace.WriteLine(EndTimeFilter.ToString());
                 return rideView.From.Contains(FromFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    rideView.To.Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase) && 
-                    rideView.StartTime >= StartDateFilter &&
-                    rideView.StartTime >= StartTimeFilter &&
-                    rideView.EndTime <= EndDateFilter &&
-                    (rideView.EndTime <= EndTimeFilter);
+                    rideView.To.Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                    (StartDateFilter == null || rideView.StartTime >= StartDateFilter) &&
+                    (StartTimeFilter == null || rideView.StartTime.TimeOfDay >= StartTimeFilter.GetValueOrDefault().TimeOfDay);
             }
             return false;
         }
