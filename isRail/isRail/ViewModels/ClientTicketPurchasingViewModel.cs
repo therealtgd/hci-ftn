@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,61 @@ namespace isRail.ViewModels
                 RidesCollectionView.Refresh();
             } 
         }
-       
+
+        private DateTime _startDateFilter = DateTime.Now;
+        public DateTime StartDateFilter
+        {
+            get
+            { return _startDateFilter; }
+            set
+            {
+                _startDateFilter = value;
+                OnPropertyChanged(nameof(StartDateFilter));
+                RidesCollectionView.Refresh();
+            }
+        }
+
+        private DateTime _startTimeFilter = DateTime.Now;
+        public DateTime StartTimeFilter
+        {
+            get
+            { return _startTimeFilter; }
+            set
+            {
+                _startTimeFilter = value;
+                OnPropertyChanged(nameof(StartTimeFilter));
+                RidesCollectionView.Refresh();
+            }
+        }
+
+        private DateTime _endDateFilter = DateTime.Today.AddYears(1);
+        public DateTime EndDateFilter
+        {
+            get
+            { return _endDateFilter; }
+            set
+            {
+                _endDateFilter = value;
+                OnPropertyChanged(nameof(EndDateFilter));
+                RidesCollectionView.Refresh();
+            }
+        }
+
+        private DateTime _endTimeFilter = DateTime.Today.AddYears(1);
+        public DateTime EndTimeFilter
+        {
+            get
+            { return _endTimeFilter; }
+            set
+            {
+                _endTimeFilter = value;
+                OnPropertyChanged(nameof(EndTimeFilter));
+                RidesCollectionView.Refresh();
+            }
+        }
+
+
+
         public ClientTicketPurchasingViewModel()
         {
             _rides = new ObservableCollection<RideViewModel>();
@@ -83,8 +138,13 @@ namespace isRail.ViewModels
         {
             if (o is RideViewModel rideView)
             {
+                Trace.WriteLine(EndTimeFilter.ToString());
                 return rideView.From.Contains(FromFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    rideView.To.Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase);
+                    rideView.To.Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase) && 
+                    rideView.StartTime >= StartDateFilter &&
+                    rideView.StartTime >= StartTimeFilter &&
+                    rideView.EndTime <= EndDateFilter &&
+                    (rideView.EndTime <= EndTimeFilter);
             }
             return false;
         }

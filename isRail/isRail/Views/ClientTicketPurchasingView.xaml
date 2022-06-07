@@ -16,10 +16,10 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.42*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="0.42*"/>
+                <ColumnDefinition Width="0.65*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="0.65*"/>
+                <ColumnDefinition Width="0.4*"/>
             </Grid.ColumnDefinitions>
             <TextBox
                 Grid.Column="0"
@@ -43,38 +43,40 @@
                 Text="{Binding Path=ToFilter, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Dolazak">
             </TextBox>
-            <TextBox
+            <DatePicker
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="3"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Datum polaska">
-            </TextBox>
-            <TextBox
+                SelectedDate="{Binding Path=StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.Hint="Datum polaska"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            <materialDesign:TimePicker
+                SelectedTime="{Binding Path=StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
+                Is24Hours="True"
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="4"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Vreme">
-            </TextBox>
-            <TextBox
+                materialDesign:HintAssist.Hint="Vreme"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+            <DatePicker
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="5"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Datum dolaska">
-            </TextBox>
-            <TextBox
+                SelectedDate="{Binding Path=EndDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.Hint="Datum dolaska"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+            <materialDesign:TimePicker
+                SelectedTime="{Binding Path=EndTimeFilter, UpdateSourceTrigger=PropertyChanged}"
+                Is24Hours="True"
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="6"
-                Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                VerticalAlignment="Top"
-                materialDesign:HintAssist.Hint="Vreme">
-            </TextBox>
+                materialDesign:HintAssist.Hint="Vreme"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
         </Grid>
         <DataGrid
