@@ -10,7 +10,6 @@
              >
 
     <Grid x:Name="mainGrid">
-
         <materialDesign:Card Grid.Row="0" Grid.Column="0">
             <TabControl
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
@@ -67,8 +66,8 @@
                                 Text="Mapa linija" />
                         </StackPanel>
                     </TabItem.Header>
+                    <local:ClientMapView/>
                     <!--Mapa linija-->
-                    <local:ClientMapView></local:ClientMapView>
                 </TabItem>
             </TabControl>
         </materialDesign:Card>

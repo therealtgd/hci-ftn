@@ -23,7 +23,6 @@ namespace isRail.Views
         public ClientMapView()
         {
             InitializeComponent();
-            this.Visibility = Visibility.Hidden;
         }
 
         private void MapView_DragEnter(object sender, DragEventArgs e)

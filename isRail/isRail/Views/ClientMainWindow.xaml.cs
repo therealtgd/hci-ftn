@@ -20,23 +20,15 @@ namespace isRail.Views
     /// </summary>
     public partial class ClientMainWindow : UserControl
     {
-        private ClientMapView mapView;
-        private ClientTicketPurchasingView ticketPurchasingView;
 
         public ClientMainWindow()
         {
             InitializeComponent();
-            ticketPurchasingView = new ClientTicketPurchasingView();
-            mapView = new ClientMapView();
 
-            mainGrid.Children.Add(ticketPurchasingView);
-            mainGrid.Children.Add(mapView);
         }
 
         private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            mapView.Visibility = Visibility.Visible;
-            ticketPurchasingView.Visibility = Visibility.Collapsed;
         }
 
 

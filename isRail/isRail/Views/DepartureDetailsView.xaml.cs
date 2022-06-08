@@ -22,7 +22,6 @@ namespace isRail.Views
     {
         public DepartureDetailsView(RideViewModel ride)
         {
-            InitializeComponent();
             DataContext = this;
             Title = Title + ride.From + " - " + ride.To;
             From.Text = From.Text + ride.From;

@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
-        xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:isRail.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ClientTicketPurchasingViewModel}"
+             mc:Ignorable="d"
         Height="450" Width="800"
         Background="Transparent">
 
