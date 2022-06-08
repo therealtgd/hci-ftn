@@ -101,6 +101,14 @@ namespace isRail.ViewModels
                     DateTime.Now,
                     DateTime.Now.AddHours(3),
                     3000)));
+                _rides.Add(new RideViewModel(new Ride(
+                    "Orao",
+                    "Sombor",
+                    "Novi Sad",
+                    new List<string> { },
+                    DateTime.Now,
+                    DateTime.Now.AddHours(5),
+                    3000)));
             }
             RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
             RidesCollectionView.Filter = FilterRides;
