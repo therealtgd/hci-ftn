@@ -16,12 +16,10 @@ namespace isRail
     /// </summary>
     public partial class App : Application
     {
-        
-
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Models.App app = new Models.App();
+            Models.App app = new();
 
             System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("sr-Latn-CS");
             Thread.CurrentThread.CurrentCulture = ci;

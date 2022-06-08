@@ -77,11 +77,11 @@ namespace isRail.ViewModels
 
         public ClientTicketPurchasingViewModel(Models.App app)
         {
-            App = app;
+            this.App = app;
             _rides = new ObservableCollection<RideViewModel>();
             {
-                foreach (Ride r in App.Rides)
-                    _rides.Add(new RideViewModel(r));
+                foreach (Ride r in this.App.Rides)
+                    _rides.Add(new RideViewModel(r, app));
             }
             RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
             RidesCollectionView.Filter = FilterRides;
