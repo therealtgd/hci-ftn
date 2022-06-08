@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:isRail"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
-             xmlns:views="clr-namespace:isRail.Views"
-             xmlns:viewModels="clr-namespace:isRail.ViewModels"
-             StartupUri="MainWindow.xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Application.Resources>
         <ResourceDictionary>
@@ -17,9 +14,10 @@
             <system:Double x:Key="ButtonWidth">100</system:Double>
 
             <SolidColorBrush x:Key="BluePrimary" Color="#009DFA"></SolidColorBrush>
+            <SolidColorBrush x:Key="Green" Color="#43a047"></SolidColorBrush>
 
-            <Style TargetType="materialDesign:PackIcon">
-                <Setter Property="Foreground" Value="{StaticResource BluePrimary}" />
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="FontSize" Value="16"/>
             </Style>
         </ResourceDictionary>
 

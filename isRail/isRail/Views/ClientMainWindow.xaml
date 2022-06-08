@@ -32,6 +32,7 @@
                                     Text="Kupi kartu" />
                         </StackPanel>
                     </TabItem.Header>
+                    <local:ClientTicketPurchasingView></local:ClientTicketPurchasingView>
                     <!--Kupovanje karte-->
                 </TabItem>
                 <TabItem MinWidth="120">
