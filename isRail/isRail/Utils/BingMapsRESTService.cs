@@ -66,9 +66,9 @@ namespace isRail.Utils
             }
             catch (Exception ex)
             {
-                if (ex.Message != "Not enough Waypoints specified.")
+                if (ex.Message != "Not enough Waypoints specified.") { }
                     //TODO: add message box popup
-                    _ = new MessageBoxCustom(ex.Message, MessageType.Error, MessageButtons.Ok).ShowDialog();
+                    //_ = new MessageBoxCustom(ex.Message, MessageType.Error, MessageButtons.Ok).ShowDialog();
             }
         }
     }
