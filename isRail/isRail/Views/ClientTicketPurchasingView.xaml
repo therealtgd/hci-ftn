@@ -121,7 +121,7 @@
                                 FontSize="16"
                                 Background="{StaticResource Green}"
                                 BorderBrush="{StaticResource Green}"
-                                Click="ButtonBuy_Click"
+                                Command="{Binding BuyTicketCommand}"
                                 >Kupi</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -132,7 +132,7 @@
                         <DataTemplate>
                             <Button
                                 FontSize="16"
-                                Click="ButtonReserve_Click"
+                                Command="{Binding ReserveTicketCommand}"
                                 >Rezerviši</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

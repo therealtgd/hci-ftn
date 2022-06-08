@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace isRail.ViewModels
 {
     public class MainViewModel : ViewModelBase
-    {
+    { 
+
         public ViewModelBase CurrentViewModel { get; }
 
-        public MainViewModel()
+        public MainViewModel(Models.App app)
         {
-            CurrentViewModel = new ClientTicketPurchasingViewModel();
+            CurrentViewModel = new ClientTicketPurchasingViewModel(app);
         }
     }
 }

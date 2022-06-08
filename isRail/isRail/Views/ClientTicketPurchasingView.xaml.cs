@@ -25,30 +25,5 @@ namespace isRail.Views
         {
             InitializeComponent();
         }
-
-        private void ButtonBuy_Click(object sender, RoutedEventArgs e)
-        {
-            bool? result = new MessageBoxCustom("Da li ste sigurni da želite kupiti kartu?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-            if (result.Value)
-                new MessageBoxCustom("Uspešno ste kupili kartu.", MessageType.Success, MessageButtons.Ok).ShowDialog();
-            else
-                new MessageBoxCustom("Kupovina otkazana.", MessageType.Info, MessageButtons.Ok).ShowDialog();
-
-        }
-        private void ButtonReserve_Click(object sender, RoutedEventArgs e)
-        {
-            bool? result = new MessageBoxCustom("Da li ste sigurni da želite rezervisati kartu?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-            if (result.Value)
-                new MessageBoxCustom("Uspešno ste rezervisali kartu.", MessageType.Success, MessageButtons.Ok).ShowDialog();
-            else
-                new MessageBoxCustom("Rezervacija otkazana.", MessageType.Info, MessageButtons.Ok).ShowDialog();
-
-        }
-        private void ButtonDetails_Click(object sender, RoutedEventArgs e)
-        {
-            RideViewModel ride = (RideViewModel)((Button)e.Source).DataContext;
-            DepartureDetailsView departureDetailsView = new DepartureDetailsView(ride);
-            departureDetailsView.Show();
-        }
     }
 }

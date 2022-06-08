@@ -1,6 +1,8 @@
-﻿using isRail.Models;
+﻿using isRail.Commands;
+using isRail.Models;
 using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace isRail.ViewModels
 {
@@ -17,8 +19,17 @@ namespace isRail.ViewModels
         public DateTime EndTime => _ride.EndTime.ToLocalTime();
         public string Price => _ride.Price.ToString() + " RSD";
 
-        public RideViewModel(Ride ride)
+        public Models.App App { get; }
+
+        public ICommand BuyTicketCommand { get; }
+        public ICommand ReserveTicketCommand { get; }
+
+
+        public RideViewModel(Ride ride, Models.App app)
         {
+            App = app;
+            BuyTicketCommand = new BuyTicketCommand(App, ride);
+            ReserveTicketCommand = new ReserveTicketCommand(App, ride);
             _ride = ride;
         }
     }
