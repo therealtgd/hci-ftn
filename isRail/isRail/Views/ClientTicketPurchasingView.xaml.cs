@@ -1,4 +1,5 @@
-﻿using System;
+﻿using isRail.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,7 +44,11 @@ namespace isRail.Views
                 new MessageBoxCustom("Rezervacija otkazana.", MessageType.Info, MessageButtons.Ok).ShowDialog();
 
         }
-        
-
+        private void ButtonDetails_Click(object sender, RoutedEventArgs e)
+        {
+            RideViewModel ride = (RideViewModel)((Button)e.Source).DataContext;
+            DepartureDetailsView departureDetailsView = new DepartureDetailsView(ride);
+            departureDetailsView.Show();
+        }
     }
 }
