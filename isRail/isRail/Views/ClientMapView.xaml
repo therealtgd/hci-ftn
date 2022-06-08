@@ -8,20 +8,23 @@
         mc:Ignorable="d"
         Height="450" Width="800"
         Background="Transparent">
+
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.4*"/>
-            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
-        <m:Map Grid.Row="0" Grid.Column="1" Mode="Road" CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
+
+        <m:Map Grid.Row="0" Grid.Column="2" Mode="Road" CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
                    Center="45.2461818273899, 19.85138567223834" ZoomLevel="10" Name="MyMap"
                    AllowDrop="True" DragEnter="MapView_DragEnter" Drop="MapView_Drop">
         </m:Map>
-        <StackPanel Grid.Row="1" Grid.Column="1"
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <Grid 
