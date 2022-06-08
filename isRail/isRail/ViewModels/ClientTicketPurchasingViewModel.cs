@@ -16,6 +16,8 @@ namespace isRail.ViewModels
     public class ClientTicketPurchasingViewModel : ViewModelBase
     {
 
+        public Models.App App { get; }
+
         private readonly ObservableCollection<RideViewModel> _rides;
 
         public IEnumerable<RideViewModel> Rides => _rides;
@@ -46,7 +48,7 @@ namespace isRail.ViewModels
             } 
         }
 
-        private DateTime? _startDateFilter = DateTime.UtcNow;
+        private DateTime? _startDateFilter = DateTime.Today;
         public DateTime? StartDateFilter
         {
             get
@@ -73,38 +75,18 @@ namespace isRail.ViewModels
         }
 
 
-        public ClientTicketPurchasingViewModel()
+        public ClientTicketPurchasingViewModel(Models.App app)
         {
+            App = app;
             _rides = new ObservableCollection<RideViewModel>();
             {
-                _rides.Add(new RideViewModel(new Ride(
-                    "Lasta",
-                    "Novi Sad",
-                    "Beograd",
-                    new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" },
-                    DateTime.Now,
-                    DateTime.Now.AddHours(0.5),
-                    1500)));
-                _rides.Add(new RideViewModel(new Ride(
-                    "Jastreb",
-                    "Subotica",
-                    "Beograd",
-                    new List<string> { "Zrenjanin" },
-                    DateTime.Now.AddDays(1),
-                    DateTime.Now.AddDays(1).AddHours(1),
-                    2000)));
-                _rides.Add(new RideViewModel(new Ride(
-                    "Orao",
-                    "Niš",
-                    "Sremska Mitrovica",
-                    new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" },
-                    DateTime.Now,
-                    DateTime.Now.AddHours(3),
-                    3000)));
+                foreach (Ride r in App.Rides)
+                    _rides.Add(new RideViewModel(r));
             }
             RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
             RidesCollectionView.Filter = FilterRides;
             SwapFromToCommand = new SwapFromToCommand(this);
+
         }
 
         private bool FilterRides(object o)
@@ -114,9 +96,21 @@ namespace isRail.ViewModels
                 return rideView.From.Contains(FromFilter, StringComparison.InvariantCultureIgnoreCase) &&
                     rideView.To.Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase) &&
                     (StartDateFilter == null || rideView.StartTime >= StartDateFilter) &&
-                    (StartTimeFilter == null || rideView.StartTime.TimeOfDay >= StartTimeFilter.GetValueOrDefault().TimeOfDay);
+                    DateTimeFilter(rideView);
             }
             return false;
+        }
+
+        private bool DateTimeFilter(RideViewModel rideView)
+        {
+            if (StartTimeFilter == null)
+                return true;
+            if (StartDateFilter == null)
+                return rideView.StartTime.TimeOfDay >= StartTimeFilter.GetValueOrDefault().TimeOfDay;
+            DateTime tmpDate;
+            tmpDate = StartDateFilter.Value.AddHours(StartTimeFilter.GetValueOrDefault().Hour);
+            tmpDate = tmpDate.AddMinutes(StartTimeFilter.GetValueOrDefault().Minute);
+            return rideView.StartTime >= tmpDate;
         }
     }
 }

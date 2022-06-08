@@ -14,13 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BingMapsRESTToolkit" Version="1.1.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci198" />
-    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
   </ItemGroup>
 
   <ItemGroup>

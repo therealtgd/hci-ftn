@@ -8,11 +8,14 @@ namespace isRail.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        public Models.App app { get; set; }
+
         public ViewModelBase CurrentViewModel { get; }
 
-        public MainViewModel()
+        public MainViewModel(Models.App app)
         {
-            CurrentViewModel = new ClientTicketPurchasingViewModel();
+            this.app = app;
+            CurrentViewModel = new ClientTicketPurchasingViewModel(app);
         }
     }
 }
