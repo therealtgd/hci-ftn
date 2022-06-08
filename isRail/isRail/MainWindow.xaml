@@ -22,7 +22,7 @@
             <Style x:Key="ButtonWidth" TargetType="Button">
                 <Setter Property="MaxWidth" Value="100px" />
             </Style>
-        </Window.Resources>    
+        </Window.Resources>
     <Grid>
         <views:ClientMainWindow DataContext="{Binding CurrentViewModel}" />
     </Grid>

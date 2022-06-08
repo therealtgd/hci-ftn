@@ -8,9 +8,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
-    <Grid>
 
-        <materialDesign:Card>
+    <Grid x:Name="mainGrid">
+
+        <materialDesign:Card Grid.Row="0" Grid.Column="0">
             <TabControl
                 materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
                 SnapsToDevicePixels="True"
@@ -26,7 +27,7 @@
                                 Height="24"
                                 HorizontalAlignment="Center"
                                 Kind="Train" />
-                                <TextBlock
+                            <TextBlock
                                     HorizontalAlignment="Center"
                                     Text="Kupi kartu" />
                         </StackPanel>
@@ -43,7 +44,7 @@
                                 Width="24"
                                 Height="24"
                                 HorizontalAlignment="Center"
-                                Kind="TicketConfirmation" />      
+                                Kind="TicketConfirmation" />
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 Text="Kupljene karte" />
@@ -51,7 +52,7 @@
                     </TabItem.Header>
                     <!--Pregled kupljenih karata-->
                 </TabItem>
-                <TabItem MinWidth="120">
+                <TabItem MinWidth="120" MouseDown="TabItem_MouseDown">
                     <TabItem.Header>
                         <StackPanel
                             Width="auto"
@@ -67,6 +68,7 @@
                         </StackPanel>
                     </TabItem.Header>
                     <!--Mapa linija-->
+                    <local:ClientMapView></local:ClientMapView>
                 </TabItem>
             </TabControl>
         </materialDesign:Card>
