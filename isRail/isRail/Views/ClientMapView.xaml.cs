@@ -10,18 +10,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace isRail.Views
 {
     /// <summary>
-    /// Interaction logic for ClientRouteMapView.xaml
+    /// Interaction logic for ClientMapView.xaml
     /// </summary>
-    public partial class ClientRouteMapView : Window
+    public partial class ClientMapView : UserControl
     {
-        public ClientRouteMapView()
+        public ClientMapView()
         {
             InitializeComponent();
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void MapView_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void MapView_Drop(object sender, DragEventArgs e)
+        {
+
         }
     }
 }
