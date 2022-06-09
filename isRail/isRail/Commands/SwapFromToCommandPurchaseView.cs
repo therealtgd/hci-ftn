@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace isRail.Commands
 {
-    internal class SwapFromToCommand : CommandBase
+    internal class SwapFromToCommandPurchaseView : CommandBase
     {
-        private readonly ClientTicketPurchasingViewModel _clientTicketPurchasingViewModel;
+        private readonly ClientMainViewModel _clientTicketPurchasingViewModel;
         
-        public SwapFromToCommand(ClientTicketPurchasingViewModel clientTicketPurchasingViewModel)
+        public SwapFromToCommandPurchaseView(ClientMainViewModel clientTicketPurchasingViewModel)
         {
             _clientTicketPurchasingViewModel = clientTicketPurchasingViewModel;
         }

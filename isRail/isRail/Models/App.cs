@@ -93,7 +93,7 @@ namespace isRail.Models
             Users = new List<User>();
             Users.Add(new Client("klijent", "klijent"));
             Users.Add(new Manager("menadzer", "menadzer"));
-            
+            ((Client)Users[0]).BoughtTickets.Add(ride3);           
         }
 
         public LoginViewModel CreateLoginViewModel()
@@ -101,9 +101,9 @@ namespace isRail.Models
             return new LoginViewModel(this);
         }
 
-        public ClientTicketPurchasingViewModel CreateTicketPurchasingViewModel()
+        public ClientMainViewModel CreateTicketPurchasingViewModel()
         {
-            return new ClientTicketPurchasingViewModel(this);
+            return new ClientMainViewModel(this);
         }
 
         public ManagerMainViewModel CreateManagerMainViewModel()

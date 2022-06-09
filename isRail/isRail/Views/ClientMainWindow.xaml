@@ -16,7 +16,7 @@
                 SnapsToDevicePixels="True"
                 Style="{StaticResource MaterialDesignNavigationRailTabControl}"
                 TabStripPlacement="Left">
-                <TabItem MinWidth="120">
+                <TabItem MinWidth="130">
                     <TabItem.Header>
                         <StackPanel
                             Width="auto"
@@ -34,7 +34,7 @@
                     <local:ClientTicketPurchasingView></local:ClientTicketPurchasingView>
                     <!--Kupovanje karte-->
                 </TabItem>
-                <TabItem MinWidth="120">
+                <TabItem MinWidth="130">
                     <TabItem.Header>
                         <StackPanel
                             Width="auto"
@@ -49,9 +49,28 @@
                                 Text="Kupljene karte" />
                         </StackPanel>
                     </TabItem.Header>
+                    <local:ClientPurchasedTicketsView></local:ClientPurchasedTicketsView>
                     <!--Pregled kupljenih karata-->
                 </TabItem>
-                <TabItem MinWidth="120" MouseDown="TabItem_MouseDown">
+                <TabItem MinWidth="130">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="TicketConfirmationOutline" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Rezervisane karte" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <local:ClientReservedTicketsView></local:ClientReservedTicketsView>
+                    <!--Pregled Rezervisanih karata-->
+                </TabItem>
+                <TabItem MinWidth="130" MouseDown="TabItem_MouseDown">
                     <TabItem.Header>
                         <StackPanel
                             Width="auto"
