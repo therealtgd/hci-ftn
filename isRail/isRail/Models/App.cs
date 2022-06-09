@@ -80,6 +80,11 @@ namespace isRail.Models
             return new ClientTicketPurchasingViewModel(this);
         }
 
+        public ManagerMainViewModel CreateManagerMainViewModel()
+        {
+            return new ManagerMainViewModel(this);
+        }
+
 
     }
 }

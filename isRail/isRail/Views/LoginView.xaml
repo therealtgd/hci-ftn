@@ -78,7 +78,7 @@
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="_Prijavite se"
                     Command="{Binding LoginCommand}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                />
             </StackPanel>
         </Grid>
 

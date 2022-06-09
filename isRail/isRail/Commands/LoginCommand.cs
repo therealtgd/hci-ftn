@@ -39,6 +39,12 @@ namespace isRail.Commands
                     _loginViewModel.App.Client = (Client) user;
                     new NavigationService<ClientTicketPurchasingViewModel>(_loginViewModel.App._navigationStore, _loginViewModel.App.CreateTicketPurchasingViewModel).Navigate();
                 }
+                else if (user is Manager)
+                {
+                    _loginViewModel.App.Manager = (Manager) user;
+                    new NavigationService<ManagerMainViewModel>(_loginViewModel.App._navigationStore, _loginViewModel.App.CreateManagerMainViewModel).Navigate();
+                }
+
                 else
                     _loginViewModel.App.Manager = (Manager) user;
             }
