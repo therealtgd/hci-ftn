@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <m:Map Grid.Row="0" Mode="Road" CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
-                   Center="45.2461818273899, 19.85138567223834" ZoomLevel="10" Name="MyMap"
-                   AllowDrop="True" DragEnter="MapView_DragEnter" Drop="MapView_Drop">
+                   Center="45.2461818273899, 19.85138567223834" ZoomLevel="10" Name="RideMap"
+                   AllowDrop="True">
         </m:Map>
         <StackPanel Grid.Row="1"
             VerticalAlignment="Center"
@@ -77,7 +77,13 @@
                 HeadersVisibility="All"
                 SelectionMode="Single"
                 FontSize="16"
+                x:Name="rideDataGrid" 
                 >
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseLeftButtonDown" Handler="RideDataGridRowClicked"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
                 <DataGrid.Resources>
                     <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>

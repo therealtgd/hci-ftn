@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BingMapsRESTToolkit;
+using isRail.Utils;
+using isRail.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,14 +28,20 @@ namespace isRail.Views
             InitializeComponent();
         }
 
-        private void MapView_DragEnter(object sender, DragEventArgs e)
+        private void RideDataGridRowClicked(object sender, MouseEventArgs e)
         {
-
+            RideViewModel ride = (RideViewModel)rideDataGrid.SelectedItem;
+            ShowRideLineOnMap(ride);
         }
 
-        private void MapView_Drop(object sender, DragEventArgs e)
+        private void ShowRideLineOnMap(RideViewModel ride)
         {
-
+            RideMap.Children.Clear();
+            List<BingMapsRESTToolkit.SimpleWaypoint> waypoints = new List<BingMapsRESTToolkit.SimpleWaypoint>();
+            waypoints.Add(ride.FromWaypoint);
+            waypoints.AddRange(ride.StationWaypoints);
+            waypoints.Add(ride.ToWaypoint);
+            BingMapsRESTService.SendRequest(RideMap, waypoints);
         }
     }
 }

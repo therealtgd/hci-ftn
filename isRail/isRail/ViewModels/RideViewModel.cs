@@ -1,4 +1,5 @@
-﻿using isRail.Commands;
+﻿using BingMapsRESTToolkit;
+using isRail.Commands;
 using isRail.Models;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,11 @@ namespace isRail.ViewModels
 
         public string Train => _ride.Train;
         public string From => _ride.From;
+        public SimpleWaypoint FromWaypoint => _ride.FromWaypoint;
         public string To => _ride.To;
+        public SimpleWaypoint ToWaypoint => _ride.ToWaypoint;
         public List<string> Stations => _ride.Stations;
+        public List<SimpleWaypoint> StationWaypoints => _ride.StationWaypoints;
 
         public DateTime StartTime => _ride.StartTime;
         public DateTime EndTime => _ride.EndTime.ToLocalTime();
