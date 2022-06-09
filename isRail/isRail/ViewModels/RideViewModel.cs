@@ -3,6 +3,7 @@ using isRail.Commands;
 using isRail.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace isRail.ViewModels
@@ -14,9 +15,12 @@ namespace isRail.ViewModels
         public Ride Ride { get { return _ride; } }
 
         public string Train => _ride.Train;
-        public string From => _ride.RideBase.From;
-        public string To => _ride.RideBase.To;
-        public List<string> Stations => _ride.RideBase.Stations;
+        public Station From => _ride.RideBase.From;
+        public string FromCity => _ride.RideBase.From.Name;
+        public Station To => _ride.RideBase.To;
+        public string ToCity => _ride.RideBase.To.Name;
+        public List<Station> Stations => _ride.RideBase.Stations;
+        public List<string> StationCities => _ride.RideBase.Stations.Select(station => station.Name).ToList();
         public DateTime StartTime => _ride.StartTime;
         public DateTime EndTime => _ride.EndTime.ToLocalTime();
         public string Price => _ride.Price.ToString() + " RSD";

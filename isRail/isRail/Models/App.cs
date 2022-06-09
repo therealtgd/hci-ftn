@@ -34,26 +34,30 @@ namespace isRail.Models
       
 
         public void InitializeApp()
-        {
+        {   
+
+
             RideBase rideBase1 = new RideBase(
                 1,
-            Ride ride1 = new Ride(
-                "Lasta",
-                "Novi Sad",
-                "Beograd",
-                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
+                new Station("Novi Sad" ,45.265571 , 19.829366),
+                new Station("Beograd", 44.808510, 20.455799),
+                new List<Station> { new Station("Backa Palanka", 45.249630, 19.396850),
+                                    new Station("Zrenjanin", 45.365810, 20.403580),
+                                    new Station("Subotica", 46.102779, 19.670427)}
             );
             RideBase rideBase2 = new RideBase(
                 2,
-                "Subotica",
-                "Beograd",
-                new List<string> { "Zrenjanin" }
+                new Station("Subotica", 46.102779, 19.670427),
+                new Station("Beograd", 44.808510, 20.455799),
+                new List<Station> { new Station("Zrenjanin", 45.365810, 20.403580) }
             );
             RideBase rideBase3 = new RideBase(
                 3,
-                "Niš",
-                "Sremska Mitrovica",
-                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
+                new Station("Niš", 43.316257, 21.877323),
+                new Station("Sremska Mitrovica", 44.982293, 19.613703),
+                new List<Station> { new Station("Backa Palanka", 45.249630, 19.396850),
+                                    new Station("Zrenjanin", 45.365810, 20.403580),
+                                    new Station("Subotica", 46.102779, 19.670427) }
             );
 
             Ride ride1 = new Ride(
@@ -124,4 +128,4 @@ namespace isRail.Models
 
 
     }
-}
+} 

@@ -1,4 +1,5 @@
 ﻿using BingMapsRESTToolkit;
+using isRail.Models;
 using isRail.Utils;
 using isRail.ViewModels;
 using System;
@@ -23,6 +24,8 @@ namespace isRail.Views
     /// </summary>
     public partial class ClientMapView : UserControl
     {
+        private DepartureDetailsView _departureDetailsView { get; set; }
+
         public ClientMapView()
         {
             InitializeComponent();
@@ -38,10 +41,22 @@ namespace isRail.Views
         {
             RideMap.Children.Clear();
             List<BingMapsRESTToolkit.SimpleWaypoint> waypoints = new List<BingMapsRESTToolkit.SimpleWaypoint>();
-            waypoints.Add(ride.FromWaypoint);
-            waypoints.AddRange(ride.StationWaypoints);
-            waypoints.Add(ride.ToWaypoint);
+            waypoints.Add(ride.From.Waypoint);
+            foreach (Station s in ride.Stations)
+            {
+                waypoints.Add(s.Waypoint);
+            }
+            waypoints.Add(ride.To.Waypoint);
             BingMapsRESTService.SendRequest(RideMap, waypoints);
+        }
+
+        private void Details_Clicked(object sender, RoutedEventArgs e)
+        {
+            RideViewModel ride = (RideViewModel)((Button)e.Source).DataContext;
+            if (_departureDetailsView != null)
+                _departureDetailsView.Close();
+            _departureDetailsView = new DepartureDetailsView(ride, ((RideViewModel)((Button)sender).DataContext).App);
+            _departureDetailsView.Show();
         }
     }
 }

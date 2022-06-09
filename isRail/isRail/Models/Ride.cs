@@ -24,29 +24,5 @@ namespace isRail.Models
             EndTime = endTime;
             Price = price;
         }
-
-        public Ride(string train,
-                    string from, 
-                    string to, 
-                    List<string> stations, 
-                    DateTime startTime, 
-                    DateTime endTime, 
-                    double price,
-                    SimpleWaypoint fromWaypoint,
-                    SimpleWaypoint toWaypoint,
-                    List<SimpleWaypoint> stationWaypoints)
-        {
-            Train = train;
-            From = from;
-            To = to;
-            Stations = stations;
-            StartTime = startTime;
-            EndTime = endTime;
-            Price = price;
-            FromWaypoint = fromWaypoint;
-            ToWaypoint = toWaypoint;
-            StationWaypoints = stationWaypoints;
-        }
-
     }
 }

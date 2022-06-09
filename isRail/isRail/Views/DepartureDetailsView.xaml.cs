@@ -28,17 +28,17 @@ namespace isRail.Views
         {
             InitializeComponent();
             DataContext = this;
-            Title = Title + ride.From + " - " + ride.To;
-            From.Text = From.Text + ride.From;
-            if (ride.Stations.Count > 0)
+            Title = Title + ride.FromCity + " - " + ride.ToCity;
+            From.Text = From.Text + ride.FromCity;
+            if (ride.StationCities.Count > 0)
             {
-                if (ride.Stations.Count == 1)
+                if (ride.StationCities.Count == 1)
                     StationsLabel.Text = "Međustanica: ";
                 else
                     StationsLabel.Text = "Međustanice: ";
-                Stations.ItemsSource = ride.Stations;
+                Stations.ItemsSource = ride.StationCities;
             }
-            To.Text = To.Text + ride.To;
+            To.Text = To.Text + ride.ToCity;
             StartTime.Text = StartTime.Text + ride.StartTime.ToShortDateString() + ride.StartTime.ToShortTimeString();
             EndTime.Text = EndTime.Text + ride.EndTime;
             Price.Text = Price.Text + ride.Price;

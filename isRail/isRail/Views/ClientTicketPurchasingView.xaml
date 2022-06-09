@@ -85,11 +85,11 @@
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Binding="{Binding From}"
+                    Binding="{Binding FromCity}"
                     Header="Polazak">
                 </DataGridTextColumn>
                 <DataGridTextColumn
-                    Binding="{Binding To}"
+                    Binding="{Binding ToCity}"
                     Header="Dolazak">
                 </DataGridTextColumn>
                 <DataGridTextColumn
