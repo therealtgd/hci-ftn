@@ -10,6 +10,8 @@ namespace isRail.ViewModels
     {
         private readonly Ride _ride;
 
+        public Ride Ride { get { return _ride; } }
+
         public string Train => _ride.Train;
         public string From => _ride.RideBase.From;
         public string To => _ride.RideBase.To;

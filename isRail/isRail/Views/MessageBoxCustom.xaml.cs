@@ -48,17 +48,29 @@ namespace isRail.Views
             }
             switch (Buttons)
             {
-                case MessageButtons.OkCancel:
-                    btnYes.Visibility = Visibility.Collapsed; btnNo.Visibility = Visibility.Collapsed;
-                    break;
                 case MessageButtons.YesNo:
-                    btnOk.Visibility = Visibility.Collapsed; btnCancel.Visibility = Visibility.Collapsed;
-                    break;
+                    {
+                        btnCancel.Visibility = Visibility.Collapsed;
+                        btnYes.IsDefault = true;
+                        btnNo.IsCancel = true;
+                        break;
+                    }
+                case MessageButtons.OkCancel:
+                    {
+                        btnYes.Visibility = Visibility.Collapsed;
+                        btnNo.Visibility = Visibility.Collapsed;
+                        btnOk.IsDefault = true; btnCancel.IsCancel = true;
+                        break;
+                    }
                 case MessageButtons.Ok:
-                    btnOk.Visibility = Visibility.Visible;
-                    btnCancel.Visibility = Visibility.Collapsed;
-                    btnYes.Visibility = Visibility.Collapsed; btnNo.Visibility = Visibility.Collapsed;
-                    break;
+                    {
+                        btnYes.Visibility = Visibility.Collapsed;
+                        btnNo.Visibility = Visibility.Collapsed;
+                        btnCancel.Visibility= Visibility.Collapsed;
+                        btnOk.IsDefault = true;
+                        btnCancel.IsCancel = true;
+                        break;
+                    }
             }
         }
 

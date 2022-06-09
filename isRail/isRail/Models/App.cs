@@ -11,8 +11,7 @@ namespace isRail.Models
     public class App
     {
 
-        public List<RideBase> RideBases { get; set; }
-        public List<Ride> Rides { get; set; }
+        public Dictionary<RideBase, List<Ride>> RidesMap { get; set; }
 
         public List<string> Trains { get; set; }
         public Client Client { get; set; }
@@ -25,7 +24,7 @@ namespace isRail.Models
 
         public App()
         {
-            Rides = new List<Ride>();
+            RidesMap = new Dictionary<RideBase, List<Ride>>();
             InitializeApp();
             NavigationStore = new NavigationStore();
         }
@@ -35,19 +34,23 @@ namespace isRail.Models
         public void InitializeApp()
         {
             RideBase rideBase1 = new RideBase(
+                1,
                 "Novi Sad",
                 "Beograd",
-                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" });
-            
+                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
+            );
             RideBase rideBase2 = new RideBase(
-                            "Subotica",
-                            "Beograd",
-                            new List<string> { "Zrenjanin" });
+                2,
+                "Subotica",
+                "Beograd",
+                new List<string> { "Zrenjanin" }
+            );
             RideBase rideBase3 = new RideBase(
-                           "Niš",
-                           "Sremska Mitrovica",
-                           new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
-                           );
+                3,
+                "Niš",
+                "Sremska Mitrovica",
+                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
+            );
 
             Ride ride1 = new Ride(
                 rideBase1,
@@ -70,16 +73,10 @@ namespace isRail.Models
                 DateTime.Now.AddDays(1).AddHours(3),
                 3000);
 
-            RideBases = new List<RideBase>();
-            RideBases.Add(rideBase1);
-            RideBases.Add(rideBase2);
-            RideBases.Add(rideBase3);
-
-            Rides = new List<Ride>();
-            Rides.Add(ride1);
-            Rides.Add(ride2);
-            Rides.Add(ride3);
-
+            AddRide(ride1);
+            AddRide(ride2);
+            AddRide(ride3);
+            
             Trains = new List<string>();
             Trains.Add("Lasta");
             Trains.Add("Orao");
@@ -112,6 +109,14 @@ namespace isRail.Models
         {
             return new ManagerEditRidesViewModel(this);
         }
+
+        public void AddRide(Ride ride)
+        {
+            if (RidesMap.ContainsKey(ride.RideBase))
+                RidesMap[ride.RideBase].Add(ride);
+            else
+                RidesMap.Add(ride.RideBase, new List<Ride> {ride});
+        } 
 
 
     }

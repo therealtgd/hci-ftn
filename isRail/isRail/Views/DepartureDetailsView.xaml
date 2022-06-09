@@ -45,8 +45,8 @@
             <TextBlock Grid.Row="8" Text="Cena karte: " x:Name="Price" FontSize="16"/>
             <TextBlock Grid.Row="9" Text="Voz: " x:Name="Train" FontSize="16"/>
             <StackPanel Orientation="Horizontal" Grid.Row="10">
-                <Button FontSize="16" Background="{StaticResource Green}" BorderBrush="{StaticResource Green}" Width="100">Kupi</Button>
-                <Button FontSize="16" Margin="20 0 0 0" Width="100">Rezerviši</Button>
+                <Button FontSize="16" Background="{StaticResource Green}" BorderBrush="{StaticResource Green}" Width="100" Command="{Binding BuyTicketCommand}">Kupi</Button>
+                <Button FontSize="16" Margin="20 0 0 0" Width="100" Command="{Binding ReserveTicketCommand}">Rezerviši</Button>
             </StackPanel>
         </Grid>
         <Viewbox Grid.Column="2">
