@@ -1,4 +1,7 @@
-﻿using BingMapsRESTToolkit;
+using BingMapsRESTToolkit;
+using isRail.Stores;
+using isRail.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +15,18 @@ namespace isRail.Models
 
         public List<Ride> Rides { get; set; }
         public Client Client { get; set; }
+        public Manager Manager { get; set; }
+
+        public List<User> Users { get; set; }
+
+        public readonly NavigationStore _navigationStore;
+
 
         public App()
         {
             Rides = new List<Ride>();
             InitializeApp();
+            _navigationStore = new NavigationStore();
         }
 
         public void InitializeApp()
@@ -71,9 +81,24 @@ namespace isRail.Models
             Rides.Add(ride2);
             Rides.Add(ride3);
 
-            Client = new Client("klijent", "klijent");
-            Client.BoguthTickets.Add(ride1);
+
             
+            Users = new List<User>();
+            Users.Add(new Client("klijent", "klijent"));
+            Users.Add(new Manager("menadzer", "menadzer"));
+
+            
+            
+        }
+
+        public LoginViewModel CreateLoginViewModel()
+        {
+            return new LoginViewModel(this);
+        }
+
+        public ClientTicketPurchasingViewModel CreateTicketPurchasingViewModel()
+        {
+            return new ClientTicketPurchasingViewModel(this);
         }
 
 
