@@ -1,5 +1,7 @@
-﻿using isRail.Stores;
+using BingMapsRESTToolkit;
+using isRail.Stores;
 using isRail.ViewModels;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,8 @@ namespace isRail.Models
         {
             RideBase rideBase1 = new RideBase(
                 1,
+            Ride ride1 = new Ride(
+                "Lasta",
                 "Novi Sad",
                 "Beograd",
                 new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
@@ -81,7 +85,7 @@ namespace isRail.Models
             Trains.Add("Lasta");
             Trains.Add("Orao");
             Trains.Add("Jastreb");
-            
+
             Users = new List<User>();
             Users.Add(new Client("klijent", "klijent"));
             Users.Add(new Manager("menadzer", "menadzer"));

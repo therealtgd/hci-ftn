@@ -1,4 +1,5 @@
-﻿using isRail.Commands;
+﻿using BingMapsRESTToolkit;
+using isRail.Commands;
 using isRail.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ namespace isRail.ViewModels
         public string From => _ride.RideBase.From;
         public string To => _ride.RideBase.To;
         public List<string> Stations => _ride.RideBase.Stations;
-
         public DateTime StartTime => _ride.StartTime;
         public DateTime EndTime => _ride.EndTime.ToLocalTime();
         public string Price => _ride.Price.ToString() + " RSD";
