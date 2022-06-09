@@ -64,7 +64,6 @@
                         FontSize="16"
                         materialDesign:HintAssist.Hint="Lozinka"
                         materialDesign:TextFieldAssist.HasClearButton="True"
-                        materialDesign:HintAssist.HelperText="Lozinka mora imati bar 8 karaktera"
                         materialDesign:HintAssist.HelperTextFontSize="12"
                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                         PasswordChanged="PasswordBox_PasswordChanged"
@@ -78,7 +77,8 @@
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="_Prijavite se"
                     Command="{Binding LoginCommand}"
-                    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" />
+                    IsDefault="True"
+                />
             </StackPanel>
         </Grid>
 

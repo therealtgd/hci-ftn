@@ -1,9 +1,11 @@
-﻿using isRail.Stores;
+﻿using isRail.Commands;
+using isRail.Stores;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace isRail.ViewModels
 {
@@ -11,6 +13,7 @@ namespace isRail.ViewModels
     {
         private readonly NavigationStore _navigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+
 
         public MainViewModel(NavigationStore navigationStore)
         {

@@ -10,23 +10,16 @@ namespace isRail.Models
     public class Ride
     {
 
+        public RideBase RideBase { get; }
         public string Train { get; }
-        public string From { get; }
-        public SimpleWaypoint FromWaypoint { get; }
-        public string To { get; }
-        public SimpleWaypoint ToWaypoint { get; }
-        public List<string> Stations { get; }
-        public List<SimpleWaypoint> StationWaypoints { get; }
         public DateTime StartTime { get; }
         public DateTime EndTime { get; }
         public double Price { get; }
 
-        public Ride(string train, string from, string to, List<string> stations, DateTime startTime, DateTime endTime, double price)
+        public Ride(RideBase rideBase, string train, DateTime startTime, DateTime endTime, double price)
         {
+            RideBase = rideBase;
             Train = train;
-            From = from;
-            To = to;
-            Stations = stations;
             StartTime = startTime;
             EndTime = endTime;
             Price = price;

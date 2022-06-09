@@ -25,7 +25,7 @@ namespace isRail.Commands
             bool? result = new MessageBoxCustom("Da li ste sigurni da želite kupiti kartu?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
             if (result.Value)
             {
-                 _app.Client.BoguthTickets.Add(_ride);  
+                 _app.Client.BoughtTickets.Add(_ride);  
                 new MessageBoxCustom("Uspešno ste kupili kartu.", MessageType.Success, MessageButtons.Ok).ShowDialog();
             }
             else

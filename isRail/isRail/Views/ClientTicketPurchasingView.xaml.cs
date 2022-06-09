@@ -21,9 +21,20 @@ namespace isRail.Views
     /// </summary>
     public partial class ClientTicketPurchasingView : UserControl
     {
+        private DepartureDetailsView _departureDetailsView { get; set; }
+
         public ClientTicketPurchasingView()
         {
             InitializeComponent();
+        }
+
+        private void ButtonDetails_Click(object sender, RoutedEventArgs e)
+        {
+            RideViewModel ride = (RideViewModel)((Button)e.Source).DataContext;
+            if (_departureDetailsView != null)
+                _departureDetailsView.Close();
+            _departureDetailsView = new DepartureDetailsView(ride, ((RideViewModel)((Button)sender).DataContext).App);
+            _departureDetailsView.Show();
         }
     }
 }

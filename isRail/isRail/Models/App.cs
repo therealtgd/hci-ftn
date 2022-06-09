@@ -13,81 +13,82 @@ namespace isRail.Models
     public class App
     {
 
-        public List<Ride> Rides { get; set; }
+        public Dictionary<RideBase, List<Ride>> RidesMap { get; set; }
+
+        public List<string> Trains { get; set; }
         public Client Client { get; set; }
         public Manager Manager { get; set; }
 
         public List<User> Users { get; set; }
 
-        public readonly NavigationStore _navigationStore;
+        public readonly NavigationStore NavigationStore;
 
 
         public App()
         {
-            Rides = new List<Ride>();
+            RidesMap = new Dictionary<RideBase, List<Ride>>();
             InitializeApp();
-            _navigationStore = new NavigationStore();
+            NavigationStore = new NavigationStore();
         }
+
+      
 
         public void InitializeApp()
         {
-            SimpleWaypoint[] ride1_waypoints = { new SimpleWaypoint(45.249630, 19.396850),
-                                                 new SimpleWaypoint(45.365810, 20.403580),
-                                                 new SimpleWaypoint(46.102779, 19.670427) };
+            RideBase rideBase1 = new RideBase(
+                1,
             Ride ride1 = new Ride(
                 "Lasta",
                 "Novi Sad",
                 "Beograd",
-                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" },
+                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
+            );
+            RideBase rideBase2 = new RideBase(
+                2,
+                "Subotica",
+                "Beograd",
+                new List<string> { "Zrenjanin" }
+            );
+            RideBase rideBase3 = new RideBase(
+                3,
+                "Niš",
+                "Sremska Mitrovica",
+                new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" }
+            );
+
+            Ride ride1 = new Ride(
+                rideBase1,
+                "Lasta",
                 DateTime.Now.AddHours(0.2),
                 DateTime.Now.AddHours(0.5),
-                1500,
-                new BingMapsRESTToolkit.SimpleWaypoint(45.265571, 19.829366),
-                new BingMapsRESTToolkit.SimpleWaypoint(44.808510, 20.455799),
-                new List<SimpleWaypoint>(ride1_waypoints)
-                );
-
-            SimpleWaypoint[] ride2_waypoints = { new SimpleWaypoint(45.365810, 20.403580) };
-            Ride ride2 = new Ride(
-            "Jastreb",
-            "Subotica",
-            "Beograd",
-            new List<string> { "Zrenjanin" },
-            DateTime.Now.AddHours(1),
-            DateTime.Now.AddHours(2),
-            2000,
-            new BingMapsRESTToolkit.SimpleWaypoint(46.102779, 19.670427),
-            new BingMapsRESTToolkit.SimpleWaypoint(44.808510, 20.455799),
-            new List<SimpleWaypoint>(ride2_waypoints));
-
-            SimpleWaypoint[] ride3_waypoints = { new SimpleWaypoint(45.249630, 19.396850),
-                                                 new SimpleWaypoint(45.365810, 20.403580),
-                                                 new SimpleWaypoint(46.102779, 19.670427) };
-            Ride ride3 = new Ride(
-            "Orao",
-            "Niš",
-            "Sremska Mitrovica",
-            new List<string> { "Backa Palanka", "Zrenjanin", "Subotica" },
-            DateTime.Now.AddDays(1).AddHours(2),
-            DateTime.Now.AddDays(1).AddHours(3),
-            3000,
-            new BingMapsRESTToolkit.SimpleWaypoint(43.316257, 21.877323),
-            new BingMapsRESTToolkit.SimpleWaypoint(44.982293, 19.613703),
-            new List<SimpleWaypoint>(ride3_waypoints));
-
-            Rides = new List<Ride>();
-
-            Rides.Add(ride1);
-            Rides.Add(ride2);
-            Rides.Add(ride3);
-
-
+                1500);
             
+            Ride ride2 = new Ride(
+                rideBase2,
+                "Jastreb",
+                DateTime.Now.AddHours(1),
+                DateTime.Now.AddHours(2),
+                2000);
+           
+            Ride ride3 = new Ride(
+                rideBase3,
+                "Orao",
+                DateTime.Now.AddDays(1).AddHours(2),
+                DateTime.Now.AddDays(1).AddHours(3),
+                3000);
+
+            AddRide(ride1);
+            AddRide(ride2);
+            AddRide(ride3);
+            
+            Trains = new List<string>();
+            Trains.Add("Lasta");
+            Trains.Add("Orao");
+            Trains.Add("Jastreb");
+
             Users = new List<User>();
             Users.Add(new Client("klijent", "klijent"));
             Users.Add(new Manager("menadzer", "menadzer"));
-
-            
             
         }
 
@@ -100,6 +101,26 @@ namespace isRail.Models
         {
             return new ClientTicketPurchasingViewModel(this);
         }
+
+        public ManagerMainViewModel CreateManagerMainViewModel()
+        {
+            return new ManagerMainViewModel(this);
+
+        }
+
+
+        public ManagerEditRidesViewModel CreateEditRidesViewModel()
+        {
+            return new ManagerEditRidesViewModel(this);
+        }
+
+        public void AddRide(Ride ride)
+        {
+            if (RidesMap.ContainsKey(ride.RideBase))
+                RidesMap[ride.RideBase].Add(ride);
+            else
+                RidesMap.Add(ride.RideBase, new List<Ride> {ride});
+        } 
 
 
     }

@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace isRail.Views
 {
     /// <summary>
-    /// Interaction logic for ClientMainWindow.xaml
+    /// Interaction logic for ManagerEditRidesView.xaml
     /// </summary>
-    public partial class ClientMainWindow : UserControl
+    public partial class ManagerEditRidesView : UserControl
     {
-
-        public ClientMainWindow()
+        public ManagerEditRidesView()
         {
             InitializeComponent();
-
         }
-
-
-
-        private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-
     }
 }

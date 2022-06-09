@@ -1,4 +1,5 @@
-﻿using isRail.ViewModels;
+﻿using isRail.Commands;
+using isRail.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,12 @@ namespace isRail.Views
     /// </summary>
     public partial class DepartureDetailsView : Window
     {
-        public DepartureDetailsView(RideViewModel ride)
+        public ICommand BuyTicketCommand { get; }
+        public ICommand ReserveTicketCommand { get; }
+
+        public DepartureDetailsView(RideViewModel ride, Models.App app)
         {
+            InitializeComponent();
             DataContext = this;
             Title = Title + ride.From + " - " + ride.To;
             From.Text = From.Text + ride.From;
@@ -38,6 +43,9 @@ namespace isRail.Views
             EndTime.Text = EndTime.Text + ride.EndTime;
             Price.Text = Price.Text + ride.Price;
             Train.Text = Train.Text + ride.Train;
+
+            BuyTicketCommand = new BuyTicketCommand(app, ride.Ride);
+            ReserveTicketCommand = new ReserveTicketCommand(app, ride.Ride);
         }
     }
 }

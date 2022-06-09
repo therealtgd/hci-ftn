@@ -1,4 +1,5 @@
-﻿using System;
+﻿using isRail.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,23 +17,14 @@ using System.Windows.Shapes;
 namespace isRail.Views
 {
     /// <summary>
-    /// Interaction logic for ClientMainWindow.xaml
+    /// Interaction logic for ManagerMainView.xaml
     /// </summary>
-    public partial class ClientMainWindow : UserControl
+    public partial class ManagerMainView : UserControl
     {
-
-        public ClientMainWindow()
+        public ManagerMainView()
         {
             InitializeComponent();
-
         }
-
-
-
-        private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
-
 
     }
 }

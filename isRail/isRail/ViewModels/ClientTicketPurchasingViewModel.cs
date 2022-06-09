@@ -80,8 +80,9 @@ namespace isRail.ViewModels
             this.App = app;
             _rides = new ObservableCollection<RideViewModel>();
             {
-                foreach (Ride r in this.App.Rides)
-                    _rides.Add(new RideViewModel(r, app));
+                foreach (List<Ride> rL in App.RidesMap.Values)
+                    foreach(Ride r in rL)
+                        _rides.Add(new RideViewModel(r, app));
             }
             RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
             RidesCollectionView.Filter = FilterRides;
