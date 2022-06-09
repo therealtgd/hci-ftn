@@ -1,4 +1,5 @@
 ﻿using isRail.Models;
+using isRail.Stores;
 using isRail.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,20 +18,32 @@ namespace isRail
     public partial class App : Application
     {
 
+        private readonly Models.App _app;
+
+
+        public App()
+        {
+            _app = new();
+        }
+
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            Models.App app = new();
 
             System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("sr-Latn-CS");
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+
+            _app._navigationStore.CurrentViewModel = _app.CreateLoginViewModel();
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(app)
+                DataContext = new MainViewModel(_app._navigationStore)
             };
             MainWindow.Show();
             base.OnStartup(e);
-
         }
+
+
+       
     }
 }

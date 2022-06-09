@@ -1,4 +1,5 @@
-﻿using System;
+﻿using isRail.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,19 @@ using System.Threading.Tasks;
 namespace isRail.ViewModels
 {
     public class MainViewModel : ViewModelBase
-    { 
+    {
+        private readonly NavigationStore _navigationStore;
+        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
-        public ViewModelBase CurrentViewModel { get; }
-
-        public MainViewModel(Models.App app)
+        public MainViewModel(NavigationStore navigationStore)
         {
-            CurrentViewModel = new ClientTicketPurchasingViewModel(app);
+            _navigationStore = navigationStore;
+            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        }
+
+        private void OnCurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
     }
 }
