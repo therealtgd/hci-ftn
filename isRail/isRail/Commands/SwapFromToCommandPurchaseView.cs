@@ -9,9 +9,9 @@ namespace isRail.Commands
 {
     internal class SwapFromToCommandPurchaseView : CommandBase
     {
-        private readonly ClientTicketPurchasingViewModel _clientTicketPurchasingViewModel;
+        private readonly ClientMainViewModel _clientTicketPurchasingViewModel;
         
-        public SwapFromToCommandPurchaseView(ClientTicketPurchasingViewModel clientTicketPurchasingViewModel)
+        public SwapFromToCommandPurchaseView(ClientMainViewModel clientTicketPurchasingViewModel)
         {
             _clientTicketPurchasingViewModel = clientTicketPurchasingViewModel;
         }

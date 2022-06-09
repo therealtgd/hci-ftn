@@ -30,12 +30,12 @@
                 VerticalAlignment="Top"
                 FontSize="16"
                 materialDesign:HintAssist.Hint="Polazak"
-                Text="{Binding Path=FromFilter, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Path=ClientPurchasedTicketsViewModel.FromFilter, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 0 15 0">
                 </TextBox>
                 <Button Grid.Column="1"
                 Content="{materialDesign:PackIcon SwapHorizontal}"
-                Command="{Binding SwapFromToCommand}"
+                Command="{Binding ClientPurchasedTicketsViewModel.SwapFromToCommand}"
                 ToolTip="Zameni polazak i dolazak"/>
                 <TextBox
                 Margin="15 0 0 0"
@@ -43,7 +43,7 @@
                 Grid.Column="2"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
-                Text="{Binding Path=ToFilter, UpdateSourceTrigger=PropertyChanged}"
+                Text="{Binding Path=ClientPurchasedTicketsViewModel.ToFilter, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Dolazak">
                 </TextBox>
                 <DatePicker
@@ -52,13 +52,13 @@
                 FontSize="16"
                 Margin="15 0 0 0"
                 Grid.Column="4"
-                SelectedDate="{Binding Path=StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                SelectedDate="{Binding Path=ClientPurchasedTicketsViewModel.StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Najraniji datum polaska"
                 materialDesign:HintAssist.HelperText=""
                 Style="{StaticResource MaterialDesignOutlinedDatePicker}">
                 </DatePicker>
                 <materialDesign:TimePicker
-                SelectedTime="{Binding Path=StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
+                SelectedTime="{Binding Path=ClientPurchasedTicketsViewModel.StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
                 Is24Hours="True"
                 FontSize="16"
                 Margin="15 0 0 0"
@@ -70,7 +70,7 @@
             </Grid>
             <DataGrid
             CanUserResizeColumns="False"
-            ItemsSource="{Binding BoughtTicketsCollectionView}"
+            ItemsSource="{Binding ClientPurchasedTicketsViewModel.BoughtTicketsCollectionView}"
             CanUserAddRows="False"
             IsReadOnly="True"
             AutoGenerateColumns="False"

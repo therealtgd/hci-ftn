@@ -101,9 +101,9 @@ namespace isRail.Models
             return new LoginViewModel(this);
         }
 
-        public ClientTicketPurchasingViewModel CreateTicketPurchasingViewModel()
+        public ClientMainViewModel CreateTicketPurchasingViewModel()
         {
-            return new ClientTicketPurchasingViewModel(this);
+            return new ClientMainViewModel(this);
         }
 
         public ManagerMainViewModel CreateManagerMainViewModel()

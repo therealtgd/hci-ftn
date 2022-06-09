@@ -16,7 +16,7 @@ namespace isRail.ViewModels
     {
         public Models.App App { get; }
 
-        private ObservableCollection<RideViewModel> _tickets => RefreshTicketsBought();
+        private readonly ObservableCollection<RideViewModel> _tickets;
         public ICollectionView BoughtTicketsCollectionView { get; }
         public ICommand SwapFromToCommand { get; }
 
@@ -75,6 +75,13 @@ namespace isRail.ViewModels
         public ClientPurchasedTicketsViewModel(Models.App app)
         {
             App = app;
+
+            _tickets = new ObservableCollection<RideViewModel>();
+            {
+                foreach (Ride r in App.Client.BoughtTickets)
+                    _tickets.Add(new RideViewModel(r, App));
+            }
+
             BoughtTicketsCollectionView = CollectionViewSource.GetDefaultView(_tickets);
             BoughtTicketsCollectionView.Filter = FilterRides;
             SwapFromToCommand = new SwapFromToCommandPurchasedTicketsView(this);
@@ -105,12 +112,5 @@ namespace isRail.ViewModels
             return rideView.StartTime >= tmpDate;
         }
 
-        private ObservableCollection<RideViewModel> RefreshTicketsBought()
-        {
-            ObservableCollection<RideViewModel> tmp = new ObservableCollection<RideViewModel>();
-            foreach (Ride r in App.Client.BoughtTickets)
-                tmp.Add(new RideViewModel(r, App));
-            return tmp;
-        }
     }
 }

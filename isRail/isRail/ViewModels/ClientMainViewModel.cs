@@ -13,17 +13,18 @@ using System.Windows.Input;
 
 namespace isRail.ViewModels
 {
-    public class ClientTicketPurchasingViewModel : ViewModelBase
+    public class ClientMainViewModel : ViewModelBase
     {
 
         public Models.App App { get; }
+
+        public ClientPurchasedTicketsViewModel ClientPurchasedTicketsViewModel { get; set; }
 
         private readonly ObservableCollection<RideViewModel> _rides;
 
         public IEnumerable<RideViewModel> Rides => _rides;
         public ICollectionView RidesCollectionView { get; }
-        private readonly ObservableCollection<RideViewModel> _tickets;
-        public ICollectionView BoughtTicketsCollectionView { get; }
+       
         public ICommand SwapFromToCommand { get; }
 
         private string _fromFilter = string.Empty;
@@ -77,7 +78,7 @@ namespace isRail.ViewModels
         }
 
 
-        public ClientTicketPurchasingViewModel(Models.App app)
+        public ClientMainViewModel(Models.App app)
         {
             this.App = app;
             _rides = new ObservableCollection<RideViewModel>();
@@ -90,14 +91,8 @@ namespace isRail.ViewModels
             RidesCollectionView.Filter = FilterRides;
             SwapFromToCommand = new SwapFromToCommandPurchaseView(this);
 
-            _tickets = new ObservableCollection<RideViewModel>();
-            {
-                foreach (Ride r in App.Client.BoughtTickets)
-                    _tickets.Add(new RideViewModel(r, App));
-            }
-
-            BoughtTicketsCollectionView = CollectionViewSource.GetDefaultView(_tickets);
-            BoughtTicketsCollectionView.Filter = FilterRides;
+            ClientPurchasedTicketsViewModel = new ClientPurchasedTicketsViewModel(app);
+            
             
         }
 
