@@ -1,6 +1,7 @@
 ﻿using isRail.Models;
 using isRail.Services;
 using isRail.ViewModels;
+using isRail.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +43,7 @@ namespace isRail.Commands
                     _loginViewModel.App.Manager = (Manager) user;
             }
             else
-                Trace.WriteLine("Login failed");
+                new MessageBoxCustom("Prijava neuspešna.", MessageType.Info, MessageButtons.Ok).ShowDialog();
         }
 
         private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
