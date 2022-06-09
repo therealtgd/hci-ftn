@@ -16,11 +16,8 @@ namespace isRail.ViewModels
 
         public string Train => _ride.Train;
         public Station From => _ride.RideBase.From;
-        public string FromCity => _ride.RideBase.From.Name;
         public Station To => _ride.RideBase.To;
-        public string ToCity => _ride.RideBase.To.Name;
         public List<Station> Stations => _ride.RideBase.Stations;
-        public List<string> StationCities => _ride.RideBase.Stations.Select(station => station.Name).ToList();
         public DateTime StartTime => _ride.StartTime;
         public DateTime EndTime => _ride.EndTime.ToLocalTime();
         public string Price => _ride.Price.ToString() + " RSD";

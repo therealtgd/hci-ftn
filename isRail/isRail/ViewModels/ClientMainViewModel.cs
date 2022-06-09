@@ -100,8 +100,8 @@ namespace isRail.ViewModels
         {
             if (o is RideViewModel rideView)
             {
-                return rideView.FromCity.Contains(FromFilter, StringComparison.InvariantCultureIgnoreCase) &&
-                    rideView.ToCity.Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                return rideView.From.ToString().Contains(FromFilter, StringComparison.InvariantCultureIgnoreCase) &&
+                    rideView.To.ToString().Contains(ToFilter, StringComparison.InvariantCultureIgnoreCase) &&
                     (StartDateFilter == null || rideView.StartTime >= StartDateFilter) &&
                     DateTimeFilter(rideView);
             }
