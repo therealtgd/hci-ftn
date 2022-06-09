@@ -75,17 +75,13 @@ namespace isRail.ViewModels
         public ClientPurchasedTicketsViewModel(Models.App app)
         {
             App = app;
-
             _tickets = new ObservableCollection<RideViewModel>();
-            {
-                foreach (Ride r in App.Client.BoughtTickets)
-                    _tickets.Add(new RideViewModel(r, App));
-            }
+            OnBoughtTickets();
 
             BoughtTicketsCollectionView = CollectionViewSource.GetDefaultView(_tickets);
             BoughtTicketsCollectionView.Filter = FilterRides;
             SwapFromToCommand = new SwapFromToCommandPurchasedTicketsView(this);
-            
+            BuyTicketCommand.TicketBoughtEvent += OnBoughtTickets;
         }
 
         private bool FilterRides(object o)
@@ -112,5 +108,11 @@ namespace isRail.ViewModels
             return rideView.StartTime >= tmpDate;
         }
 
+        private void OnBoughtTickets()
+        {
+            _tickets.Clear();
+            foreach (Ride r in App.Client.BoughtTickets)
+                _tickets.Add(new RideViewModel(r, App));
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace isRail.Commands
     {
         private Models.App _app { get; }
         private Ride _ride { get; set; }
-        public event Action TicketBoughtEvent;
+        public static event Action TicketBoughtEvent;
 
         public BuyTicketCommand(Models.App app, Ride ride)
         {

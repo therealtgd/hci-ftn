@@ -9,17 +9,17 @@ namespace isRail.Commands
 {
     internal class SwapFromToCommandReservedTicketsView : CommandBase
     {
-        private readonly ClientMainViewModel _clientTicketPurchasingViewModel;
+        private readonly ClientReservedTicketsViewModel _clientReservedTicketsViewModel;
         
-        public SwapFromToCommandReservedTicketsView(ClientMainViewModel clientTicketPurchasingViewModel)
+        public SwapFromToCommandReservedTicketsView(ClientReservedTicketsViewModel clientReservedTicketsViewModel)
         {
-            _clientTicketPurchasingViewModel = clientTicketPurchasingViewModel;
+            _clientReservedTicketsViewModel = clientReservedTicketsViewModel;
         }
         public override void Execute(object parameter)
         {
-            string tmp = _clientTicketPurchasingViewModel.ToFilter;
-            _clientTicketPurchasingViewModel.ToFilter = _clientTicketPurchasingViewModel.FromFilter;
-            _clientTicketPurchasingViewModel.FromFilter = tmp;
+            string tmp = _clientReservedTicketsViewModel.ToFilter;
+            _clientReservedTicketsViewModel.ToFilter = _clientReservedTicketsViewModel.FromFilter;
+            _clientReservedTicketsViewModel.FromFilter = tmp;
         }
     }
 }

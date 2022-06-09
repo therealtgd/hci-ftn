@@ -12,6 +12,7 @@ namespace isRail.Commands
     {
         private Models.App _app { get; }
         private Ride _ride { get; set; }
+        public static event Action TicketReservedEvent;
 
         public ReserveTicketCommand(Models.App app, Ride ride)
         {
@@ -26,6 +27,8 @@ namespace isRail.Commands
             {
                 _app.Client.ReservedTickets.Add(_ride);
                 new MessageBoxCustom("Uspešno ste rezervisali kartu.", MessageType.Success, MessageButtons.Ok).ShowDialog();
+                TicketReservedEvent?.Invoke();
+
             }
             else
                 new MessageBoxCustom("Rezervacija otkazana.", MessageType.Info, MessageButtons.Ok).ShowDialog();
