@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,41 +12,38 @@ using System.Windows.Input;
 
 namespace isRail.ViewModels
 {
-    public class ClientTicketPurchasingViewModel : ViewModelBase
+    public class ClientPurchasedTicketsViewModel : ViewModelBase
     {
-
         public Models.App App { get; }
 
-        private readonly ObservableCollection<RideViewModel> _rides;
-
-        public IEnumerable<RideViewModel> Rides => _rides;
-        public ICollectionView RidesCollectionView { get; }
-        private readonly ObservableCollection<RideViewModel> _tickets;
+        private ObservableCollection<RideViewModel> _tickets => RefreshTicketsBought();
         public ICollectionView BoughtTicketsCollectionView { get; }
         public ICommand SwapFromToCommand { get; }
 
         private string _fromFilter = string.Empty;
-        public string FromFilter { 
-            get 
-            { return _fromFilter; } 
-            set 
-            { 
+        public string FromFilter
+        {
+            get
+            { return _fromFilter; }
+            set
+            {
                 _fromFilter = value;
                 OnPropertyChanged(nameof(FromFilter));
-                RidesCollectionView.Refresh();
-            } 
+                BoughtTicketsCollectionView.Refresh();
+            }
         }
 
         private string _toFilter = string.Empty;
-        public string ToFilter {
-            get 
-            { return _toFilter; } 
+        public string ToFilter
+        {
+            get
+            { return _toFilter; }
             set
-            { 
+            {
                 _toFilter = value;
                 OnPropertyChanged(nameof(ToFilter));
-                RidesCollectionView.Refresh();
-            } 
+                BoughtTicketsCollectionView.Refresh();
+            }
         }
 
         private DateTime? _startDateFilter = DateTime.Today;
@@ -59,7 +55,7 @@ namespace isRail.ViewModels
             {
                 _startDateFilter = value;
                 OnPropertyChanged(nameof(StartDateFilter));
-                RidesCollectionView.Refresh();
+                BoughtTicketsCollectionView.Refresh();
             }
         }
 
@@ -72,32 +68,16 @@ namespace isRail.ViewModels
             {
                 _startTimeFilter = value;
                 OnPropertyChanged(nameof(StartTimeFilter));
-                RidesCollectionView.Refresh();
+                BoughtTicketsCollectionView.Refresh();
             }
         }
 
-
-        public ClientTicketPurchasingViewModel(Models.App app)
+        public ClientPurchasedTicketsViewModel(Models.App app)
         {
-            this.App = app;
-            _rides = new ObservableCollection<RideViewModel>();
-            {
-                foreach (List<Ride> rL in App.RidesMap.Values)
-                    foreach(Ride r in rL)
-                        _rides.Add(new RideViewModel(r, app));
-            }
-            RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
-            RidesCollectionView.Filter = FilterRides;
-            SwapFromToCommand = new SwapFromToCommandPurchaseView(this);
-
-            _tickets = new ObservableCollection<RideViewModel>();
-            {
-                foreach (Ride r in App.Client.BoughtTickets)
-                    _tickets.Add(new RideViewModel(r, App));
-            }
-
+            App = app;
             BoughtTicketsCollectionView = CollectionViewSource.GetDefaultView(_tickets);
             BoughtTicketsCollectionView.Filter = FilterRides;
+            SwapFromToCommand = new SwapFromToCommandPurchasedTicketsView(this);
             
         }
 
@@ -123,6 +103,14 @@ namespace isRail.ViewModels
             tmpDate = StartDateFilter.Value.AddHours(StartTimeFilter.GetValueOrDefault().Hour);
             tmpDate = tmpDate.AddMinutes(StartTimeFilter.GetValueOrDefault().Minute);
             return rideView.StartTime >= tmpDate;
+        }
+
+        private ObservableCollection<RideViewModel> RefreshTicketsBought()
+        {
+            ObservableCollection<RideViewModel> tmp = new ObservableCollection<RideViewModel>();
+            foreach (Ride r in App.Client.BoughtTickets)
+                tmp.Add(new RideViewModel(r, App));
+            return tmp;
         }
     }
 }

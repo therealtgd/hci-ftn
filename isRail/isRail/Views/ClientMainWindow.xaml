@@ -49,6 +49,7 @@
                                 Text="Kupljene karte" />
                         </StackPanel>
                     </TabItem.Header>
+                    <local:ClientPurchasedTicketsView></local:ClientPurchasedTicketsView>
                     <!--Pregled kupljenih karata-->
                 </TabItem>
                 <TabItem MinWidth="120" MouseDown="TabItem_MouseDown">
