@@ -34,10 +34,10 @@ namespace isRail
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
 
-            _app._navigationStore.CurrentViewModel = _app.CreateLoginViewModel();
+            _app.NavigationStore.CurrentViewModel = _app.CreateLoginViewModel();
             MainWindow = new MainWindow()
             {
-                DataContext = new MainViewModel(_app._navigationStore)
+                DataContext = new MainViewModel(_app.NavigationStore)
             };
             MainWindow.Show();
             base.OnStartup(e);

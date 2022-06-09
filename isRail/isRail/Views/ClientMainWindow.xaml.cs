@@ -27,6 +27,8 @@ namespace isRail.Views
 
         }
 
+
+
         private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
         }
