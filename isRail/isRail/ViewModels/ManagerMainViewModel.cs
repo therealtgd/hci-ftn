@@ -25,13 +25,13 @@ namespace isRail.ViewModels
             }
         }
 
-        public ICommand EditRidesCommand { get; }
+        public ICommand ManagerNavigateCommand { get; }
 
 
         public ManagerMainViewModel(Models.App app)
         {
             App = app;
-            EditRidesCommand = new EditRidesCommand(this);
+            ManagerNavigateCommand = new ManagerNavigateCommand(this);
         }
     }
 }

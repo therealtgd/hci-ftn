@@ -18,6 +18,9 @@
             <DataTemplate DataType="{x:Type vms:ManagerEditRidesViewModel}">
                 <views:ManagerEditRidesView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ManagerEditTrainsViewModel}">
+                <views:ManagerEditTrainsView />
+            </DataTemplate>
         </Grid.Resources>
         <UserControl Grid.Row="1" Content="{Binding CurrentManagerViewModel}" />
         
@@ -42,12 +45,14 @@
                     Icon="{materialDesign:PackIcon Kind=Timetable}" />
                 <MenuItem
                     Header="Vozne linije"
-                    Command="{Binding EditRidesCommand}"
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="editRides"
                     InputGestureText="Ctrl+L"
                     Icon="{materialDesign:PackIcon Kind=RailroadLight}" />
                 <MenuItem
                     Header="Vozovi"
-                    Command=""
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="editTrains"
                     InputGestureText="Ctrl+T"
                     Icon="{materialDesign:PackIcon Kind=Train}" />
             </MenuItem>

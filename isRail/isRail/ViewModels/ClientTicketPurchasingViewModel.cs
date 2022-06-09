@@ -19,8 +19,6 @@ namespace isRail.ViewModels
         public Models.App App { get; }
 
         private readonly ObservableCollection<RideViewModel> _rides;
-
-        public IEnumerable<RideViewModel> Rides => _rides;
         public ICollectionView RidesCollectionView { get; }
         public ICommand SwapFromToCommand { get; }
 
