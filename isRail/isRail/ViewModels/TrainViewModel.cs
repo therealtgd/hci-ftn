@@ -10,7 +10,19 @@ namespace isRail.ViewModels
     {
 
         private readonly string _train;
-        public string Train => _train;
+        private string _editedTrain { get; set; }
+        public string Train
+        {
+            get 
+            { 
+                if (_editedTrain != null)
+                    return _editedTrain;
+                return _train;
+            }
+            set { _editedTrain = value; }
+        }
+
+
         public Models.App App { get; }
 
         public TrainViewModel(string train, Models.App app)

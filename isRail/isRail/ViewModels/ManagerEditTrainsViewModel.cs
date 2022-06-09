@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace isRail.ViewModels
 {
@@ -20,6 +21,7 @@ namespace isRail.ViewModels
             _trains = new ObservableCollection<TrainViewModel>();
             foreach (string train in app.Trains)
                 _trains.Add(new TrainViewModel(train, app));
+            TrainsCollectionView = CollectionViewSource.GetDefaultView(_trains);
         }
     }
 }
