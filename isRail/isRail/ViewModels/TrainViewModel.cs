@@ -9,17 +9,14 @@ namespace isRail.ViewModels
     public class TrainViewModel : ViewModelBase
     {
 
-        private readonly string _train;
-        private string _editedTrain { get; set; }
+        private string _train { get; set; }
         public string Train
         {
             get 
             { 
-                if (_editedTrain != null)
-                    return _editedTrain;
                 return _train;
             }
-            set { _editedTrain = value; }
+            set { _train = value; }
         }
 
 

@@ -32,15 +32,32 @@
                 <DataGridTextColumn
                     Binding="{Binding Train}"
                     Header="Voz" 
-                    Width="600"/>
+                    Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        
-             <Button
-                Margin="30 0 30 20"
-                Grid.Row="1"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button
+                Margin="30 0 0 20"
+                Grid.Column="0"
                 FontSize="16"
-                Command="{Binding SaveTrainChanges}"
+                Command="{Binding SaveTrainChangesCommand}"
                 >Sačuvaj promene</Button>
+            <Button
+                Margin="0 0 30 20"
+                Grid.Column="2"
+                FontSize="16"
+                Background="LightGray"
+                BorderBrush="LightGray"
+                Command="{Binding DiscardTrainChangesCommand}"
+                >Odbaci promene</Button>
+        </Grid>
     </Grid>
+        
+             
 </UserControl>
