@@ -5,69 +5,92 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:views="clr-namespace:isRail.Views"
-             xmlns:vms="clr-namespace:isRail.ViewModels"
+             xmlns:vms="clr-namespace:isRail.ViewModels" xmlns:viewmodels="clr-namespace:isRail.ViewModels" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding EditRidesCommand}" Gesture="CTRL+R"></KeyBinding>
+        <KeyBinding Command="{Binding EditRideBasesCommand}" Gesture="CTRL+L"></KeyBinding>
+        <KeyBinding Command="{Binding EditTrainsCommand}" Gesture="CTRL+T"></KeyBinding>
+        <KeyBinding Command="{Binding ReportMonthlyCommand}" Gesture="CTRL+SHIFT+M"></KeyBinding>
+        <KeyBinding Command="{Binding ReportRideCommand}" Gesture="CTRL+SHIFT+R"></KeyBinding>
+        <KeyBinding Command="{Binding LogoutCommand}" Gesture="CTRL+E"></KeyBinding>
+        <KeyBinding Command="{Binding LogoutAndExitCommand}" Gesture="CTRL+SHIFT+E"></KeyBinding>
+
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-         <Grid.Resources>
+        <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:ManagerEditRidesViewModel}">
                 <views:ManagerEditRidesView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ManagerEditRideBasesViewModel}">
+                <views:ManagerEditRideBasesView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ManagerEditTrainsViewModel}">
+                <views:ManagerEditTrainsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ManagerReportMonthlyViewModel}">
+                <views:ManagerReportMonthlyView></views:ManagerReportMonthlyView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ManagerReportRideViewModel}">
+                <views:ManagerReportRideView/>
+            </DataTemplate>
         </Grid.Resources>
         <UserControl Grid.Row="1" Content="{Binding CurrentManagerViewModel}" />
-        
+
         <Menu Grid.Row="0">
             <MenuItem
-                Header="_Sistem">
-                <Separator />
+                Header="Ur_eđivanje">
                 <MenuItem
-                    Header="Odjava"
-                    InputGestureText="Ctrl+E"
-                    Icon="{materialDesign:PackIcon Kind=Logout}" />
-                <MenuItem
-                    Header="Odjava i Izlaz"
-                    InputGestureText="Ctrl+Alt+E"
-                    Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
-            </MenuItem>
-            <MenuItem
-                Header="_Uređivanje">
-                <MenuItem
-                    Header="Red vožnje"
+                    Header="_Red vožnje"
+                    Command="{Binding EditRidesCommand}"
                     InputGestureText="Ctrl+R"
                     Icon="{materialDesign:PackIcon Kind=Timetable}" />
                 <MenuItem
-                    Header="Vozne linije"
-                    Command="{Binding EditRidesCommand}"
+                    Header="Vo_zne linije"
+                    Command="{Binding EditRideBasesCommand}"
                     InputGestureText="Ctrl+L"
                     Icon="{materialDesign:PackIcon Kind=RailroadLight}" />
                 <MenuItem
-                    Header="Vozovi"
-                    Command=""
+                    Header="_Vozovi"
+                    Command="{Binding EditTrainsCommand}"
                     InputGestureText="Ctrl+T"
                     Icon="{materialDesign:PackIcon Kind=Train}" />
             </MenuItem>
             <MenuItem
-                Header="_Pregled prodatih karti">
+                Header="P_regled prodatih karata">
                 <MenuItem
-                    Header="Na mesecnom nivou"
-                    Command=""
-                    InputGestureText="Ctrl+I+M"
+                    Header="Na _mesecnom nivou"
+                    Command="{Binding ReportMonthlyCommand}"
+                    InputGestureText="Ctrl+Shift+M"
                     Icon="{materialDesign:PackIcon Kind=CalendarMonth}">
                 </MenuItem>
-                 <MenuItem
-                    Header="Na nivou vožnje"
-                    Command=""
-                    InputGestureText="Ctrl+I+V"
+                <MenuItem
+                    Header="Na _nivou vožnje"
+                    Command="{Binding ReportRideCommand}"
+                    InputGestureText="Ctrl+Shift+R"
                     Icon="{materialDesign:PackIcon Kind=TrainCarPassengerDoor}">
                 </MenuItem>
             </MenuItem>
+            <MenuItem
+                Header="_Sistem">
+                <Separator />
+                <MenuItem
+                    Header="O_djava"
+                    Command="{Binding LogoutCommand}"
+                    InputGestureText="Ctrl+E"
+                    Icon="{materialDesign:PackIcon Kind=Logout}" />
+                <MenuItem
+                    Header="_Odjava i Izlaz"
+                    Command="{Binding LogoutAndExitCommand}"
+                    InputGestureText="Ctrl+Shift+E"
+                    Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
+            </MenuItem>
         </Menu>
-
-       
     </Grid>
 </UserControl>

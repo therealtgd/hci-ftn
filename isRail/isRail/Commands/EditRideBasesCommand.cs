@@ -1,6 +1,4 @@
-﻿using isRail.Services;
-using isRail.ViewModels;
-using isRail.Views;
+﻿using isRail.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace isRail.Commands
 {
-    public class EditRidesCommand : CommandBase
+    public class EditRideBasesCommand : CommandBase
     {
         private ManagerMainViewModel _managerMainViewModel;
-        private ManagerEditRidesViewModel _managerEditRidesViewModel;
+        private ManagerEditRideBasesViewModel _managerEditRidesViewModel;
 
-        public EditRidesCommand(ManagerMainViewModel managerMainViewModel, ManagerEditRidesViewModel managerEditRidesViewModel)
+        public EditRideBasesCommand(ManagerMainViewModel managerMainViewModel, ManagerEditRideBasesViewModel managerEditRidesViewModel)
         {
             _managerMainViewModel = managerMainViewModel;
             _managerEditRidesViewModel = managerEditRidesViewModel;
         }
-
         public override void Execute(object parameter)
         {
             _managerMainViewModel.CurrentManagerViewModel = _managerEditRidesViewModel;

@@ -1,5 +1,4 @@
-﻿using isRail.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace isRail.Views
 {
     /// <summary>
-    /// Interaction logic for ManagerMainView.xaml
+    /// Interaction logic for ManagerReportRideView.xaml
     /// </summary>
-    public partial class ManagerMainView : UserControl
+    public partial class ManagerReportRideView : UserControl
     {
-        public ManagerMainView()
+        public ManagerReportRideView()
         {
             InitializeComponent();
-
         }
-
     }
 }
