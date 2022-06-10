@@ -13,6 +13,8 @@ namespace isRail.Commands
     {
         private Models.App _app { get; }
         private Ride _ride { get; set; }
+        public delegate void ReturnBoughtTicket(RideViewModel ride);
+        public static event ReturnBoughtTicket ReturnBoughtTicketEvent;
         public static event Action TicketBoughtEvent;
 
         public BuyTicketCommand(Models.App app, Ride ride)
@@ -29,6 +31,7 @@ namespace isRail.Commands
                  _app.Client.BoughtTickets.Add(_ride);  
                 new MessageBoxCustom("Uspešno ste kupili kartu.", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 TicketBoughtEvent?.Invoke();
+                ReturnBoughtTicketEvent?.Invoke(new RideViewModel(_ride, _app));
             }
             else
                 new MessageBoxCustom("Kupovina otkazana.", MessageType.Info, MessageButtons.Ok).ShowDialog();
