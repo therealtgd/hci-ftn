@@ -27,6 +27,15 @@
                     <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
                 </Style>
             </DataGrid.Resources>
+            <DataGrid.RowValidationErrorTemplate>
+                <ControlTemplate>
+                    <Grid Margin="0,-2,0,-2"
+                        ToolTip="{Binding RelativeSource={RelativeSource
+                        FindAncestor, AncestorType={x:Type DataGridRow}},
+                        Path=(Validation.Errors)[0].ErrorContent}">
+                    </Grid>
+                </ControlTemplate>
+            </DataGrid.RowValidationErrorTemplate>
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Train}"

@@ -15,18 +15,28 @@ namespace isRail.Commands
     public class DiscardTrainChangesCommand : CommandBase
     {
         private ManagerEditTrainsViewModel _managerEditTrainsViewModel;
-        private bool _canExecute { get; set; } = false;
+        private bool _canExecute { get; set; }
         public static event Action DiscardChangesEvent;
 
         
 
         public DiscardTrainChangesCommand(ManagerEditTrainsViewModel managerEditTrainsViewModel)
         {
+            _canExecute = false;
             _managerEditTrainsViewModel = managerEditTrainsViewModel;
             foreach (var trains in managerEditTrainsViewModel.Trains)
                 trains.PropertyChanged += OnPropertyChanged;
             SaveTrainChangesCommand.SaveChangesEvent += OnSaveChanges;
             _managerEditTrainsViewModel.Trains.CollectionChanged += OnCollectionChanged;
+            ManagerEditTrainsViewModel.FinishedDiscardingChangesEvent += OnFinishedDiscardingChanges;
+        }
+
+        private void OnFinishedDiscardingChanges()
+        {
+            _canExecute = false;
+            foreach (var trains in _managerEditTrainsViewModel.Trains)
+                trains.PropertyChanged += OnPropertyChanged;
+            OnCanExecutedChanged();
         }
 
         private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -59,11 +69,10 @@ namespace isRail.Commands
             if (result.Value)
             {
                
-                _managerEditTrainsViewModel.TrainsCollectionView = CollectionViewSource.GetDefaultView(_managerEditTrainsViewModel.Trains);
                 new MessageBoxCustom("Promene su uspešno odbačene.", MessageType.Success, MessageButtons.Ok).ShowDialog();
+                DiscardChangesEvent?.Invoke();
                 _canExecute = false;
                 OnCanExecutedChanged();
-                DiscardChangesEvent?.Invoke();
             }
 
         }

@@ -19,8 +19,8 @@ namespace isRail.ViewModels
         public ObservableCollection<TrainViewModel> Trains { get; set; }
         public ICollectionView TrainsCollectionView { get; set; }
 
-        public ICommand SaveTrainChangesCommand { get; }
-        public DiscardTrainChangesCommand DiscardTrainChangesCommand { get; }
+        public ICommand SaveTrainChangesCommand { get; set; }
+        public DiscardTrainChangesCommand DiscardTrainChangesCommand { get; set;  }
 
         public ManagerEditTrainsViewModel(Models.App app)
         {
@@ -36,11 +36,13 @@ namespace isRail.ViewModels
             DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
         }
 
+        public static event Action FinishedDiscardingChangesEvent;
         private void OnDiscardChanges()
         {
             Trains.Clear();
             foreach (string train in App.Trains)
                 Trains.Add(new TrainViewModel(train, App));
+            FinishedDiscardingChangesEvent?.Invoke();
         }
     }
 }

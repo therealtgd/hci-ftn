@@ -23,7 +23,16 @@ namespace isRail.Commands
             foreach (var trains in managerEditTrainsViewModel.Trains)
                 trains.PropertyChanged += OnPropertyChanged;
             _managerEditTrainsViewModel.Trains.CollectionChanged += OnCollectionChanged;
-            DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
+            ManagerEditTrainsViewModel.FinishedDiscardingChangesEvent += OnDiscardChanges;
+            ManagerEditTrainsViewModel.FinishedDiscardingChangesEvent += OnFinishedDiscardingChanges;
+        }
+
+        private void OnFinishedDiscardingChanges()
+        {
+            _canExecute = false;
+            foreach (var trains in _managerEditTrainsViewModel.Trains)
+                trains.PropertyChanged += OnPropertyChanged;
+            OnCanExecutedChanged();
         }
 
         private void OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -45,7 +54,11 @@ namespace isRail.Commands
 
         private void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            _canExecute = true;
+            string train = ((TrainViewModel)sender).Train;
+            if (string.IsNullOrEmpty(train))
+                _canExecute = false;
+            else
+                _canExecute = true;
             OnCanExecutedChanged();
         }
 
@@ -86,6 +99,7 @@ namespace isRail.Commands
                     mb.Width = 600;
                     mb.Height += 20*trainsInUse.Count + 20;
                     mb.ShowDialog();
+                  
                 }
                 else
                 {
@@ -94,12 +108,13 @@ namespace isRail.Commands
                     {
                         _managerEditTrainsViewModel.App.Trains.Add(tVM.Train);
                     }
+                    new MessageBoxCustom("Promene su uspešno sačuvane.", MessageType.Success, MessageButtons.Ok).ShowDialog();
                     _canExecute = false;
                     OnCanExecutedChanged();
                     SaveChangesEvent?.Invoke();
-                    new MessageBoxCustom("Promene su uspešno sačuvane.", MessageType.Success, MessageButtons.Ok).ShowDialog();
                 }
-                
+               
+
             }
 
         }
