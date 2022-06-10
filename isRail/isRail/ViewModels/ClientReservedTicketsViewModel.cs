@@ -82,6 +82,7 @@ namespace isRail.ViewModels
             BoughtTicketsCollectionView.Filter = FilterRides;
             SwapFromToCommand = new SwapFromToCommandReservedTicketsView(this);
             ReserveTicketCommand.TicketReservedEvent += OnReservedTicket;
+            BuyTicketCommand.ReturnBoughtTicketEvent += OnBuyReservedTicket;
         }
 
         private bool FilterRides(object o)
@@ -114,6 +115,25 @@ namespace isRail.ViewModels
             foreach (Ride r in App.Client.ReservedTickets)
                 if (r.EndTime > DateTime.Now)
                     _tickets.Add(new RideViewModel(r, App));
+        }
+
+        private void OnBuyReservedTicket(RideViewModel reservation)
+        {
+            for (int i = 0; i < _tickets.Count; i++)
+            {
+                if (
+                    _tickets[i].From.ToString().Equals(reservation.From.ToString())
+                    && _tickets[i].To.ToString().Equals(reservation.To.ToString())
+                    && _tickets[i].Train.Equals(reservation.Train) 
+                    && _tickets[i].Price.Equals(reservation.Price)
+                    && _tickets[i].StartTime == reservation.StartTime
+                    && _tickets[i].EndTime == reservation.EndTime
+                )
+                {
+                    _tickets.RemoveAt(i);
+                    return;
+                }
+            }
         }
     }
 }
