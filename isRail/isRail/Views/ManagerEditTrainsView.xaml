@@ -21,8 +21,7 @@
             CanUserAddRows="True"
             HorizontalAlignment="Stretch"
             FontSize="16"
-            Width="auto"
-            LoadingRow="DataGrid_LoadingRow">
+            Width="auto">
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
@@ -32,6 +31,10 @@
                 <DataGridTextColumn
                     Binding="{Binding Train}"
                     Header="Voz" 
+                    />
+                <DataGridTextColumn 
+                    IsReadOnly="True"
+                    CanUserReorder="False"
                     Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

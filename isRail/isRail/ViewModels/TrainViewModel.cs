@@ -16,7 +16,10 @@ namespace isRail.ViewModels
             { 
                 return _train;
             }
-            set { _train = value; }
+            set {
+                _train = value; 
+                OnPropertyChanged(nameof(Train));
+            }
         }
 
 
@@ -27,5 +30,6 @@ namespace isRail.ViewModels
             _train = train;
             App = app;
         }
+
     }
 }
