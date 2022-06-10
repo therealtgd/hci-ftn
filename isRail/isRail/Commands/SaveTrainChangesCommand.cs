@@ -52,18 +52,54 @@ namespace isRail.Commands
         public override void Execute(object parameter)
         {
             bool? result = new MessageBoxCustom("Da li želite da sačuvate promene?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
-            
+
+            List<string> viewModelTrains = _managerEditTrainsViewModel.Trains.Select(train => train.Train).ToList();
+
+
+        List<string> trainsInUse = new List<string>();
+            foreach (string train in _managerEditTrainsViewModel.App.Trains)
+            {
+                if (!viewModelTrains.Contains(train))
+                {
+                    foreach (var rL in _managerEditTrainsViewModel.App.RidesMap.Values)
+                    {
+                        foreach (var r in rL)
+                        {
+                            if (r.Train.Equals(train))
+                            {
+                                trainsInUse.Add(train);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+          
             if (result.Value)
             {
-                _managerEditTrainsViewModel.App.Trains.Clear();
-                foreach (TrainViewModel tVM in _managerEditTrainsViewModel.Trains)
+                if (trainsInUse.Count > 0)
                 {
-                    _managerEditTrainsViewModel.App.Trains.Add(tVM.Train);
+
+                    string trains = string.Join("\n", trainsInUse.Select(train => "  - "+train));
+                    MessageBoxCustom mb = new MessageBoxCustom("Nije moguće sačuvati promene jer su sledeći vozovi u upotrebi:\n" + trains + "\nIzbacite navedene vozove iz upotrebe ako želite da ih menjate.", MessageType.Error, MessageButtons.Ok);
+                    mb.Width = 600;
+                    mb.Height += 20*trainsInUse.Count + 20;
+                    mb.ShowDialog();
                 }
-                _canExecute = false;
-                OnCanExecutedChanged();
-                SaveChangesEvent?.Invoke();
-                new MessageBoxCustom("Promene su uspešno sačuvane.", MessageType.Success, MessageButtons.Ok).ShowDialog();
+                else
+                {
+                    _managerEditTrainsViewModel.App.Trains.Clear();
+                    foreach (TrainViewModel tVM in _managerEditTrainsViewModel.Trains)
+                    {
+                        _managerEditTrainsViewModel.App.Trains.Add(tVM.Train);
+                    }
+                    _canExecute = false;
+                    OnCanExecutedChanged();
+                    SaveChangesEvent?.Invoke();
+                    new MessageBoxCustom("Promene su uspešno sačuvane.", MessageType.Success, MessageButtons.Ok).ShowDialog();
+                }
+                
             }
 
         }
