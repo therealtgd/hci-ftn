@@ -50,16 +50,18 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             
+           
             <Button
                 Margin="30 0 0 20"
                 Grid.Column="0"
                 FontSize="16"
-                Command="{Binding SaveTrainChangesCommand}"
-                >Sačuvaj promene</Button>
+                Command="{Binding AddTrainCommand}"
+                >Dodaj voz</Button>
             <Button
                 Margin="0 0 30 20"
                 Grid.Column="2"
@@ -68,6 +70,13 @@
                 BorderBrush="LightGray"
                 Command="{Binding DiscardTrainChangesCommand}"
                 >Odbaci promene</Button>
+             <Button
+                Margin="0 0 30 20"
+                Grid.Column="3"
+                FontSize="16"
+                Command="{Binding SaveTrainChangesCommand}"
+                >Sačuvaj promene</Button>
+         
         </Grid>
     </Grid>
         
