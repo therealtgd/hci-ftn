@@ -54,24 +54,7 @@
                         </materialDesign:TransitioningContent.OpeningEffects>
                             <TextBox x:Name="txtMessage" HorizontalAlignment="Center" IsReadOnly="True" Grid.Row="0" Margin="5" materialDesign:HintAssist.Hint="" Foreground="Black" FontSize="18"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                     </materialDesign:TransitioningContent>
-                    
-                    <materialDesign:TransitioningContent>
-                        <materialDesign:TransitioningContent.OpeningEffects >
-                            <materialDesign:TransitionEffect Kind="FadeIn" />
-                            <materialDesign:TransitionEffect Kind="SlideInFromBottom" />
-                        </materialDesign:TransitioningContent.OpeningEffects>
-                        <TextBox
-                              x:Name="NameTextBox"
-                              materialDesign:HintAssist.Hint="Voz"
-                              materialDesign:HintAssist.HelperText="Polje je obavezno">
-                              <TextBox.Text>
-                                <Binding
-                                  Path="InputValue"
-                                  UpdateSourceTrigger="PropertyChanged">
-                                </Binding>
-                              </TextBox.Text>
-                        </TextBox>    
-                    </materialDesign:TransitioningContent>
+
                     
                     
                 </Grid>

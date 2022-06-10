@@ -19,11 +19,9 @@ namespace isRail.Views
     /// </summary>
     public partial class MessageBoxCustom : Window
     {
-        public string InputValue { get; set; }
 
         public MessageBoxCustom(string Message, MessageType Type, MessageButtons Buttons)
         {
-            DataContext = this;
             InitializeComponent();
             txtMessage.Text = Message;
             switch (Type)

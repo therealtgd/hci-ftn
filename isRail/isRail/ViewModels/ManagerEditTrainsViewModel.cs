@@ -22,6 +22,8 @@ namespace isRail.ViewModels
         public ICommand SaveTrainChangesCommand { get; set; }
         public DiscardTrainChangesCommand DiscardTrainChangesCommand { get; set;  }
 
+        public AddTrainCommand AddTrainCommand { get; set; } 
+
         public ManagerEditTrainsViewModel(Models.App app)
         {
             App = app;
@@ -32,8 +34,10 @@ namespace isRail.ViewModels
 
             SaveTrainChangesCommand = new SaveTrainChangesCommand(this);
             DiscardTrainChangesCommand = new DiscardTrainChangesCommand(this);
+            AddTrainCommand = new AddTrainCommand(this);  
 
             DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
+            AddTrainCommand.AddedTrainEvent += OnDiscardChanges;
         }
 
         public static event Action FinishedDiscardingChangesEvent;

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using isRail.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +21,58 @@ namespace isRail.Views
     /// </summary>
     public partial class MessageBoxInputCustom : Window
     {
-        public static string InputValue { get; set; }
 
+        private string _inputValue;
+        public string InputValue {
+            get 
+            {
+                return _inputValue;
+            }
+            set
+            {
+                _inputValue = value;
+                InputValueChanged();
+            }
+        }
 
-        public MessageBoxInputCustom()
+        private void InputValueChanged()
+        {
+            btn.Visibility = !string.IsNullOrEmpty(_inputValue) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public MessageBoxInputCustom(string title, string buttonTxt)
         {
             DataContext = this;
             InitializeComponent();
+            txtTitle.Text = title;
+            btn.Content = buttonTxt;
+            btn.Visibility = Visibility.Collapsed;
+
+        }
+
+        public MessageBoxInputCustom(string title, ViewModelBase viewModel)
+        {
+            DataContext = this;
+            InitializeComponent();
+            txtTitle.Text = title;
+            btn.Visibility = Visibility.Collapsed;
+        }
+
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
+        }
+
+        public string GetInputValue()
+        {
+            return InputValue;
         }
     }
 }
