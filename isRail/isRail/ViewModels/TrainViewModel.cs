@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace isRail.ViewModels
 {
-    public class TrainViewModel : ViewModelBase
+    public class TrainViewModel : ViewModelBase, INotifyDataErrorInfo
     {
 
         private string _train { get; set; }
