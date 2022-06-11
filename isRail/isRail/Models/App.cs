@@ -23,6 +23,8 @@ namespace isRail.Models
 
         public readonly NavigationStore NavigationStore;
 
+        public Dictionary<Ride, List<TicketDetails>> Tickets { get; set; }
+
 
         public App()
         {
@@ -31,15 +33,15 @@ namespace isRail.Models
             NavigationStore = new NavigationStore();
         }
 
-      
+
 
         public void InitializeApp()
-        {   
+        {
 
 
             RideBase rideBase1 = new RideBase(
                 1,
-                new Station("Novi Sad" ,45.265571 , 19.829366),
+                new Station("Novi Sad", 45.265571, 19.829366),
                 new Station("Beograd", 44.808510, 20.455799),
                 new List<Station> { new Station("Backa Palanka", 45.249630, 19.396850),
                                     new Station("Zrenjanin", 45.365810, 20.403580),
@@ -66,14 +68,14 @@ namespace isRail.Models
                 DateTime.Now.AddHours(0.2),
                 DateTime.Now.AddHours(0.5),
                 1500);
-            
+
             Ride ride2 = new Ride(
                 rideBase2,
                 "Jastreb",
                 DateTime.Now.AddHours(1),
                 DateTime.Now.AddHours(2),
                 2000);
-           
+
             Ride ride3 = new Ride(
                 rideBase3,
                 "Orao",
@@ -84,7 +86,7 @@ namespace isRail.Models
             AddRide(ride1);
             AddRide(ride2);
             AddRide(ride3);
-            
+
             Trains = new List<string>();
             Trains.Add("Lasta");
             Trains.Add("Orao");
@@ -104,9 +106,27 @@ namespace isRail.Models
             Trains.Add("LetiLetiKonj");
 
             Users = new List<User>();
-            Users.Add(new Client("klijent", "klijent"));
+
+            Client client1 = new Client("klijent", "klijent");
+            Client client2 = new Client("testko", "testic");
+
+            Users.Add(client1);
+            Users.Add(client2);
             Users.Add(new Manager("menadzer", "menadzer"));
-            ((Client)Users[0]).BoughtTickets.Add(ride3);           
+            ((Client)Users[0]).BoughtTickets.Add(ride3);
+
+            Tickets = new Dictionary<Ride, List<TicketDetails>>();
+            AddBoughtTicket(ride1, new TicketDetails(client1, DateTime.Now));
+            AddBoughtTicket(ride1, new TicketDetails(client1, DateTime.Now));
+            AddBoughtTicket(ride2, new TicketDetails(client1, DateTime.Now));
+            AddBoughtTicket(ride2, new TicketDetails(client1, DateTime.Now));
+            AddBoughtTicket(ride2, new TicketDetails(client1, DateTime.Now));
+            AddBoughtTicket(ride3, new TicketDetails(client2, DateTime.Now));
+            AddBoughtTicket(ride3, new TicketDetails(client2, DateTime.Now));
+            AddBoughtTicket(ride3, new TicketDetails(client2, DateTime.Now));
+            AddBoughtTicket(ride3, new TicketDetails(client2, DateTime.Now));
+            AddBoughtTicket(ride3, new TicketDetails(client2, DateTime.Now));
+
         }
 
         public LoginViewModel CreateLoginViewModel()
@@ -136,8 +156,16 @@ namespace isRail.Models
             if (RidesMap.ContainsKey(ride.RideBase))
                 RidesMap[ride.RideBase].Add(ride);
             else
-                RidesMap.Add(ride.RideBase, new List<Ride> {ride});
-        } 
+                RidesMap.Add(ride.RideBase, new List<Ride> { ride });
+        }
+
+        public void AddBoughtTicket(Ride ride, TicketDetails ticket)
+        {
+            ride.Buy();
+            if (!Tickets.ContainsKey(ride))
+                Tickets.Add(ride, new List<TicketDetails>());
+            Tickets[ride].Add(ticket);
+        }
 
 
     }

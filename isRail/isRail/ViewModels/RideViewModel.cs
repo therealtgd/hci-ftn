@@ -21,6 +21,8 @@ namespace isRail.ViewModels
         public DateTime StartTime => _ride.StartTime;
         public DateTime EndTime => _ride.EndTime.ToLocalTime();
         public string Price => _ride.Price.ToString() + " RSD";
+        public string Earnings => _ride.Earnings + " RSD";
+        public int NumOfSales => _ride.GetNumOfSales();
 
         public Models.App App { get; }
 
