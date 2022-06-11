@@ -1,4 +1,6 @@
-﻿using System;
+﻿using isRail.Commands;
+using isRail.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +35,36 @@ namespace isRail.Views
         {
         }
 
+        private void Logout_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            new LogoutCommand(((sender as TabItem).DataContext as ClientMainViewModel).App).Execute(true);
+        }
 
+        private void LogoutAndExit_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            new LogoutAndExitCommand().Execute(true);
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string tabItem = ((sender as TabControl).SelectedItem as TabItem).Header as string;
+            switch (tabItem)
+            {
+                case "Odjava":
+                {
+                    new LogoutCommand(((sender as TabControl).DataContext as ClientMainViewModel).App).Execute(true);
+                    break;
+                }
+
+                case "Odjava i Izlaz":
+                    {
+                        new LogoutAndExitCommand().Execute(true);
+                        break;
+                    }
+
+                default:
+                    return;
+            }
+        }
     }
 }
