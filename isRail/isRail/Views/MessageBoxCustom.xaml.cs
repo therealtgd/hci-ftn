@@ -19,13 +19,13 @@ namespace isRail.Views
     /// </summary>
     public partial class MessageBoxCustom : Window
     {
+
         public MessageBoxCustom(string Message, MessageType Type, MessageButtons Buttons)
         {
             InitializeComponent();
             txtMessage.Text = Message;
             switch (Type)
             {
-
                 case MessageType.Info:
                     txtTitle.Text = "Informacije";
                     break;

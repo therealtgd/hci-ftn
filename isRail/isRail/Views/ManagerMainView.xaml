@@ -35,7 +35,7 @@
                 <views:ManagerEditTrainsView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:ManagerReportMonthlyViewModel}">
-                <views:ManagerReportMonthlyView></views:ManagerReportMonthlyView>
+                <views:ManagerReportMonthlyView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:ManagerReportRideViewModel}">
                 <views:ManagerReportRideView/>
@@ -53,12 +53,14 @@
                     Icon="{materialDesign:PackIcon Kind=Timetable}" />
                 <MenuItem
                     Header="Vo_zne linije"
-                    Command="{Binding EditRideBasesCommand}"
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="editRides"
                     InputGestureText="Ctrl+L"
                     Icon="{materialDesign:PackIcon Kind=RailroadLight}" />
                 <MenuItem
                     Header="_Vozovi"
-                    Command="{Binding EditTrainsCommand}"
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="editTrains"
                     InputGestureText="Ctrl+T"
                     Icon="{materialDesign:PackIcon Kind=Train}" />
             </MenuItem>

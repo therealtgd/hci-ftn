@@ -89,6 +89,19 @@ namespace isRail.Models
             Trains.Add("Lasta");
             Trains.Add("Orao");
             Trains.Add("Jastreb");
+            Trains.Add("Pelikan");
+            Trains.Add("Vrabac");
+            Trains.Add("Noj");
+            Trains.Add("Kokos");
+            Trains.Add("Petao");
+            Trains.Add("Pjevac");
+            Trains.Add("Soko");
+            Trains.Add("Kanarinac");
+            Trains.Add("Golub");
+            Trains.Add("Papagaj");
+            Trains.Add("Svraka");
+            Trains.Add("Gavarn");
+            Trains.Add("LetiLetiKonj");
 
             Users = new List<User>();
             Users.Add(new Client("klijent", "klijent"));

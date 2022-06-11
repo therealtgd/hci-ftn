@@ -22,8 +22,6 @@ namespace isRail.ViewModels
         public ClientReservedTicketsViewModel ClientReservedTicketsViewModel { get; set; }
 
         private readonly ObservableCollection<RideViewModel> _rides;
-
-        public IEnumerable<RideViewModel> Rides => _rides;
         public ICollectionView RidesCollectionView { get; }
        
         public ICommand SwapFromToCommand { get; }

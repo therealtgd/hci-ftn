@@ -70,7 +70,7 @@
             </Grid>
             <DataGrid
                 CanUserResizeColumns="False"
-                ItemsSource="{Binding Rides}"
+                ItemsSource="{Binding RidesCollectionView}"
                 CanUserAddRows="False"
                 IsReadOnly="True"
                 AutoGenerateColumns="False"

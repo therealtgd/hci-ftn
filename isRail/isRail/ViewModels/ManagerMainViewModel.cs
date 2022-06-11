@@ -25,6 +25,7 @@ namespace isRail.ViewModels
             }
         }
 
+        public ICommand ManagerNavigateCommand { get; }
         public ICommand EditRidesCommand { get; }
         public ManagerEditRidesViewModel ManagerEditRidesViewModel { get; set; }
         public ICommand EditRideBasesCommand { get; }
@@ -41,6 +42,7 @@ namespace isRail.ViewModels
         public ManagerMainViewModel(Models.App app)
         {
             App = app;
+            ManagerNavigateCommand = new ManagerNavigateCommand(this);
 
             ManagerEditRidesViewModel = new ManagerEditRidesViewModel(App);
             EditRidesCommand = new EditRidesCommand(this, ManagerEditRidesViewModel);
