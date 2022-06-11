@@ -3,10 +3,113 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:isRail.ViewModels" 
+             xmlns:local="clr-namespace:isRail.Views" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:viewmodels="clr-namespace:isRail.ViewModels" 
+             xmlns:util="clr-namespace:isRail.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock FontSize="50">EDIT RIDES</TextBlock>
-    </Grid>
+    <UserControl.Resources>
+        <util:IntConverter x:Key="intConverter" />
+    </UserControl.Resources>
+    <StackPanel
+        Margin="30 50 30 0">
+        <ComboBox
+            FontSize="16"
+            Style="{StaticResource MaterialDesignComboBox}"
+            ItemsSource="{Binding RideBasesCollectionView}"
+            SelectedValue="{Binding SelectedRideBase}"
+            SelectedValuePath="{Binding _rideBase}"
+            >
+        </ComboBox>
+        <Grid
+            Margin="0 15 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width=".1*"/>
+                <ColumnDefinition Width=".6*"/>
+                <ColumnDefinition Width=".1*"/>
+                <ColumnDefinition Width=".8*"/>
+                <ColumnDefinition Width=".1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DatePicker
+                Language="sr"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                FontSize="16"
+                Grid.Column="0"
+                SelectedDate="{Binding Path=StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.Hint="Datum polaska"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+            </DatePicker>
+            <materialDesign:TimePicker
+                SelectedTime="{Binding Path=StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
+                Is24Hours="True"
+                FontSize="16"
+                Grid.Column="2"
+                materialDesign:HintAssist.Hint="Vreme"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
+            <TextBox
+                    FontSize="16"
+                    Grid.Column="4"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    PreviewTextInput="TextBoxPrice_PreviewTextInput"
+                    DataObject.Pasting="TextBoxPrice_Pasting"
+                    Text="{Binding Path=PriceFilter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource intConverter}}"
+                    materialDesign:HintAssist.Hint="Cena" 
+                    materialDesign:HintAssist.HelperText=""/>
+            
+            <TextBox
+                FontSize="16"
+                Grid.Column="6"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                Text="{Binding Path=PriceFilter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource intConverter}}"
+                materialDesign:HintAssist.Hint="Voz" 
+                materialDesign:HintAssist.HelperText=""
+                >
+                
+            </TextBox>
+        </Grid>
+        <DataGrid
+            CanUserResizeColumns="False"
+            ItemsSource="{Binding RidesCollectionView}"
+            CanUserAddRows="False"
+            IsReadOnly="True"
+            AutoGenerateColumns="False"
+            HeadersVisibility="All"
+            SelectionMode="Single"
+            FontSize="16"
+            Margin="0 15 0 0"
+            >
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Header="Vreme polaska">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Header="Vreme dolaska">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Price}"
+                    Header="Cena">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Train}"
+                    Header="Voz">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
+    </StackPanel>
 </UserControl>

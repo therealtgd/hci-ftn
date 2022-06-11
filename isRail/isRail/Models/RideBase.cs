@@ -4,7 +4,6 @@ namespace isRail.Models
 {
     public class RideBase
     {
-
         public int Id { get; }
 
         public Station From { get; }
@@ -17,6 +16,17 @@ namespace isRail.Models
             From = from;
             To = to;
             Stations = stations;
+        }
+
+        public override string ToString()
+        {
+            string result = From.ToString();
+            foreach (Station station in Stations)
+            {
+                result += "-"+station.ToString();
+            }
+            result +=To.ToString();
+            return result;
         }
     }
 }

@@ -24,5 +24,30 @@ namespace isRail.Views
         {
             InitializeComponent();
         }
+
+        private void TextBoxPrice_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsInt(e.Text);
+        }
+
+        private bool IsInt(string text)
+        {
+            return int.TryParse(text, out int value);
+        }
+        private void TextBoxPrice_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (e.DataObject.GetDataPresent(typeof(String)))
+            {
+                String text = (String)e.DataObject.GetData(typeof(String));
+                if (!IsInt(text))
+                {
+                    e.CancelCommand();
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
     }
 }
