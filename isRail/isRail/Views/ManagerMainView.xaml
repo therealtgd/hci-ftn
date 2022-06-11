@@ -9,21 +9,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.InputBindings>
-        <KeyBinding Command="{Binding EditRidesCommand}" Gesture="CTRL+R"></KeyBinding>
-        <KeyBinding Command="{Binding EditRideBasesCommand}" Gesture="CTRL+L"></KeyBinding>
-        <KeyBinding Command="{Binding EditTrainsCommand}" Gesture="CTRL+T"></KeyBinding>
-        <KeyBinding Command="{Binding ReportMonthlyCommand}" Gesture="CTRL+SHIFT+M"></KeyBinding>
-        <KeyBinding Command="{Binding ReportRideCommand}" Gesture="CTRL+SHIFT+R"></KeyBinding>
-        <KeyBinding Command="{Binding LogoutCommand}" Gesture="CTRL+E"></KeyBinding>
-        <KeyBinding Command="{Binding LogoutAndExitCommand}" Gesture="CTRL+SHIFT+E"></KeyBinding>
-
+        <KeyBinding Command="{Binding ManagerNavigateCommand}" CommandParameter="editRides" Gesture="CTRL+R"/>
+        <KeyBinding Command="{Binding ManagerNavigateCommand}" CommandParameter="editRideBases" Gesture="CTRL+L"/>
+        <KeyBinding Command="{Binding ManagerNavigateCommand}" CommandParameter="editTrains" Gesture="CTRL+T"/>
+        <KeyBinding Command="{Binding ManagerNavigateCommand}" CommandParameter="reportMonthly" Gesture="CTRL+SHIFT+M"/>
+        <KeyBinding Command="{Binding ManagerNavigateCommand}" CommandParameter="reportRide" Gesture="CTRL+SHIFT+R"/>
+        <KeyBinding Command="{Binding LogoutCommand}" Gesture="CTRL+E"/>
+        <KeyBinding Command="{Binding LogoutAndExitCommand}" Gesture="CTRL+SHIFT+E"/>
     </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vms:ManagerEditRidesViewModel}">
                 <views:ManagerEditRidesView />
@@ -48,13 +46,14 @@
                 Header="Ur_eđivanje">
                 <MenuItem
                     Header="_Red vožnje"
-                    Command="{Binding EditRidesCommand}"
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="editRides"
                     InputGestureText="Ctrl+R"
                     Icon="{materialDesign:PackIcon Kind=Timetable}" />
                 <MenuItem
                     Header="Vo_zne linije"
                     Command="{Binding ManagerNavigateCommand}"
-                    CommandParameter="editRides"
+                    CommandParameter="editRideBases"
                     InputGestureText="Ctrl+L"
                     Icon="{materialDesign:PackIcon Kind=RailroadLight}" />
                 <MenuItem
@@ -68,13 +67,15 @@
                 Header="P_regled prodatih karata">
                 <MenuItem
                     Header="Na _mesecnom nivou"
-                    Command="{Binding ReportMonthlyCommand}"
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="reportMonthly"
                     InputGestureText="Ctrl+Shift+M"
                     Icon="{materialDesign:PackIcon Kind=CalendarMonth}">
                 </MenuItem>
                 <MenuItem
                     Header="Na _nivou vožnje"
-                    Command="{Binding ReportRideCommand}"
+                    Command="{Binding ManagerNavigateCommand}"
+                    CommandParameter="reportRide"
                     InputGestureText="Ctrl+Shift+R"
                     Icon="{materialDesign:PackIcon Kind=TrainCarPassengerDoor}">
                 </MenuItem>
