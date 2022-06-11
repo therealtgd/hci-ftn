@@ -77,5 +77,16 @@ namespace isRail.Views
             }
         }
 
+        private TicketDetailsView _ticketDetailsView { get; set; }
+
+        private void ButtonDetails_Click(object sender, RoutedEventArgs e)
+        {
+            if (_ticketDetailsView != null)
+                _ticketDetailsView.Close();
+            _ticketDetailsView = new TicketDetailsView();
+            _ticketDetailsView.DataContext = ((Button)sender).DataContext;
+            _ticketDetailsView.Show();
+        }
+
     }
 }

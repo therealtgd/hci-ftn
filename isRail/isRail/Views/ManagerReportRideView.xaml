@@ -123,10 +123,21 @@
                         Header="Prodato"
                         MaxWidth="100">
                     </DataGridTextColumn>
-                     <DataGridTextColumn
+                    <DataGridTextColumn
                         Binding="{Binding RideViewModel.Earnings}"
                         Header="Zarada">
                     </DataGridTextColumn>
+                    <DataGridTemplateColumn
+                        Header="Rezerviši">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    FontSize="16"
+                                    Click="ButtonDetails_Click"
+                                    >Detalji</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
