@@ -88,6 +88,41 @@
                     <local:ClientMapView/>
                     <!--Mapa linija-->
                 </TabItem>
+                <!--Logout-->
+                <TabItem MinWidth="130" MouseLeftButtonUp="Logout_Clicked">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Logout" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Odjava" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <!--Mapa linija-->
+                </TabItem>
+                <!--Logout & Exit-->
+                <TabItem MinWidth="130" MouseLeftButtonUp="LogoutAndExit_Clicked">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="ExitToApp" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Odjava i Izlaz" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
             </TabControl>
         </materialDesign:Card>
     </Grid>
