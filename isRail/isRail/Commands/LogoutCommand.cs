@@ -1,4 +1,6 @@
-﻿using System;
+﻿using isRail.ViewModels;
+using isRail.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +10,22 @@ namespace isRail.Commands
 {
     public class LogoutCommand : CommandBase
     {
+        private Models.App _app;
+
+        public LogoutCommand(Models.App app)
+        {
+            _app = app;
+        }
+
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            bool? result = new MessageBoxCustom("Da li ste sigurni da želite da se odjavite?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (result.Value)
+            {
+                _app.Client = null;
+                _app.Manager = null;
+                _app.NavigationStore.CurrentViewModel = new LoginViewModel(_app);
+            }
         }
     }
 }

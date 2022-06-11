@@ -1,4 +1,5 @@
-﻿using System;
+﻿using isRail.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,9 @@ namespace isRail.Commands
     {
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            bool? result = new MessageBoxCustom("Da li ste sigurni da želite ugasiti aplikaciju?", MessageType.Confirmation, MessageButtons.YesNo).ShowDialog();
+            if (result.Value)
+                System.Windows.Application.Current.Shutdown();
         }
     }
 }

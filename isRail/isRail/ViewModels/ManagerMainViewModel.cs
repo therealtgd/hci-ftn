@@ -55,7 +55,7 @@ namespace isRail.ViewModels
             );
 
             // TODO: Implementirati funkcionalnost ove dve komande!
-            LogoutCommand = new LogoutCommand();
+            LogoutCommand = new LogoutCommand(App);
             LogoutAndExitCommand = new LogoutAndExitCommand();
         }
     }
