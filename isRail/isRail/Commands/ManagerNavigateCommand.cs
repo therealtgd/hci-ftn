@@ -10,15 +10,31 @@ namespace isRail.Commands
     internal class ManagerNavigateCommand : CommandBase
     {
         private ManagerMainViewModel _managerMainViewModel;
+        private ManagerEditRidesViewModel _managerEditRidesViewModel;
+        private ManagerEditRideBasesViewModel _managerEditRideBasesViewModel;
+        private ManagerEditTrainsViewModel _managerEditTrainsViewModel;
+        private ManagerReportMonthlyViewModel _managerReportMonthlyViewModel;
+        private ManagerReportRideViewModel _managerReportRideViewModel;
 
-        public ManagerNavigateCommand(ManagerMainViewModel managerMainViewModel)
+        public ManagerNavigateCommand(
+            ManagerMainViewModel managerMainViewModel,
+            ManagerEditRidesViewModel managerEditRidesViewModel,
+            ManagerEditRideBasesViewModel managerEditRideBasesViewModel,
+            ManagerEditTrainsViewModel managerEditTrainsViewModel,
+            ManagerReportMonthlyViewModel managerReportMonthlyViewModel,
+            ManagerReportRideViewModel managerReportRideViewModel
+            )
         {
             _managerMainViewModel = managerMainViewModel;
+            _managerEditRidesViewModel = managerEditRidesViewModel;
+            _managerEditRideBasesViewModel = managerEditRideBasesViewModel;
+            _managerEditTrainsViewModel = managerEditTrainsViewModel;
+            _managerReportMonthlyViewModel = managerReportMonthlyViewModel;
+            _managerReportRideViewModel = managerReportRideViewModel;
         }
 
         public override void Execute(object parameter)
         {
-
             _managerMainViewModel?.Dispose();
             ChangeViewModel(parameter.ToString());
         }
@@ -28,10 +44,19 @@ namespace isRail.Commands
             switch(key)
             {
                 case "editRides":
-                    _managerMainViewModel.CurrentManagerViewModel = new ManagerEditRidesViewModel(_managerMainViewModel.App);
+                    _managerMainViewModel.CurrentManagerViewModel = _managerEditRidesViewModel;
+                    break;
+                case "editRideBases":
+                    _managerMainViewModel.CurrentManagerViewModel = _managerEditRideBasesViewModel;
                     break;
                 case "editTrains":
-                    _managerMainViewModel.CurrentManagerViewModel = new ManagerEditTrainsViewModel(_managerMainViewModel.App);
+                    _managerMainViewModel.CurrentManagerViewModel = _managerEditTrainsViewModel;
+                    break;
+                case "reportMonthly":
+                    _managerMainViewModel.CurrentManagerViewModel = _managerReportMonthlyViewModel;
+                    break;
+                case "reportRide":
+                    _managerMainViewModel.CurrentManagerViewModel = _managerReportRideViewModel;
                     break;
                 default:
                     break;

@@ -26,15 +26,10 @@ namespace isRail.ViewModels
         }
 
         public ICommand ManagerNavigateCommand { get; }
-        public ICommand EditRidesCommand { get; }
         public ManagerEditRidesViewModel ManagerEditRidesViewModel { get; set; }
-        public ICommand EditRideBasesCommand { get; }
         public ManagerEditRideBasesViewModel ManagerEditRideBasesViewModel { get; set; }
-        public ICommand EditTrainsCommand { get; }
         public ManagerEditTrainsViewModel ManagerEditTrainsViewModel { get; set; }
-        public ICommand ReportMonthlyCommand { get; }
         public ManagerReportMonthlyViewModel ManagerReportMonthlyViewModel { get; set; }
-        public ICommand ReportRideCommand { get; }
         public ManagerReportRideViewModel ManagerReportRideViewModel { get;set; }
         public ICommand LogoutCommand { get; }
         public ICommand LogoutAndExitCommand { get; }
@@ -42,22 +37,22 @@ namespace isRail.ViewModels
         public ManagerMainViewModel(Models.App app)
         {
             App = app;
-            ManagerNavigateCommand = new ManagerNavigateCommand(this);
-
+            // editing views
             ManagerEditRidesViewModel = new ManagerEditRidesViewModel(App);
-            EditRidesCommand = new EditRidesCommand(this, ManagerEditRidesViewModel);
-
             ManagerEditRideBasesViewModel = new ManagerEditRideBasesViewModel(App);
-            EditRideBasesCommand = new EditRideBasesCommand(this, ManagerEditRideBasesViewModel);
-
             ManagerEditTrainsViewModel = new ManagerEditTrainsViewModel(App);
-            EditTrainsCommand = new EditTrainsCommand(this, ManagerEditTrainsViewModel);
-
+            // reports views
             ManagerReportMonthlyViewModel = new ManagerReportMonthlyViewModel(App);
-            ReportMonthlyCommand = new ReportMonthlyCommand(this, ManagerReportMonthlyViewModel);
-
             ManagerReportRideViewModel = new ManagerReportRideViewModel(App);
-            ReportRideCommand = new ReportRideCommand(this, ManagerReportRideViewModel);
+
+            ManagerNavigateCommand = new ManagerNavigateCommand(
+                this,
+                ManagerEditRidesViewModel,
+                ManagerEditRideBasesViewModel,
+                ManagerEditTrainsViewModel,
+                ManagerReportMonthlyViewModel,
+                ManagerReportRideViewModel
+            );
 
             // TODO: Implementirati funkcionalnost ove dve komande!
             LogoutCommand = new LogoutCommand();
