@@ -22,7 +22,20 @@ namespace isRail.ViewModels
         public ICommand SaveTrainChangesCommand { get; set; }
         public DiscardTrainChangesCommand DiscardTrainChangesCommand { get; set;  }
 
-        public AddTrainCommand AddTrainCommand { get; set; } 
+        public AddTrainCommand AddTrainCommand { get; set; }
+
+        private string _train = string.Empty;
+        public string Train
+        {
+            get
+            { return _train; }
+            set
+            {
+                _train = value;
+                OnPropertyChanged(nameof(Train));
+                TrainsCollectionView.Refresh();
+            }
+        }
 
         public ManagerEditTrainsViewModel(Models.App app)
         {
@@ -31,6 +44,7 @@ namespace isRail.ViewModels
             foreach (string train in app.Trains)
                 Trains.Add(new TrainViewModel(train, app));
             TrainsCollectionView = CollectionViewSource.GetDefaultView(Trains);
+            TrainsCollectionView.Filter = FilterTrains;
 
             SaveTrainChangesCommand = new SaveTrainChangesCommand(this);
             DiscardTrainChangesCommand = new DiscardTrainChangesCommand(this);
@@ -38,6 +52,16 @@ namespace isRail.ViewModels
 
             DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
             AddTrainCommand.AddedTrainEvent += OnDiscardChanges;
+
+        }
+
+        private bool FilterTrains(object obj)
+        {
+            if (obj is TrainViewModel trainView)
+            {
+                return trainView.Train.ToString().Contains(Train, StringComparison.InvariantCultureIgnoreCase);
+            }
+            return false;
         }
 
         public static event Action FinishedDiscardingChangesEvent;
