@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:isRail"
         xmlns:views="clr-namespace:isRail.Views"
-        xmlns:vms="clr-namespace:isRail.ViewModels"
+        xmlns:vms="clr-namespace:isRail.ViewModels" d:DataContext="{d:DesignInstance Type=vms:MainViewModel}"
         mc:Ignorable="d"
         Title="isRail"
         Height="700"
@@ -26,7 +26,7 @@
         </Window.Resources>
     <Grid>
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type vms:ClientTicketPurchasingViewModel}">
+            <DataTemplate DataType="{x:Type vms:ClientMainViewModel}">
                 <views:ClientMainWindow />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vms:LoginViewModel}">

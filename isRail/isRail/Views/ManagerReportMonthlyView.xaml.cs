@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace isRail.Views
 {
     /// <summary>
-    /// Interaction logic for ManagerEditTrainsView.xaml
+    /// Interaction logic for ManagerReportMonthlyView.xaml
     /// </summary>
-    public partial class ManagerEditTrainsView : UserControl
+    public partial class ManagerReportMonthlyView : UserControl
     {
-        public ManagerEditTrainsView()
+        public ManagerReportMonthlyView()
         {
             InitializeComponent();
         }

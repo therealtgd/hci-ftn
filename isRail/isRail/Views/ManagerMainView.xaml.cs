@@ -24,6 +24,7 @@ namespace isRail.Views
         public ManagerMainView()
         {
             InitializeComponent();
+
         }
 
     }
