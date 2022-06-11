@@ -1,4 +1,5 @@
-﻿using System;
+﻿using isRail.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -81,10 +82,13 @@ namespace isRail.Views
 
         private void ButtonDetails_Click(object sender, RoutedEventArgs e)
         {
+
             if (_ticketDetailsView != null)
                 _ticketDetailsView.Close();
             _ticketDetailsView = new TicketDetailsView();
             _ticketDetailsView.DataContext = ((Button)sender).DataContext;
+            TicketViewModel dataContext = (TicketViewModel)_ticketDetailsView.DataContext;
+            _ticketDetailsView.Title = "Detalji prodaja za vožnju " + dataContext.RideViewModel.From + " - " + dataContext.RideViewModel.To;
             _ticketDetailsView.Show();
         }
 

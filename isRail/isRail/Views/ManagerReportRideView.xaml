@@ -121,14 +121,15 @@
                     <DataGridTextColumn
                         Binding="{Binding RideViewModel.NumOfSales}"
                         Header="Prodato"
-                        MaxWidth="100">
+                        MaxWidth="100"
+                        >
                     </DataGridTextColumn>
                     <DataGridTextColumn
                         Binding="{Binding RideViewModel.Earnings}"
                         Header="Zarada">
                     </DataGridTextColumn>
                     <DataGridTemplateColumn
-                        Header="Rezerviši">
+                        Header="Detalji">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button
