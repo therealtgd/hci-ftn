@@ -6,25 +6,21 @@
              xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:isRail.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Viewbox
-        MinWidth="900"
-        MinHeight="300"
-        MaxWidth="1400">
-        <StackPanel
-                Margin="50 0 50 0"
-                VerticalAlignment="Center"
+    <StackPanel
+                Margin="50 50 50 0"
+                VerticalAlignment="Top"
                 HorizontalAlignment="Center">
-            <Grid
+        <Grid
                 Margin="0 0 0 20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.2*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="0.5*"/>
-                </Grid.ColumnDefinitions>
-                <TextBox
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox
                 Grid.Column="0"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
@@ -32,12 +28,12 @@
                 materialDesign:HintAssist.Hint="Polazak"
                 Text="{Binding Path=ClientPurchasedTicketsViewModel.FromFilter, UpdateSourceTrigger=PropertyChanged}"
                 Margin="0 0 15 0">
-                </TextBox>
-                <Button Grid.Column="1"
+            </TextBox>
+            <Button Grid.Column="1"
                 Content="{materialDesign:PackIcon SwapHorizontal}"
                 Command="{Binding ClientPurchasedTicketsViewModel.SwapFromToCommand}"
                 ToolTip="Zameni polazak i dolazak"/>
-                <TextBox
+            <TextBox
                 Margin="15 0 0 0"
                 FontSize="16"
                 Grid.Column="2"
@@ -45,8 +41,8 @@
                 VerticalAlignment="Top"
                 Text="{Binding Path=ClientPurchasedTicketsViewModel.ToFilter, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Dolazak">
-                </TextBox>
-                <DatePicker
+            </TextBox>
+            <DatePicker
                 Language="sr"
                 materialDesign:TextFieldAssist.HasClearButton="True"
                 FontSize="16"
@@ -56,8 +52,8 @@
                 materialDesign:HintAssist.Hint="Najraniji datum polaska"
                 materialDesign:HintAssist.HelperText=""
                 Style="{StaticResource MaterialDesignOutlinedDatePicker}">
-                </DatePicker>
-                <materialDesign:TimePicker
+            </DatePicker>
+            <materialDesign:TimePicker
                 SelectedTime="{Binding Path=ClientPurchasedTicketsViewModel.StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
                 Is24Hours="True"
                 FontSize="16"
@@ -67,8 +63,8 @@
                 materialDesign:HintAssist.HelperText=""
                 Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
-            </Grid>
-            <DataGrid
+        </Grid>
+        <DataGrid
             CanUserResizeColumns="False"
             ItemsSource="{Binding ClientPurchasedTicketsViewModel.BoughtTicketsCollectionView}"
             CanUserAddRows="False"
@@ -78,34 +74,33 @@
             SelectionMode="Single"
             FontSize="16"
             >
-                <DataGrid.Resources>
-                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn
                     Binding="{Binding From}"
                     Header="Polazak">
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
+                </DataGridTextColumn>
+                <DataGridTextColumn
                     Binding="{Binding To}"
                     Header="Dolazak">
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
+                </DataGridTextColumn>
+                <DataGridTextColumn
                     Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
                     Header="Vreme polaska">
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
+                </DataGridTextColumn>
+                <DataGridTextColumn
                     Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
                     Header="Vreme dolaska">
-                    </DataGridTextColumn>
-                    <DataGridTextColumn
+                </DataGridTextColumn>
+                <DataGridTextColumn
                     Binding="{Binding Price}"
                     Header="Cena">
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-    </Viewbox>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>

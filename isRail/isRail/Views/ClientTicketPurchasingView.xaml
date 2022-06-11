@@ -6,10 +6,6 @@
              xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:isRail.ViewModels" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Viewbox
-        MinWidth="900"
-        MinHeight="300"
-        MaxWidth="1400">
     <StackPanel
         Margin="20 0 20 0"
         VerticalAlignment="Center"
@@ -36,7 +32,7 @@
             <Button Grid.Column="1"
                 Content="{materialDesign:PackIcon SwapHorizontal}"
                 Command="{Binding SwapFromToCommand}"
-                ToolTip="Zameni polazak i dolazak"/>    
+                ToolTip="Zameni polazak i dolazak"/>
             <TextBox
                 Margin="15 0 0 0"
                 FontSize="16"
@@ -141,5 +137,4 @@
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
-    </Viewbox>
 </UserControl>
