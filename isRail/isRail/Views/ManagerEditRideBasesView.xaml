@@ -2,11 +2,70 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:isRail.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TextBlock FontSize="50">EDIT RIDE BASES</TextBlock>
+    <Grid Margin="0 0 0 0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.55*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0"
+                  Grid.Column="0"
+                  Margin="30 10 15 10"
+                  x:Name="OutlinedComboBox"
+                  ItemsSource="{Binding RideBasesCollectionView}"
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+        <m:Map Grid.Row="0"
+               Grid.RowSpan="2"
+               Grid.Column="1"
+               Margin="0 0 0 20"
+               Mode="Road"
+               CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
+               Center="45.2461818273899, 19.85138567223834"
+               ZoomLevel="10"
+               Name="RideMap"
+               AllowDrop="True">
+        </m:Map>
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                Margin="30 0 0 20"
+                Grid.Column="0"
+                FontSize="16"
+                Command="{Binding AddRideBaseCommand}"
+                >Dodaj novu liniju</Button>
+            <Button
+                Margin="0 0 30 20"
+                Grid.Column="2"
+                FontSize="16"
+                Background="LightGray"
+                BorderBrush="LightGray"
+                Command="{Binding DiscardRideBaseChangesCommand}"
+                >Odbaci promene</Button>
+            <Button
+                Margin="0 0 30 20"
+                Grid.Column="3"
+                FontSize="16"
+                Command="{Binding SaveRideBaseChangesCommand}"
+                >Sačuvaj promene</Button>
+
+        </Grid>
     </Grid>
 </UserControl>
