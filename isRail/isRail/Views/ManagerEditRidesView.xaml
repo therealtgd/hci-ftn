@@ -12,9 +12,15 @@
     <UserControl.Resources>
         <util:IntConverter x:Key="intConverter" />
     </UserControl.Resources>
-    <StackPanel
-        Margin="30 50 30 0">
-        <ComboBox
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0"
+            Margin="30 20 30 20"
             FontSize="16"
             Style="{StaticResource MaterialDesignComboBox}"
             ItemsSource="{Binding RideBasesCollectionView}"
@@ -22,8 +28,8 @@
             SelectedValuePath="{Binding _rideBase}"
             >
         </ComboBox>
-        <Grid
-            Margin="0 15 0 0">
+        <Grid Grid.Row="1"
+            Margin="30 0 30 20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width=".1*"/>
@@ -65,7 +71,7 @@
                 
             </TextBox>
         </Grid>
-        <DataGrid
+        <DataGrid Grid.Row="2"
             CanUserResizeColumns="False"
             ItemsSource="{Binding RidesCollectionView}"
             HeadersVisibility="All"
@@ -73,7 +79,7 @@
             CanUserDeleteRows="True"
             CanUserAddRows="True"
             FontSize="16"
-            Margin="0 15 0 0"
+            Margin="30 0 30 20"
             >
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
@@ -108,7 +114,33 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        
-    </StackPanel>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                    Margin="30 0 0 20"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Command="{Binding AddRideCommand}"
+                    >Dodaj Vožnju</Button>
+            <Button
+                    Margin="0 0 30 20"
+                    Grid.Column="2"
+                    FontSize="16"
+                    Background="LightGray"
+                    BorderBrush="LightGray"
+                    Command="{Binding DiscardRideChangesCommand}"
+                    >Odbaci promene</Button>
+            <Button
+                    Margin="0 0 30 20"
+                    Grid.Column="3"
+                    FontSize="16"
+                    Command="{Binding SaveRideChangesCommand}"
+                    >Sačuvaj promene</Button>
+        </Grid>
+    </Grid>
 </UserControl>

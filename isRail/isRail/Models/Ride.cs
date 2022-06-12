@@ -16,6 +16,7 @@ namespace isRail.Models
         public DateTime EndTime { get; set; }
         public double Price { get; set; }
         public double Earnings { get; set; }
+        public int numOfSales = 0;
 
         public Ride(RideBase rideBase, string train, DateTime startTime, DateTime endTime, double price)
         {
@@ -30,11 +31,17 @@ namespace isRail.Models
         public void Buy()
         {
             Earnings += Price;
+            numOfSales++;
         }
 
         public int GetNumOfSales()
         {
-            return Convert.ToInt32(Earnings / Price);
+            return numOfSales;
+        }
+        
+        public string GetStartTime()
+        {
+            return StartTime.ToString("dd.MM.yyyy. HH:mm");
         }
     }
 }

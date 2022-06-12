@@ -1,9 +1,11 @@
-﻿using isRail.Models;
+﻿using isRail.Commands;
+using isRail.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Input;
 
 namespace isRail.ViewModels
 {
@@ -39,6 +41,13 @@ namespace isRail.ViewModels
         private RideBaseViewModel _selectedRideBase;
         public RideBaseViewModel SelectedRideBase { get { return _selectedRideBase; } set { _selectedRideBase = value; LoadRides(); OnPropertyChanged(nameof(SelectedRideBase)); } }
 
+        public SaveRideChangesCommand SaveRideChangesCommand { get; set; }
+        public DiscardRideChangesCommand DiscardRideChangesCommand { get; set; }
+        public AddRideCommand AddRideCommand { get; set; }
+
+        public static event Action FinishedDiscardingRideChangesEvent;
+
+
         public ManagerEditRidesViewModel(Models.App app)
         {
             App = app;
@@ -54,6 +63,13 @@ namespace isRail.ViewModels
             RideBasesCollectionView = CollectionViewSource.GetDefaultView(_rideBases);
             RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
             RidesCollectionView.Filter = FilterRides;
+
+            SaveRideChangesCommand = new SaveRideChangesCommand(this);
+            DiscardRideChangesCommand = new DiscardRideChangesCommand(this);
+            AddRideCommand = new AddRideCommand();
+
+            DiscardRideChangesCommand.DiscardRidesChangesEvent += OnDiscardChanges;
+
         }
 
         private void LoadRides()
@@ -61,8 +77,14 @@ namespace isRail.ViewModels
             _rides.Clear();
             foreach(Ride ride in App.RidesMap[SelectedRideBase._rideBase])
             {
-                if(ride.StartTime > DateTime.Now)
-                    _rides.Add(new EditRideViewModel(ride, App));
+                if (ride.StartTime > DateTime.Now)
+                {
+                    EditRideViewModel eRide = new EditRideViewModel(ride, App);
+                    eRide.PropertyChanged += SaveRideChangesCommand.OnPropertyChanged;
+                    eRide.PropertyChanged += DiscardRideChangesCommand.OnPropertyChanged;
+                    _rides.Add(eRide);
+                }
+
             }
         }
 
@@ -75,6 +97,12 @@ namespace isRail.ViewModels
                     && rideViewModel._ride.Price >= PriceFilter;
             }
             return false;
+        }
+
+        public void OnDiscardChanges()
+        {
+            LoadRides();
+            FinishedDiscardingRideChangesEvent?.Invoke();
         }
     }
 }

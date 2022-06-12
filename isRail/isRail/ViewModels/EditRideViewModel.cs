@@ -31,11 +31,13 @@ namespace isRail.ViewModels
                     if (!App.Trains.Contains(value))
                         AddError($"No train with name {value} exists!", nameof(Train));
                 }
-              
+
             }
         }
 
         private const string dateFormat = "dd.MM.yyyy. HH:mm";
+        
+        public string DateFormat { get { return dateFormat; } }
 
         private string _startTime;
         public string StartTime 
