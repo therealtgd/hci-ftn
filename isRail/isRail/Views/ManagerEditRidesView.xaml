@@ -27,7 +27,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width=".1*"/>
-                <ColumnDefinition Width=".6*"/>
                 <ColumnDefinition Width=".1*"/>
                 <ColumnDefinition Width=".8*"/>
                 <ColumnDefinition Width=".1*"/>
@@ -43,17 +42,9 @@
                 materialDesign:HintAssist.HelperText=""
                 Style="{StaticResource MaterialDesignOutlinedDatePicker}">
             </DatePicker>
-            <materialDesign:TimePicker
-                SelectedTime="{Binding Path=StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
-                Is24Hours="True"
-                FontSize="16"
-                Grid.Column="2"
-                materialDesign:HintAssist.Hint="Vreme"
-                materialDesign:HintAssist.HelperText=""
-                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
             <TextBox
                     FontSize="16"
-                    Grid.Column="4"
+                    Grid.Column="3"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     VerticalAlignment="Top"
                     PreviewTextInput="TextBoxPrice_PreviewTextInput"
@@ -64,10 +55,10 @@
             
             <TextBox
                 FontSize="16"
-                Grid.Column="6"
+                Grid.Column="5"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
-                Text="{Binding Path=PriceFilter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource intConverter}}"
+                Text="{Binding Path=TrainFilter, UpdateSourceTrigger=PropertyChanged}"
                 materialDesign:HintAssist.Hint="Voz" 
                 materialDesign:HintAssist.HelperText=""
                 >
@@ -77,11 +68,10 @@
         <DataGrid
             CanUserResizeColumns="False"
             ItemsSource="{Binding RidesCollectionView}"
-            CanUserAddRows="False"
-            IsReadOnly="True"
-            AutoGenerateColumns="False"
             HeadersVisibility="All"
-            SelectionMode="Single"
+            AutoGenerateColumns="False"
+            CanUserDeleteRows="True"
+            CanUserAddRows="True"
             FontSize="16"
             Margin="0 15 0 0"
             >
@@ -90,13 +80,22 @@
                     <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
                 </Style>
             </DataGrid.Resources>
+            <DataGrid.RowValidationErrorTemplate>
+                <ControlTemplate>
+                    <Grid Margin="0,-2,0,-2"
+                        ToolTip="{Binding RelativeSource={RelativeSource
+                        FindAncestor, AncestorType={x:Type DataGridRow}},
+                        Path=(Validation.Errors)[0].ErrorContent}">
+                    </Grid>
+                </ControlTemplate>
+            </DataGrid.RowValidationErrorTemplate>
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Binding="{Binding StartTime}"
                     Header="Vreme polaska">
                 </DataGridTextColumn>
                 <DataGridTextColumn
-                    Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Binding="{Binding EndTime}"
                     Header="Vreme dolaska">
                 </DataGridTextColumn>
                 <DataGridTextColumn

@@ -11,10 +11,10 @@ namespace isRail.Models
     {
 
         public RideBase RideBase { get; }
-        public string Train { get; }
-        public DateTime StartTime { get; }
-        public DateTime EndTime { get; }
-        public double Price { get; }
+        public string Train { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public double Price { get; set; }
         public double Earnings { get; set; }
 
         public Ride(RideBase rideBase, string train, DateTime startTime, DateTime endTime, double price)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Data;
 
 namespace isRail.ViewModels
@@ -10,11 +11,11 @@ namespace isRail.ViewModels
     {
         public Models.App App { get; set; }
 
-        private ObservableCollection<RideViewModel> _rides;
-        public ICollectionView RidesCollectionView { get; }
+        public ObservableCollection<EditRideViewModel> _rides { get; set; }
+        public ICollectionView RidesCollectionView { get; set; }
 
-        private ObservableCollection<RideBaseViewModel> _rideBases;
-        public ICollectionView RideBasesCollectionView { get; }
+        public ObservableCollection<RideBaseViewModel> _rideBases { get; set; }
+        public ICollectionView RideBasesCollectionView { get; set; }
 
         private DateTime? _startDateFilter = null;
         public DateTime? StartDateFilter
@@ -25,26 +26,15 @@ namespace isRail.ViewModels
             {
                 _startDateFilter = value;
                 OnPropertyChanged(nameof(StartDateFilter));
-            }
-        }
-
-        private DateTime? _startTimeFilter = null;
-        public DateTime? StartTimeFilter
-        {
-            get
-            { return _startTimeFilter; }
-            set
-            {
-                _startTimeFilter = value;
-                OnPropertyChanged(nameof(StartTimeFilter));
+                RidesCollectionView.Refresh();
             }
         }
 
         private int _priceFilter = 0;
-        public int PriceFilter { get { return _priceFilter; } set { _priceFilter = value; OnPropertyChanged(nameof(PriceFilter)); } }
+        public int PriceFilter { get { return _priceFilter; } set { _priceFilter = value; OnPropertyChanged(nameof(PriceFilter)); RidesCollectionView.Refresh(); } }
 
         private string _trainFilter = string.Empty;
-        public string TrainFilter { get { return _trainFilter; } set { _trainFilter = value; OnPropertyChanged(nameof(TrainFilter)); } }
+        public string TrainFilter { get { return _trainFilter; } set { _trainFilter = value; OnPropertyChanged(nameof(TrainFilter)); RidesCollectionView.Refresh(); } }
 
         private RideBaseViewModel _selectedRideBase;
         public RideBaseViewModel SelectedRideBase { get { return _selectedRideBase; } set { _selectedRideBase = value; LoadRides(); OnPropertyChanged(nameof(SelectedRideBase)); } }
@@ -53,7 +43,7 @@ namespace isRail.ViewModels
         {
             App = app;
 
-            _rides = new ObservableCollection<RideViewModel>();
+            _rides = new ObservableCollection<EditRideViewModel>();
             _rideBases = new ObservableCollection<RideBaseViewModel>();
 
             foreach (RideBase rideBase in App.RidesMap.Keys)
@@ -61,8 +51,9 @@ namespace isRail.ViewModels
                 _rideBases.Add(new RideBaseViewModel(rideBase, App));
             }
 
-            RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
             RideBasesCollectionView = CollectionViewSource.GetDefaultView(_rideBases);
+            RidesCollectionView = CollectionViewSource.GetDefaultView(_rides);
+            RidesCollectionView.Filter = FilterRides;
         }
 
         private void LoadRides()
@@ -70,8 +61,20 @@ namespace isRail.ViewModels
             _rides.Clear();
             foreach(Ride ride in App.RidesMap[SelectedRideBase._rideBase])
             {
-                _rides.Add(new RideViewModel(ride, App));
+                if(ride.StartTime > DateTime.Now)
+                    _rides.Add(new EditRideViewModel(ride, App));
             }
+        }
+
+        private bool FilterRides(object obj)
+        {
+            if (obj is EditRideViewModel rideViewModel)
+            {
+                return rideViewModel.Train.ToString().Contains(TrainFilter, StringComparison.InvariantCultureIgnoreCase)
+                    && (StartDateFilter == null || rideViewModel._ride.StartTime >= StartDateFilter)
+                    && rideViewModel._ride.Price >= PriceFilter;
+            }
+            return false;
         }
     }
 }
