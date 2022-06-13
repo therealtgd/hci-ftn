@@ -21,7 +21,6 @@ namespace isRail.ViewModels
             set
             {
                 _train = value;
-                OnPropertyChanged(nameof(Train));
 
                 ClearErrors(nameof(Train));
                 if (string.IsNullOrEmpty(value))
@@ -31,7 +30,7 @@ namespace isRail.ViewModels
                     if (!App.Trains.Contains(value))
                         AddError($"No train with name {value} exists!", nameof(Train));
                 }
-
+                OnPropertyChanged(nameof(Train));
             }
         }
 
@@ -46,7 +45,6 @@ namespace isRail.ViewModels
             set
             {
                 _startTime = value;
-                OnPropertyChanged(nameof(StartTime));
 
                 ClearErrors(nameof(StartTime));
                 DateTime startTime;
@@ -63,6 +61,7 @@ namespace isRail.ViewModels
                 }
                 else
                     AddError("Invalidna vrednost za datum.", nameof(StartTime));
+                OnPropertyChanged(nameof(StartTime));
             }
         }
         private string _endTime;
@@ -72,7 +71,6 @@ namespace isRail.ViewModels
             set 
             { 
                 _endTime = value;
-                OnPropertyChanged(nameof(EndTime));
 
                 ClearErrors(nameof(EndTime));
                 DateTime endTime;
@@ -89,6 +87,7 @@ namespace isRail.ViewModels
                 }
                 else
                     AddError("Invalidna vrednost za datum.", nameof(EndTime));
+                OnPropertyChanged(nameof(EndTime));
             }
         }
         private string _price;
@@ -98,7 +97,6 @@ namespace isRail.ViewModels
             set
             {
                 _price = value;
-                OnPropertyChanged(nameof(Price));
 
                 ClearErrors(nameof(Price));
                 if (value.Split(" ").Count() != 2)
@@ -111,6 +109,7 @@ namespace isRail.ViewModels
                     if (!double.TryParse(value.Split(" ")[0], out price))
                         AddError("Invalidna vrednost za polje 'cena'", nameof(Price));
                 }
+                OnPropertyChanged(nameof(Price));
             } 
         }
 

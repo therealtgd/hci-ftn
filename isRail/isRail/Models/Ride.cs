@@ -9,7 +9,6 @@ namespace isRail.Models
 {
     public class Ride
     {
-
         public RideBase RideBase { get; }
         public string Train { get; set; }
         public DateTime StartTime { get; set; }
@@ -18,6 +17,15 @@ namespace isRail.Models
         public double Earnings { get; set; }
         public int numOfSales = 0;
 
+        public Ride(RideBase rideBase, App app)
+        {
+            RideBase = rideBase;
+            Train = app.Trains.First();
+            StartTime = DateTime.Now.AddDays(1);
+            EndTime = DateTime.Now.AddDays(1).AddHours(2);
+            Price = 500;
+            Earnings = 0;
+        }
         public Ride(RideBase rideBase, string train, DateTime startTime, DateTime endTime, double price)
         {
             RideBase = rideBase;

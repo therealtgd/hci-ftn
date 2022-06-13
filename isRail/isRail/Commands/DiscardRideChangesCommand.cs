@@ -58,9 +58,12 @@ namespace isRail.Commands
                 )
             {
                 _canExecute = true;
-                OnCanExecutedChanged();
             }
-
+            else
+            {
+                _canExecute = false;
+            }
+            OnCanExecutedChanged();
         }
         public void OnPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {

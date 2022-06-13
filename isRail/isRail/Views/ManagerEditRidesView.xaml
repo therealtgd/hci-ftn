@@ -33,7 +33,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition Width=".1*"/>
-                <ColumnDefinition Width=".1*"/>
                 <ColumnDefinition Width=".8*"/>
                 <ColumnDefinition Width=".1*"/>
                 <ColumnDefinition/>
@@ -50,7 +49,7 @@
             </DatePicker>
             <TextBox
                     FontSize="16"
-                    Grid.Column="3"
+                    Grid.Column="2"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     VerticalAlignment="Top"
                     PreviewTextInput="TextBoxPrice_PreviewTextInput"
@@ -61,7 +60,7 @@
             
             <TextBox
                 FontSize="16"
-                Grid.Column="5"
+                Grid.Column="4"
                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
                 VerticalAlignment="Top"
                 Text="{Binding Path=TrainFilter, UpdateSourceTrigger=PropertyChanged}"
@@ -126,7 +125,7 @@
                     Grid.Column="0"
                     FontSize="16"
                     Command="{Binding AddRideCommand}"
-                    >Dodaj Vožnju</Button>
+                    >Dodaj vožnju</Button>
             <Button
                     Margin="0 0 30 20"
                     Grid.Column="2"

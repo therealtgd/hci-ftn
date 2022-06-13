@@ -66,10 +66,9 @@ namespace isRail.ViewModels
 
             SaveRideChangesCommand = new SaveRideChangesCommand(this);
             DiscardRideChangesCommand = new DiscardRideChangesCommand(this);
-            AddRideCommand = new AddRideCommand();
+            AddRideCommand = new AddRideCommand(this);
 
             DiscardRideChangesCommand.DiscardRidesChangesEvent += OnDiscardChanges;
-
         }
 
         private void LoadRides()
