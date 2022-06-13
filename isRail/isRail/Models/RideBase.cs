@@ -25,7 +25,7 @@ namespace isRail.Models
             {
                 result += "-"+station.ToString();
             }
-            result +=To.ToString();
+            result += "-" + To.ToString();
             return result;
         }
     }
