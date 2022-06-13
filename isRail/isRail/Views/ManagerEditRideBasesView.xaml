@@ -36,6 +36,7 @@
                   x:Name="RideBaseComboBox"
                   materialDesign:HintAssist.Hint="Odabir linije"
                   ItemsSource="{Binding RideBasesCollectionView}"
+                  SelectedItem="{Binding ComboBoxSelect}"
                   Style="{StaticResource MaterialDesignOutlinedComboBox}" SelectionChanged="OutlinedComboBox_SelectionChanged"/>
         <TextBlock Grid.Row="0" 
                    VerticalAlignment="Center"
@@ -109,8 +110,8 @@
                   CanUserAddRows="True"
                   CanUserDeleteRows="True"
                   CanUserReorderColumns="False"
-                  Visibility="Hidden"
-                  ItemsSource="{Binding }"
+                  ItemsSource="{Binding StationCollectionView}"
+                  
                   >
             <DataGridColumnHeader>Međustanice</DataGridColumnHeader>
         </DataGrid>
@@ -118,7 +119,7 @@
         <m:Map Grid.Row="0"
                Grid.RowSpan="3"
                Grid.Column="1"
-               Margin="0 0 0 20"
+               Margin="0 0 30 20"
                Mode="Road"
                CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
                Center="45.2461818273899, 19.85138567223834"

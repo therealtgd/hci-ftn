@@ -29,6 +29,12 @@ namespace isRail.Models
             Waypoint = new SimpleWaypoint(latitude, longitude);
         }
 
+        public Station(Station other)
+        {
+            Name = other.Name;
+            Waypoint = other.Waypoint;
+        }
+
         public override string? ToString()
         {
             return Name;

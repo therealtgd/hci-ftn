@@ -51,11 +51,10 @@ namespace isRail.Views
             RideBase ride = (RideBase)RideBaseComboBox.SelectedItem;
             if (ride != null)
             {
-                RideBaseTextBlock.Text = "Linija broj [" + ride.Id.ToString() + "]";
+                RideBaseTextBlock.Text = "Linija [" + ride.Id.ToString() + "]";
                 FromTextBlock.Text = ride.From.ToString();
                 ToTextBlock.Text = ride.To.ToString();
                 ShowRideLineOnMap(ride);
-                AddLineStationsToDataGrid(ride.Stations);
                 FromToSelectGrid.Visibility = Visibility.Visible;
                 StationDataGrid.Visibility = Visibility.Visible;
 
@@ -65,18 +64,6 @@ namespace isRail.Views
             } 
 
             
-        }
-
-        private void AddLineStationsToDataGrid(List<Station> stations)
-        {
-            ClearStationsFromDataGrid();
-            foreach (Station station in stations) { }
-                //Stations.Add(station);
-        } 
-
-        private void ClearStationsFromDataGrid()
-        {
-            //Stations.Clear();
         }
 
         private void ShowRideLineOnMap(RideBase ride)

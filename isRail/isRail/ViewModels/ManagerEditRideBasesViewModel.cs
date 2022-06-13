@@ -22,6 +22,31 @@ namespace isRail.ViewModels
 
         public ICollectionView StationCollectionView { get; set; }
 
+        private RideBaseViewModel selectedRideBase;
+
+        private RideBase _comboBoxSelect;
+        public RideBase ComboBoxSelect
+        {
+            get { return _comboBoxSelect; }
+            set
+            { 
+                _comboBoxSelect = value;
+                SelectedRideBase = new RideBaseViewModel(value, App);
+            }
+        }
+
+        public RideBaseViewModel SelectedRideBase
+        {
+            get { return selectedRideBase; }
+            set 
+            {
+                selectedRideBase = value;
+                OnPropertyChanged(nameof(selectedRideBase));
+                UpdateGrid();
+            }
+        }
+
+
         public SaveRideBaseChangesCommand SaveRideBaseChanges { get; set; }
         public DiscardRideBaseChangesCommand DiscardRideBaseChanges { get; set; }
         public AddRideBaseCommand AddRideBase { get; set; }
@@ -29,8 +54,8 @@ namespace isRail.ViewModels
         public ManagerEditRideBasesViewModel(Models.App app)
         {
             App = app;
-
             RideBases = new ObservableCollection<RideBase>();
+            Stations = new ObservableCollection<Station>();
 
             foreach (RideBase rideBase in app.RidesMap.Keys)
                 RideBases.Add(new RideBase(rideBase.Id, rideBase.To, rideBase.From, rideBase.Stations));
@@ -44,6 +69,18 @@ namespace isRail.ViewModels
             //DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
             //AddTrainCommand.AddedTrainEvent += OnDiscardChanges;
 
+        }
+
+        //private void selectedRideBaseChanged()
+        //{
+        //    StationCollectionView = CollectionViewSource.GetDefaultView(SelectedRideBase.RideBase.Stations);
+        //}
+
+        private void UpdateGrid()
+        {
+            foreach (Station s in selectedRideBase.RideBase.Stations)
+                Stations.Add(new Station(s));
+            StationCollectionView = CollectionViewSource.GetDefaultView(Stations);
         }
     }
 }

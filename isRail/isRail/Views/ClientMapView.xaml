@@ -37,7 +37,8 @@
                     VerticalAlignment="Top"
                     FontSize="16"
                     Text="{Binding Path=FromFilter, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="0 0 15 0">
+                    Margin="0 0 15 0"
+                    materialDesign:HintAssist.Hint="Polazak">
                 </TextBox>
                 <Button Grid.Column="1"
                     Content="{materialDesign:PackIcon SwapHorizontal}"

@@ -2,10 +2,140 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">         
     <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+    <title>Help</title>
 
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            background-color: #7fd6ff6d;
+        }
+    
+        p {
+            display: flex;
+            font-size: large;
+            font-weight: 500;
+            justify-content: left;
+        }
+
+        table {
+            background-color: #7fd6ffd8;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            stroke: #000000;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 2px solid #00000071;
+            text-align: left;
+            padding: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1 style="text-align:center;">Menadžer</h1>
+
+    <h2 style="text-align:center;">Opcije na meniju</h2>
+    <table>
+        <tr>
+            <th>Radnja</th>
+            <th>Prečica</th>
+            <th>Opis</th>
+        </tr>
+
+        <tr>
+            <td><a href="#ride_crud">Uređivanje reda vožnje</a></td>
+            <td>Ctrl + R</td>
+            <td>Ažuriranje postojećih i dodavanje novih redova vožnje.</td>
+        </tr>
+        <tr>
+            <td><a href="#ridebase_crud">Uređivanje vozne linije</a></td>
+            <td>Ctrl + L</td>
+            <td>Ažuriranje postojećih i dodavanje novih voznih linija.</td>
+        </tr>
+        <tr>
+            <td><a href="#train_crud">Uređivanje vozova</a></td>
+            <td>Ctrl + T</td>
+            <td>Ažuriranje postojećih i dodavanje novih vozova.</td>
+        </tr>
+        <tr>
+            <td><a href="#monthly_report">Pregled prodatih karata na mesečnom nivou</a></td>
+            <td>Ctrl + Shift + M</td>
+            <td>Delete a train line or change it stations.</td>
+        </tr>
+        <tr>
+            <td><a href="#ride_report">Pregled prodatih karata na nivou vožnje</a></td>
+            <td>Ctrl + Shift + R</td>
+            <td>Create a new timetable by choosing a train line and selecting days and time of departure.</td>
+        </tr>
+    </table>
+
+    <h2 id="ride_crud">Uređivanje reda vožnje</h1>
+        <div>
+           
+        </div>
+    
+        <h2 id="ridebase_crud">Uređivanje vozne linije</h1>
+        <div>
+            Nove vozne linije se dodaju 
+        </div>
+
+    <h2 id="train_crud">Uređivanje vozova</h1>
+    <div>
+        <p>
+            Novi vozovi se jednostavno dodaju u sistem klikom na dugme "Dodaj voz" u donjem levom uglu prozora. Nakon klika na dugme se otvara prozor u kom je potrebno
+            navesti ime voza, a potom se može pritisnuti dugme "Dodaj" kako bi se voz dodao u sistem, a ukoliko korisnik ipak ne želi da doda novi voz, može da prekine
+            dodavanje klikom na "x" u gornjem desnom uglu novootvorenog prozora. 
+        </p>
+        
+        <p>
+            Koraci pri dodavanju novog voza:
+            <ol>
+                <li>
+                    <b>Pritisak na dugme</b> "Dodaj voz".
+                </li>
+                <li>
+                    <b>Otvara se prozor</b> u kom se unosi ime novog voza.
+                </li>
+                <li>
+                    <b>Dugme "Dodaj"</b> se omogućuje <b>nakon unošenja imena</b> (ime mora imati više od 1 slova). 
+                </li>
+                <ul>
+                    <li>
+                        <b>DODAVANJE:</b> <b>Klikom na dugme "Dodaj"</b> se dodaje novi voz. U slučaju da postoji voz sa istim imenom, korisniku će se prikazati poruka da već postoji taj voz, 
+                        nakon čega će dodavanje novog voza biti prekinuto.
+                    </li>
+                    <li>
+                        <b>PREKID:</b> Prekid dodavanja novog voza <b>pritiskom na dugme "x"</b> u novootvorenom prozoru.
+                    </li>
+                </ul>
+            </ol>
+        </p>
+
+    </div>
+
+    <h2 id="monthly_report">Pregled prodatih karata na mesečnom nivou</h1>
+        <p>
+            
+        </p>
+
+    <h2 id="ride_report">Pregled prodatih karata na nivou vožnje</h1>
+    <div>
+        <p>
+
+        </p>
+    </div>
 </body>
 </html>
