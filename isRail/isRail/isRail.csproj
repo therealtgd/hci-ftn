@@ -7,11 +7,11 @@
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64</Platforms>
 	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-	  <PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
+	<PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
+	<PackageIcon>thomas-the-train.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\thomas-the-train.png" />
     <None Remove="Assets\train-bg.jpg" />
     <None Remove="Assets\train-travel-bg.jpg" />
   </ItemGroup>
@@ -26,6 +26,19 @@
     <Resource Include="Assets\thomas-the-train.png" />
     <Resource Include="Assets\train-bg.jpg" />
     <Resource Include="Assets\train-travel-bg.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\thomas-the-train.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Static\ClientHelp.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Static\ManagerHelp.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

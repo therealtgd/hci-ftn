@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace isRail.Views
 {
@@ -22,6 +12,22 @@ namespace isRail.Views
         public HelpWindow()
         {
             InitializeComponent();
+        }
+
+        public HelpWindow(string type)
+        {
+            InitializeComponent();
+
+            switch (type)
+            {
+                case "Manager":
+                    browser.Navigate(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Static", "ManagerHelp.html"));
+                    break;
+
+                case "Client":
+                    browser.Navigate(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Static", "ClientHelp.html"));
+                    break;
+            }
         }
     }
 }

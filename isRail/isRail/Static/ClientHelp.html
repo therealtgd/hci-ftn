@@ -2,10 +2,104 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">         
     <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+    <title>Pomoć</title>
 
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 500;
+            background-color: #7fd6ff6d;
+        }
+    
+        p {
+            display: flex;
+            font-size: large;
+            font-weight: 500;
+            justify-content: left;
+        }
+
+        table {
+            background-color: #7fd6ffd8;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            stroke: #000000;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 2px solid #00000071;
+            text-align: left;
+            padding: 12px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+
+<body>
+    <h1 id="help" style="text-align:center;">Klijent</h1>
+
+    <h2 style="text-align:center;">Opcije na meniju</h2>
+    <table>
+        <tr>
+            <th>Radnja</th>
+            <th>Opis</th>
+        </tr>
+
+        <tr>
+            <td><a href="#ticket_purchase">Kupovina i rezervisanje karte</a></td>
+            <td>Kupovina i rezervisanje voznih karata.</td>
+        </tr>
+        <tr>
+            <td><a href="#my_tickets">Kupljene karte</a></td>
+            <td>Pregled kupljenih karata.</td>
+        </tr>
+        <tr>
+            <td><a href="#my_reservations">Rezervisane karte</a></td>
+            <td>Pregled rezervisanih karata.</td>
+        </tr>
+        <tr>
+            <td><a href="#map">Mapa linija</a></td>
+            <td>Pregled voznih linija na mapi.</td>
+        </tr>
+        <tr>
+            <td><a href="#help">Pomoć</a></td>
+            <td>Prozor za pomoć.</td>
+        </tr>
+        <tr>
+            <td><a href="#logout">Odjava</a></td>
+            <td>Odjava sa sistema.</td>
+        </tr>
+        <tr>
+            <td><a href="#logout_and_exit">Odjava i izlaz</a></td>
+            <td>Odjava sa sistema i izlazak.</td>
+        </tr>
+    </table>
+
+    <h2 id="ticket_purchase">Kupovina i rezervisanje karata</h2>
+
+    <h2 id="my_tickets">Kupljene karte</h2>
+
+    <h2 id="my_reservations">Rezervisane karte</h2>
+
+    <h2 id="map">Mapa linija</h2>
+
+    <h2 id="logout">Odjava sa sistema</h2>
+    <p>
+        Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Nakon odjave se aplikacija vraća 
+        prozor za prijavu
+    </p>
+    <h2 id="logout_and_exit">Odjava i izlaz</h2>
+    <p>
+        Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Aplikacija se odmah gasi nakon odjave. 
+    </p>
 </body>
 </html>

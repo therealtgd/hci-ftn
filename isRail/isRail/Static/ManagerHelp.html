@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">         
     <meta charset="utf-8" />
-    <title>Help</title>
+    <title>Pomoć</title>
 
     <style>
         body {
@@ -45,7 +45,7 @@
 
 
 <body>
-    <h1 style="text-align:center;">Menadžer</h1>
+    <h1 id="help" style="text-align:center;">Menadžer</h1>
 
     <h2 style="text-align:center;">Opcije na meniju</h2>
     <table>
@@ -80,26 +80,84 @@
             <td>Ctrl + Shift + R</td>
             <td>Create a new timetable by choosing a train line and selecting days and time of departure.</td>
         </tr>
+        <tr>
+            <td><a href="#logout">Odjava</a></td>
+            <td>Ctrl + E</td>
+            <td>Odjava sa sistema.</td>
+        </tr>
+        <tr>
+            <td><a href="#logout_and_exit">Odjava i izlaz</a></td>
+            <td>Ctrl + Shift + E</td>
+            <td>Odjava sa sistema i izlazak.</td>
+        </tr>
+        <tr>
+            <td><a href="#help">Pomoć</a></td>
+            <td>F1</td>
+            <td>Prozor za pomoć.</td>
+        </tr>
     </table>
 
-    <h2 id="ride_crud">Uređivanje reda vožnje</h1>
+    <h2 id="ride_crud">Uređivanje reda vožnje</h2>
         <div>
-           
+            <p>Uređivanje reda vožnje se vrši izmenom podataka u tabeli. <br/>
+                Proces je sledeći:
+            </p>
+            <ol>
+                <li>
+                    <b>Klikom na ćeliju tabele</b> se bira određeno polje konkretnog reda vožnje.
+                </li>
+                <li>
+                    <b>Nova vrednost ćelije se unosi</b> sa tastature ili uz pomoć miša i grafičkih elemenata interfejsa.
+                </li>
+                <ul>
+                    <li>
+                        <b>Čuvanje svih promena</b> pritiskom na dugme "Sačuvaj promene"
+                    </li>
+                    <li>
+                        <b>Poništavanje promena</b> klikom na dugme "Odbaci promene"
+                    </li>
+                </ul>
+            </ol>
+            
         </div>
     
-        <h2 id="ridebase_crud">Uređivanje vozne linije</h1>
+        <h2 id="ridebase_crud">Uređivanje vozne linije</h2>
         <div>
-            Nove vozne linije se dodaju 
+            <p>
+                Postojeće vozne linije se ažuriraju pomoću mape i "drag n drop" interfejsa. Nove vozne linije se takođe dodaju pomoću mape i "drag n drop" interfejsa. 
+            </p>
+            <h3>Ažuriranje vozne linije</h3>
+            <ol>
+                <li>
+                    <b>Odabir vozne linije</b> u gornjem levom uglu
+                </li>
+                <li>
+                    <b>Uz pomoć drag n drop</b> interfejsa <b>ažurirati mesto polaska, dolaska i međustanice</b>. Međustanice se mogu dodati ili izbrisati u/iz tabele.<br/> Prilikom dodavanja stanice
+                    se lokator prevuče na tačno mesto stanice na mapi, a potom se unosi ime stanice.
+                </li>
+                <ul>
+                    <li>
+                        <b>Čuvanje promena</b> klikom na dugme "Sačuvaj promene"
+                    </li>
+                    <li>
+                        <b>Poništavanje promena</b> klikom na dugme "Odbaci promene"
+                    </li>
+                </ul>
+            </ol>
+            <h3>Dodavanje nove vozne linije</h3>
+            <p>
+                Nova vozna linija se dodaje isto kao što se ažurira vozna linija, sa jedinom razlikom što se svaka stavka mora pojedinačno untei (lokacije za mesto polaska,
+                mesto dolaska i međustanice ako postoje, kao i njihova imena).
+            </p>
         </div>
 
-    <h2 id="train_crud">Uređivanje vozova</h1>
+    <h2 id="train_crud">Uređivanje vozova</h2>
     <div>
         <p>
             Novi vozovi se jednostavno dodaju u sistem klikom na dugme "Dodaj voz" u donjem levom uglu prozora. Nakon klika na dugme se otvara prozor u kom je potrebno
             navesti ime voza, a potom se može pritisnuti dugme "Dodaj" kako bi se voz dodao u sistem, a ukoliko korisnik ipak ne želi da doda novi voz, može da prekine
             dodavanje klikom na "x" u gornjem desnom uglu novootvorenog prozora. 
         </p>
-        
         <p>
             Koraci pri dodavanju novog voza:
             <ol>
@@ -126,16 +184,26 @@
 
     </div>
 
-    <h2 id="monthly_report">Pregled prodatih karata na mesečnom nivou</h1>
+    <h2 id="monthly_report">Pregled prodatih karata na mesečnom nivou</h2>
         <p>
             
         </p>
 
-    <h2 id="ride_report">Pregled prodatih karata na nivou vožnje</h1>
+    <h2 id="ride_report">Pregled prodatih karata na nivou vožnje</h2>
     <div>
         <p>
 
         </p>
     </div>
+
+    <h2 id="logout">Odjava sa sistema</h2>
+    <p>
+        Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Nakon odjave se aplikacija vraća 
+        prozor za prijavu
+    </p>
+    <h2 id="logout_and_exit">Odjava i izlaz</h2>
+    <p>
+        Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Aplikacija se odmah gasi nakon odjave. 
+    </p>
 </body>
 </html>
