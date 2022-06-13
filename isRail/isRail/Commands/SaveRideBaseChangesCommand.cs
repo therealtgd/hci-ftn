@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace isRail.Commands
 {
-    internal class SaveRideBaseChangesCommand
+    public class SaveRideBaseChangesCommand
     {
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using isRail.Commands;
 
 namespace isRail.ViewModels
 {
@@ -15,8 +16,15 @@ namespace isRail.ViewModels
         public Models.App App { get; set; }
 
         public ObservableCollection<RideBase> RideBases { get; set; }
+        public ObservableCollection<Station> Stations { get; set; }
 
         public ICollectionView RideBasesCollectionView { get; set; }
+
+        public ICollectionView StationCollectionView { get; set; }
+
+        public SaveRideBaseChangesCommand SaveRideBaseChanges { get; set; }
+        public DiscardRideBaseChangesCommand DiscardRideBaseChanges { get; set; }
+        public AddRideBaseCommand AddRideBase { get; set; }
 
         public ManagerEditRideBasesViewModel(Models.App app)
         {
@@ -29,9 +37,9 @@ namespace isRail.ViewModels
 
             RideBasesCollectionView = CollectionViewSource.GetDefaultView(RideBases);
 
-            //SaveTrainChangesCommand = new SaveTrainChangesCommand(this);
-            //DiscardTrainChangesCommand = new DiscardTrainChangesCommand(this);
-            //AddTrainCommand = new AddTrainCommand(this);
+            //SaveRideBaseChanges = new SaveRideBaseChangesCommand(this);
+            //DiscardRideBasesChangesCommand = new DiscardRideBaseChangesCommand(this);
+            //AddRideBaseCommand = new AddRideBaseCommand(this);
 
             //DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
             //AddTrainCommand.AddedTrainEvent += OnDiscardChanges;

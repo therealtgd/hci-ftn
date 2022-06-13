@@ -18,5 +18,17 @@ namespace isRail.Models
             To = to;
             Stations = stations;
         }
+
+        public override string ToString()
+        {
+            string rideStr = "[" + Id.ToString() + "] " + From.ToString();
+
+            foreach (Station station in Stations)
+                rideStr += " - " + station.ToString();
+
+            rideStr += " - " + To.ToString();
+
+            return rideStr;
+        }
     }
 }

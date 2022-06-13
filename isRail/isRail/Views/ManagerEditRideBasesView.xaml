@@ -14,28 +14,110 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="0"
+                  VerticalAlignment="Top"
                   Grid.Column="0"
                   Margin="30 10 15 10"
-                  x:Name="OutlinedComboBox"
+                  x:Name="RideBaseComboBox"
                   ItemsSource="{Binding RideBasesCollectionView}"
-                  Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                  Style="{StaticResource MaterialDesignOutlinedComboBox}" SelectionChanged="OutlinedComboBox_SelectionChanged"/>
+        <TextBlock Grid.Row="0" 
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontSize="20"
+                   x:Name="RideBaseTextBlock"
+                   ></TextBlock>
+        <Grid
+            x:Name="FromToSelectGrid"
+            Visibility="Hidden"
+            VerticalAlignment="Bottom"
+            Margin="30 100 15 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel 
+            Grid.Row="0"
+            Grid.Column="0"
+            >
+                <TextBlock 
+                FontSize="13"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                Polazak</TextBlock>
+                <materialDesign:PackIcon 
+                    Height="30"
+                    Width="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Kind="MapMarker"/>
+                <TextBlock
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                x:Name="FromTextBlock"></TextBlock>
+            </StackPanel>
+
+            <StackPanel 
+            Grid.Row="0"
+            Grid.Column="2">
+                <TextBlock 
+                FontSize="13"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                Dolazak</TextBlock>
+                <materialDesign:PackIcon
+                Height="30"
+                Width="30"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Kind="MapMarker"/>
+                <TextBlock 
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                x:Name="ToTextBlock"></TextBlock>
+            </StackPanel>
+        </Grid>
+
+
+
+        <DataGrid 
+                  x:Name="StationDataGrid"
+                  Margin="30 0 15 20"
+                  Grid.Row="1"
+                  Grid.RowSpan="2"
+                  AlternatingRowBackground="LightGray"
+                  CanUserAddRows="True"
+                  CanUserDeleteRows="True"
+                  CanUserReorderColumns="False"
+                  Visibility="Hidden"
+                  ItemsSource="{Binding }"
+                  >
+            <DataGridColumnHeader>Međustanice</DataGridColumnHeader>
+        </DataGrid>
+        
         <m:Map Grid.Row="0"
-               Grid.RowSpan="2"
+               Grid.RowSpan="3"
                Grid.Column="1"
                Margin="0 0 0 20"
                Mode="Road"
                CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
                Center="45.2461818273899, 19.85138567223834"
-               ZoomLevel="10"
-               Name="RideMap"
-               AllowDrop="True">
+               ZoomLevel="8"
+               Name="RideBaseMap"
+               AllowDrop="True"
+               DragEnter="Map_DragEnter" 
+               Drop="Map_Drop">
         </m:Map>
-        <Grid Grid.Row="2"
+        
+        <Grid Grid.Row="3"
               Grid.Column="0"
               Grid.ColumnSpan="2"
               >

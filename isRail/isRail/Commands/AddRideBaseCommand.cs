@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace isRail.Commands
 {
-    internal class AddRideBaseCommand : CommandBase
+    public class AddRideBaseCommand : CommandBase
     {
         private ManagerEditRideBasesViewModel _managerEditRideBasesViewModel;
         public static event Action AddedRideBaseEvent;
