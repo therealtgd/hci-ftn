@@ -14,7 +14,7 @@ namespace isRail.ViewModels
     {
         public Models.App App { get; set; }
 
-        private DateTime? _monthFilter = DateTime.Now;
+        private DateTime? _monthFilter;
         public DateTime? MonthFilter { get { return _monthFilter; } set { _monthFilter = value; LoadReport(); OnPropertyChanged(nameof(MonthFilter)); } }
 
         private int _ticketsSoldFilter;
@@ -33,7 +33,7 @@ namespace isRail.ViewModels
             monthlyReportViews = new ObservableCollection<MonthlyReportViewModel>();
             MonthlyReportsView = CollectionViewSource.GetDefaultView(monthlyReportViews);
             MonthlyReportsView.Filter = Filter;
-            LoadReport();
+            MonthFilter = DateTime.Now;
         }
 
         private bool Filter(object obj)

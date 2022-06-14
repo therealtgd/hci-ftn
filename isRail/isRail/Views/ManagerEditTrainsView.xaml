@@ -7,6 +7,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.InputBindings>
+        <KeyBinding Gesture="CTRL+S" Command="{Binding SaveTrainChangesCommand}"/>
+        <KeyBinding Gesture="CTRL+D" Command="{Binding DiscardTrainChangesCommand}"/>
+        <KeyBinding Gesture="CTRL+N" Command="{Binding AddTrainCommand}"/>
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -14,6 +19,7 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <TextBox
+            x:Name="Focusable"
             Grid.Column="0"
             Style="{StaticResource MaterialDesignOutlinedTextBox}"
             FontSize="16"

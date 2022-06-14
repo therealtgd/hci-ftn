@@ -21,7 +21,7 @@ namespace isRail.Commands
             _canExecute = false;
             _managerEditRidesViewModel = managerEditRidesViewModel;
 
-            SaveTrainChangesCommand.SaveChangesEvent += OnSaveChanges;
+            SaveRideChangesCommand.SaveRideChangesEvent += OnSaveChanges;
             _managerEditRidesViewModel._rides.CollectionChanged += OnCollectionChanged;
         }
 

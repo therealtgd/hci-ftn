@@ -24,6 +24,8 @@ namespace isRail.ViewModels
 
         public AddTrainCommand AddTrainCommand { get; set; }
 
+        public Action FocusAction { get; set; }
+
         private string _train = string.Empty;
         public string Train
         {
@@ -49,7 +51,7 @@ namespace isRail.ViewModels
             SaveTrainChangesCommand = new SaveTrainChangesCommand(this);
             DiscardTrainChangesCommand = new DiscardTrainChangesCommand(this);
             AddTrainCommand = new AddTrainCommand(this);  
-
+            
             DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
             AddTrainCommand.AddedTrainEvent += OnDiscardChanges;
 

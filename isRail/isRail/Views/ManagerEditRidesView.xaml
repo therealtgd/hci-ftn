@@ -12,6 +12,11 @@
     <UserControl.Resources>
         <util:IntConverter x:Key="intConverter" />
     </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Gesture="CTRL+S" Command="{Binding SaveRideChangesCommand}"/>
+        <KeyBinding Gesture="CTRL+D" Command="{Binding DiscardRideChangesCommand}"/>
+        <KeyBinding Gesture="CTRL+N" Command="{Binding AddRideCommand}"/>
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
