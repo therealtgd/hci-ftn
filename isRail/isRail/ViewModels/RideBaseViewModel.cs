@@ -1,4 +1,4 @@
-﻿using isRail.Models;
+using isRail.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,6 @@ namespace isRail.ViewModels
                 OnPropertyChanged(nameof(RideBase));
             }
         }
-
 
         public Models.App App { get; }
 

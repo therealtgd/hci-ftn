@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace isRail.Models
 {
     public class RideBase
     {
-
         public int Id { get; }
 
         public Station From { get; }

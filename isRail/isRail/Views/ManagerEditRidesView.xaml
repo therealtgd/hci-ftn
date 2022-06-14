@@ -3,10 +3,148 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:isRail.Views" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:isRail.ViewModels" 
+             xmlns:local="clr-namespace:isRail.Views" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+             xmlns:viewmodels="clr-namespace:isRail.ViewModels" 
+             xmlns:util="clr-namespace:isRail.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <util:IntConverter x:Key="intConverter" />
+    </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Gesture="CTRL+S" Command="{Binding SaveRideChangesCommand}"/>
+        <KeyBinding Gesture="CTRL+D" Command="{Binding DiscardRideChangesCommand}"/>
+        <KeyBinding Gesture="CTRL+N" Command="{Binding AddRideCommand}"/>
+    </UserControl.InputBindings>
     <Grid>
-        <TextBlock FontSize="50">EDIT RIDES</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="0"
+            Margin="30 20 30 20"
+            FontSize="16"
+            Style="{StaticResource MaterialDesignComboBox}"
+            ItemsSource="{Binding RideBasesCollectionView}"
+            SelectedValue="{Binding SelectedRideBase}"
+            SelectedValuePath="{Binding _rideBase}"
+            >
+        </ComboBox>
+        <Grid Grid.Row="1"
+            Margin="30 0 30 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width=".1*"/>
+                <ColumnDefinition Width=".8*"/>
+                <ColumnDefinition Width=".1*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <DatePicker
+                Language="sr"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                FontSize="16"
+                Grid.Column="0"
+                SelectedDate="{Binding Path=StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.Hint="Datum polaska"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+            </DatePicker>
+            <TextBox
+                    FontSize="16"
+                    Grid.Column="2"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    PreviewTextInput="TextBoxPrice_PreviewTextInput"
+                    DataObject.Pasting="TextBoxPrice_Pasting"
+                    Text="{Binding Path=PriceFilter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource intConverter}}"
+                    materialDesign:HintAssist.Hint="Cena" 
+                    materialDesign:HintAssist.HelperText=""/>
+            
+            <TextBox
+                FontSize="16"
+                Grid.Column="4"
+                Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                VerticalAlignment="Top"
+                Text="{Binding Path=TrainFilter, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.Hint="Voz" 
+                materialDesign:HintAssist.HelperText=""
+                >
+                
+            </TextBox>
+        </Grid>
+        <DataGrid Grid.Row="2"
+            CanUserResizeColumns="False"
+            ItemsSource="{Binding RidesCollectionView}"
+            HeadersVisibility="All"
+            AutoGenerateColumns="False"
+            CanUserDeleteRows="True"
+            CanUserAddRows="True"
+            FontSize="16"
+            Margin="30 0 30 20"
+            >
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.RowValidationErrorTemplate>
+                <ControlTemplate>
+                    <Grid Margin="0,-2,0,-2"
+                        ToolTip="{Binding RelativeSource={RelativeSource
+                        FindAncestor, AncestorType={x:Type DataGridRow}},
+                        Path=(Validation.Errors)[0].ErrorContent}">
+                    </Grid>
+                </ControlTemplate>
+            </DataGrid.RowValidationErrorTemplate>
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding StartTime}"
+                    Header="Vreme polaska">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding EndTime}"
+                    Header="Vreme dolaska">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Price}"
+                    Header="Cena">
+                </DataGridTextColumn>
+                <DataGridTextColumn
+                    Binding="{Binding Train}"
+                    Header="Voz">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.8*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button
+                    Margin="30 0 0 20"
+                    Grid.Column="0"
+                    FontSize="16"
+                    Command="{Binding AddRideCommand}"
+                    >Dodaj vožnju</Button>
+            <Button
+                    Margin="0 0 30 20"
+                    Grid.Column="2"
+                    FontSize="16"
+                    Background="LightGray"
+                    BorderBrush="LightGray"
+                    Command="{Binding DiscardRideChangesCommand}"
+                    >Odbaci promene</Button>
+            <Button
+                    Margin="0 0 30 20"
+                    Grid.Column="3"
+                    FontSize="16"
+                    Command="{Binding SaveRideChangesCommand}"
+                    >Sačuvaj promene</Button>
+        </Grid>
     </Grid>
 </UserControl>
