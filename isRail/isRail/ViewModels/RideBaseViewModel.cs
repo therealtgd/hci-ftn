@@ -11,7 +11,7 @@ namespace isRail.ViewModels
 {
     public class RideBaseViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        private RideBase _rideBase { get; set; }
+        public RideBase _rideBase { get; set; }
         public Station From => _rideBase.From;
         public Station To => _rideBase.To;
         public List<Station> Stations => _rideBase.Stations;

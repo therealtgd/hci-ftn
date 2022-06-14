@@ -37,9 +37,7 @@ namespace isRail.Models
 
         public void InitializeApp()
         {
-
-
-            RideBase rideBase1 = new RideBase(
+            RideBase rb1 = new RideBase(
                 1,
                 new Station("Novi Sad", 45.265571, 19.829366),
                 new Station("Beograd", 44.808510, 20.455799),
@@ -47,37 +45,75 @@ namespace isRail.Models
                                     new Station("Zrenjanin", 45.365810, 20.403580),
                                     new Station("Subotica", 46.102779, 19.670427)}
             );
-            RideBase rideBase2 = new RideBase(
+            RideBase rb2 = new RideBase(
                 2,
+                new Station("Beograd", 44.808510, 20.455799),
+                new Station("Novi Sad", 45.265571, 19.829366),
+                new List<Station> { new Station("Subotica", 46.102779, 19.670427),
+                    new Station("Zrenjanin", 45.365810, 20.403580),
+                    new Station("Backa Palanka", 45.249630, 19.396850) }
+            );
+            RideBase rb3 = new RideBase(
+                3,
                 new Station("Subotica", 46.102779, 19.670427),
                 new Station("Beograd", 44.808510, 20.455799),
                 new List<Station> { new Station("Zrenjanin", 45.365810, 20.403580) }
             );
-            RideBase rideBase3 = new RideBase(
-                3,
+            RideBase rb4 = new RideBase(
+                4,
+                new Station("Beograd", 44.808510, 20.455799),
+                new Station("Subotica", 46.102779, 19.670427),
+                new List<Station> { new Station("Zrenjanin", 45.365810, 20.403580) }
+            );
+            RideBase rb5 = new RideBase(
+                5,
                 new Station("Niš", 43.316257, 21.877323),
                 new Station("Sremska Mitrovica", 44.982293, 19.613703),
                 new List<Station> { new Station("Backa Palanka", 45.249630, 19.396850),
                                     new Station("Zrenjanin", 45.365810, 20.403580),
                                     new Station("Subotica", 46.102779, 19.670427) }
             );
+            RideBase rb6 = new RideBase(
+                6,
+                new Station("Sremska Mitrovica", 44.982293, 19.613703),
+                new Station("Niš", 43.316257, 21.877323),
+                new List<Station> { new Station("Subotica", 46.102779, 19.670427),
+                                    new Station("Zrenjanin", 45.365810, 20.403580),
+                                    new Station("Backa Palanka", 45.249630, 19.396850) }
+            );
+            RideBase rb7 = new RideBase(
+                7,
+                new Station("Sombor", 45.786066, 19.113873),
+                new Station("Novi Sad", 45.265571, 19.829366),
+                new List<Station> { new Station("Odzaci", 45.510498, 19.255294),
+                                    new Station("Futog", 45.254535, 19.701410), }
+            );
+            RideBase rb8 = new RideBase(
+                8,
+                new Station("Novi Sad", 45.265571, 19.829366),
+                new Station("Sombor", 45.786066, 19.113873),
+                new List<Station> { new Station("Futog", 45.254535, 19.701410),
+                    new Station("Odzaci", 45.510498, 19.255294)
+                        }
+            );
+
 
             Ride ride1 = new Ride(
-                rideBase1,
+                rb1,
                 "Lasta",
                 DateTime.Now.AddHours(0.2),
                 DateTime.Now.AddHours(0.5),
                 1500);
 
             Ride ride2 = new Ride(
-                rideBase2,
+                rb2,
                 "Jastreb",
                 DateTime.Now.AddHours(1),
                 DateTime.Now.AddHours(2),
                 2000);
 
             Ride ride3 = new Ride(
-                rideBase3,
+                rb3,
                 "Orao",
                 DateTime.Now.AddDays(1).AddHours(2),
                 DateTime.Now.AddDays(1).AddHours(3),
@@ -92,7 +128,7 @@ namespace isRail.Models
             Trains.Add("Orao");
             Trains.Add("Jastreb");
             Trains.Add("Pelikan");
-            Trains.Add("Vrabac");
+            Trains.Add("SpeedyBoi");
             Trains.Add("Noj");
             Trains.Add("Kokos");
             Trains.Add("Petao");

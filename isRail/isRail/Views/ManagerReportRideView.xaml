@@ -12,11 +12,12 @@
         <util:IntConverter x:Key="intConverter" />
         <util:DoubleConverter x:Key="doubleConverter" />
     </UserControl.Resources>
-    <StackPanel
-                Margin="50 0 50 0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center">
-            <Grid
+    <Grid Margin="30 20 30 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
                 Margin="0 0 0 20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -82,7 +83,7 @@
                     materialDesign:HintAssist.Hint="Min zarada" 
                     materialDesign:HintAssist.HelperText="" />
             </Grid>
-            <DataGrid
+            <DataGrid Grid.Row="1"
             CanUserResizeColumns="False"
             ItemsSource="{Binding TicketsCollectionView}"
             CanUserAddRows="False"
@@ -141,5 +142,5 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
+        </Grid>
 </UserControl>

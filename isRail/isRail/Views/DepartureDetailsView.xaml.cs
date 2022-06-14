@@ -42,7 +42,7 @@ namespace isRail.Views
             }
             To.Text = To.Text + ride.To;
             StartTime.Text = StartTime.Text + ride.StartTime.ToShortDateString() + ride.StartTime.ToShortTimeString();
-            EndTime.Text = EndTime.Text + ride.EndTime;
+            EndTime.Text = EndTime.Text + ride.EndTime.ToShortDateString() + ride.EndTime.ToShortTimeString();
             Price.Text = Price.Text + ride.Price;
             Train.Text = Train.Text + ride.Train;
 
@@ -50,6 +50,7 @@ namespace isRail.Views
             ReserveTicketCommand = new ReserveTicketCommand(app, ride.Ride);
 
             ShowRideLineOnMap(ride);
+            ResizeMode = ResizeMode.NoResize;
         }
 
         private void ShowRideLineOnMap(RideViewModel ride)
