@@ -22,13 +22,13 @@
             justify-content: left;
         }
 
-        table {
+        /* table {
             background-color: #7fd6ffd8;
             font-family: arial, sans-serif;
             border-collapse: collapse;
             stroke: #000000;
-            width: 100%;
-        }
+            width: 85%;
+        } */
 
         td,
         th {
@@ -48,10 +48,10 @@
     <h1 id="help" style="text-align:center;">Klijent</h1>
 
     <h2 style="text-align:center;">Opcije na meniju</h2>
-    <table>
+    <table style="background-color:#7fd6ffd8;border-collapse:collapse;stroke:#000000;width:100%;font-weight:bold;">
         <tr>
-            <th>Radnja</th>
-            <th>Opis</th>
+            <th style="font-size:x-large;">Radnja</th>
+            <th style="font-size:x-large;">Opis</th>
         </tr>
 
         <tr>
@@ -85,21 +85,45 @@
     </table>
 
     <h2 id="ticket_purchase">Kupovina i rezervisanje karata</h2>
+        <p>
+            Kupovina i rezervisanje karata se obavlja preko pretrage i tabele. U 4 polja za pretragu se unose mesto polaska, mesto dolaska, datum, i vreme polaska.
+            Rezultati u tabeli će biti od zadatog datuma i vremena. Moguće je zameniti mesto polaska i dolaska pritiskom na plavo dugme za zamenu.
+        </p>
+
+        <p>
+            Konkretna karta se kupuje pritiskom na zeleno dugme "Kupi", nakon cega se korisnik pita da li sigurno zeli da kupi tu kartu
+        </p>
+
+        <p>
+            Karta se rezerviše klikom na plavo dume "Rezerviši".
+        </p>
+        <p>
+            Pritiskom na dugme "Detalji" se otvara prozor sa detaljima o konkretnoj vožnji kao što su međustanice, mapa linije itd.
+        </p>
 
     <h2 id="my_tickets">Kupljene karte</h2>
+        <p>
+            U ovom prozoru korisnik može videti svoje kupljene karte u tabeli. Postoji pretraga po kriterijumima mesto polaska, vreme polaska, datum i vreme.
+        </p>
 
     <h2 id="my_reservations">Rezervisane karte</h2>
+        <p>
+            U ovom prozoru korisnik može videti svoje rezervisane karte u tabeli. Postoji pretraga po kriterijumima mesto polaska, vreme polaska, datum i vreme.
+        </p>
 
     <h2 id="map">Mapa linija</h2>
+        <p>
+            U mapi linija se dvoklikom na neku voznu liniju iz tabele prikazuje njena putanja na mapi.
+        </p>
 
     <h2 id="logout">Odjava sa sistema</h2>
-    <p>
-        Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Nakon odjave se aplikacija vraća 
-        prozor za prijavu
-    </p>
+        <p>
+            Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Nakon odjave se aplikacija vraća 
+            prozor za prijavu
+        </p>
     <h2 id="logout_and_exit">Odjava i izlaz</h2>
-    <p>
-        Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Aplikacija se odmah gasi nakon odjave. 
-    </p>
+        <p>
+            Nakon pokretanja odjave sa sistema, korisnik će biti pitan da li sigurno želi da se odjavi sa sistema. <br/> Aplikacija se odmah gasi nakon odjave. 
+        </p>
 </body>
 </html>
