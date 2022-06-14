@@ -89,7 +89,7 @@
                     <!--Mapa linija-->
                 </TabItem>
                 <!--Help-->
-                <TabItem MouseLeftButtonUp="Help_Clicked">
+                <TabItem MinWidth="130" MouseLeftButtonUp="Help_Clicked">
                     <TabItem.Header>
                         <StackPanel
                             Width="auto"

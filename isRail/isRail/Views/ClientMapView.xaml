@@ -19,11 +19,13 @@
                    Center="45.2461818273899, 19.85138567223834" ZoomLevel="10" Name="RideMap"
                    AllowDrop="True">
         </m:Map>
-        <StackPanel Grid.Row="1"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center">
-            <Grid 
-                Margin="0 0 0 20">
+        <Grid Grid.Row="1"
+              Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="0.3*"/>
@@ -75,7 +77,8 @@
                 Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
             </Grid>
-            <DataGrid
+            <DataGrid Grid.Row="1"
+                HorizontalAlignment="Center"
                 CanUserResizeColumns="False"
                 ItemsSource="{Binding RidesCollectionView}"
                 CanUserAddRows="False"
@@ -127,6 +130,6 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -51,6 +51,8 @@ namespace isRail.Views
 
             ShowRideLineOnMap(ride);
             ResizeMode = ResizeMode.NoResize;
+
+            LogoutCommand.LogoutEvent += Close;
         }
 
         private void ShowRideLineOnMap(RideViewModel ride)

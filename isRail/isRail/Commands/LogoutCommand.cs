@@ -12,6 +12,7 @@ namespace isRail.Commands
     {
         private Models.App _app;
 
+        public static event Action LogoutEvent;
         public LogoutCommand(Models.App app)
         {
             _app = app;
@@ -24,6 +25,7 @@ namespace isRail.Commands
             {
                 _app.Client = null;
                 _app.Manager = null;
+                LogoutEvent?.Invoke();
                 _app.NavigationStore.CurrentViewModel = new LoginViewModel(_app);
             }
         }
