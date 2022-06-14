@@ -4,9 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:isRail"
+        xmlns:views="clr-namespace:isRail.Views"
+        xmlns:vms="clr-namespace:isRail.ViewModels" d:DataContext="{d:DesignInstance Type=vms:MainViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="isRail"
+        Height="700"
+        Width="1350"
+        Icon="/Assets/thomas-the-train.png"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"   >
+    
+        <Window.Resources>
+            <Style x:Key="ButtonWidth" TargetType="Button">
+                <Setter Property="MaxWidth" Value="100px" />
+            </Style>
+        </Window.Resources>
     <Grid>
-
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vms:ClientMainViewModel}">
+                <views:ClientMainWindow />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:LoginViewModel}">
+                <views:LoginView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:ManagerMainViewModel}">
+                <views:ManagerMainView />
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

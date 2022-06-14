@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="isRail.Views.ManagerReportRideView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:isRail.Views"
+             xmlns:util="clr-namespace:isRail.Utils"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <util:IntConverter x:Key="intConverter" />
+        <util:DoubleConverter x:Key="doubleConverter" />
+    </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Gesture="CTRL+H" Command="{Binding VideoCommand}" CommandParameter="managerReportRideShowcase"/>
+    </UserControl.InputBindings>
+    <Grid Margin="30 20 30 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                Margin="0 0 0 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    Grid.Column="0"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    FontSize="16"
+                    materialDesign:HintAssist.Hint="Polazak"
+                    Text="{Binding Path=FromFilter, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="0 0 15 0">
+                </TextBox>
+                <Button Grid.Column="1"
+                    Content="{materialDesign:PackIcon SwapHorizontal}"
+                    Command="{Binding SwapFromToCommand}"
+                    ToolTip="Zameni polazak i dolazak"/>
+                <TextBox
+                    Margin="15 0 0 0"
+                    FontSize="16"
+                    Grid.Column="2"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    Text="{Binding Path=ToFilter, UpdateSourceTrigger=PropertyChanged}"
+                    materialDesign:HintAssist.Hint="Dolazak">
+                </TextBox>
+                <DatePicker
+                    Language="sr"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    FontSize="16"
+                    Grid.Column="4"
+                    SelectedDate="{Binding Path=StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                    materialDesign:HintAssist.Hint="Najraniji datum polaska"
+                    materialDesign:HintAssist.HelperText=""
+                    Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                </DatePicker>
+                <TextBox
+                    FontSize="16"
+                    Grid.Column="6"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    PreviewTextInput="TextBoxNumOfSales_PreviewTextInput"
+                    DataObject.Pasting="TextBoxNumOfSales_Pasting"
+                    Text="{Binding Path=NumOfSalesFilter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource intConverter}}"
+                    materialDesign:HintAssist.Hint="Min prodato" 
+                    materialDesign:HintAssist.HelperText=""/> 
+                <TextBox
+                    Margin="15 0 0 0"
+                    FontSize="16"
+                    Grid.Column="7"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    VerticalAlignment="Top"
+                    PreviewTextInput="TextBoxEarnings_PreviewTextInput"
+                    DataObject.Pasting="TextBoxEarnings_Pasting"
+                    Text="{Binding Path=EarningsFilter, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource doubleConverter}}"
+                    materialDesign:HintAssist.Hint="Min zarada" 
+                    materialDesign:HintAssist.HelperText="" />
+            </Grid>
+            <DataGrid Grid.Row="1"
+            CanUserResizeColumns="False"
+            ItemsSource="{Binding TicketsCollectionView}"
+            CanUserAddRows="False"
+            IsReadOnly="True"
+            AutoGenerateColumns="False"
+            HeadersVisibility="All"
+            SelectionMode="Single"
+            FontSize="16"
+            >
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                    Binding="{Binding RideViewModel.From}"
+                    Header="Polazak">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                    Binding="{Binding RideViewModel.To}"
+                    Header="Dolazak">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                    Binding="{Binding RideViewModel.StartTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Header="Vreme polaska">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                    Binding="{Binding RideViewModel.EndTime, StringFormat=\{0:dd.MM.yyyy. HH:mm\}}"
+                    Header="Vreme dolaska">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                    Binding="{Binding RideViewModel.Price}"
+                    Header="Cena">
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        Binding="{Binding RideViewModel.NumOfSales}"
+                        Header="Prodato"
+                        MaxWidth="100"
+                        >
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        Binding="{Binding RideViewModel.Earnings}"
+                        Header="Zarada">
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn
+                        Header="Detalji">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button
+                                    FontSize="16"
+                                    Click="ButtonDetails_Click"
+                                    >Detalji</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+</UserControl>

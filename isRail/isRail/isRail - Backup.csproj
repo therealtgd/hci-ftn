@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\thomas-the-train.png" />
+    <None Remove="Assets\train-bg.jpg" />
+    <None Remove="Assets\train-travel-bg.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci198" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\thomas-the-train.png" />
+    <Resource Include="Assets\train-bg.jpg" />
+    <Resource Include="Assets\train-travel-bg.jpg" />
+  </ItemGroup>
+
+</Project>
