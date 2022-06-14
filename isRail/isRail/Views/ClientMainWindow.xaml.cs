@@ -66,5 +66,11 @@ namespace isRail.Views
                     return;
             }
         }
+
+        private void Help_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            ClientHelpCommand help = new ClientHelpCommand();
+            help.Execute(null);
+        }
     }
 }

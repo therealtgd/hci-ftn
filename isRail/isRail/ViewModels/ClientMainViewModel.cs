@@ -26,6 +26,8 @@ namespace isRail.ViewModels
        
         public ICommand SwapFromToCommand { get; }
 
+        public ICommand Help { get; }
+
         private string _fromFilter = string.Empty;
         public string FromFilter { 
             get 
@@ -92,6 +94,8 @@ namespace isRail.ViewModels
 
             ClientPurchasedTicketsViewModel = new ClientPurchasedTicketsViewModel(app);
             ClientReservedTicketsViewModel = new ClientReservedTicketsViewModel(app);
+
+            Help = new ClientHelpCommand();
         }
 
         private bool FilterRides(object o)
