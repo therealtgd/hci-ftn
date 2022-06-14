@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace isRail.Models
 {
@@ -20,13 +20,14 @@ namespace isRail.Models
 
         public override string ToString()
         {
-            string result = From.ToString();
+            string rideStr = "[" + Id.ToString() + "] " + From.ToString();
+
             foreach (Station station in Stations)
-            {
-                result += "-"+station.ToString();
-            }
-            result += "-" + To.ToString();
-            return result;
+                rideStr += " - " + station.ToString();
+
+            rideStr += " - " + To.ToString();
+
+            return rideStr;
         }
     }
 }

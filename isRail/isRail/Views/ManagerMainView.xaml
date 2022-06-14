@@ -16,6 +16,7 @@
         <KeyBinding Command="{Binding ManagerNavigateCommand}" CommandParameter="reportRide" Gesture="CTRL+SHIFT+R"/>
         <KeyBinding Command="{Binding LogoutCommand}" Gesture="CTRL+E"/>
         <KeyBinding Command="{Binding LogoutAndExitCommand}" Gesture="CTRL+SHIFT+E"/>
+        <KeyBinding Command="{Binding ManagerHelp}" Gesture="CTRL+F1"/>
     </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -94,6 +95,11 @@
                     InputGestureText="Ctrl+Shift+E"
                     Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
             </MenuItem>
+            <MenuItem
+                Header="Pom_oć"
+                HorizontalAlignment="Right"
+                InputGestureText="F1"
+                Command="{Binding ManagerHelpCommand}"/>
         </Menu>
     </Grid>
 </UserControl>

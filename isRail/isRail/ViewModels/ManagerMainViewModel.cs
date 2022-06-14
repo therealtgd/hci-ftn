@@ -31,6 +31,8 @@ namespace isRail.ViewModels
         public ManagerEditTrainsViewModel ManagerEditTrainsViewModel { get; set; }
         public ManagerReportMonthlyViewModel ManagerReportMonthlyViewModel { get; set; }
         public ManagerReportRideViewModel ManagerReportRideViewModel { get;set; }
+
+        public ICommand ManagerHelpCommand { get; }
         public ICommand LogoutCommand { get; }
         public ICommand LogoutAndExitCommand { get; }
 
@@ -57,6 +59,9 @@ namespace isRail.ViewModels
             // TODO: Implementirati funkcionalnost ove dve komande!
             LogoutCommand = new LogoutCommand(App);
             LogoutAndExitCommand = new LogoutAndExitCommand();
+
+            // Help
+            ManagerHelpCommand = new ManagerHelpCommand();
         }
     }
 }

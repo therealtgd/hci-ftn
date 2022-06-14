@@ -88,6 +88,23 @@
                     <local:ClientMapView/>
                     <!--Mapa linija-->
                 </TabItem>
+                <!--Help-->
+                <TabItem MouseLeftButtonUp="Help_Clicked">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Help" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Pomoć" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
                 <!--Logout-->
                 <TabItem MinWidth="130" MouseLeftButtonUp="Logout_Clicked">
                     <TabItem.Header>

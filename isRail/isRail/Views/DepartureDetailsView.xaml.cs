@@ -1,4 +1,6 @@
 ﻿using isRail.Commands;
+using isRail.Models;
+using isRail.Utils;
 using isRail.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -46,6 +48,21 @@ namespace isRail.Views
 
             BuyTicketCommand = new BuyTicketCommand(app, ride.Ride);
             ReserveTicketCommand = new ReserveTicketCommand(app, ride.Ride);
+
+            ShowRideLineOnMap(ride);
+        }
+
+        private void ShowRideLineOnMap(RideViewModel ride)
+        {
+            RideMap.Children.Clear();
+            List<BingMapsRESTToolkit.SimpleWaypoint> waypoints = new List<BingMapsRESTToolkit.SimpleWaypoint>();
+            waypoints.Add(ride.From.Waypoint);
+            foreach (Station s in ride.Stations)
+            {
+                waypoints.Add(s.Waypoint);
+            }
+            waypoints.Add(ride.To.Waypoint);
+            BingMapsRESTService.SendRequest(RideMap, waypoints);
         }
     }
 }

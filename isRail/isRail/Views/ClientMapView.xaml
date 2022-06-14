@@ -36,36 +36,43 @@
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     VerticalAlignment="Top"
                     FontSize="16"
-                    materialDesign:HintAssist.Hint="Polazak"
-                    Margin="0 0 15 0">
+                    Text="{Binding Path=FromFilter, UpdateSourceTrigger=PropertyChanged}"
+                    Margin="0 0 15 0"
+                    materialDesign:HintAssist.Hint="Polazak">
                 </TextBox>
                 <Button Grid.Column="1"
                     Content="{materialDesign:PackIcon SwapHorizontal}"
-                    ToolTip="Icon"/>
+                    Command="{Binding SwapFromToCommand}"
+                    ToolTip="Zameni polazak i dolazak"/>
                 <TextBox
                     Margin="15 0 0 0"
                     FontSize="16"
                     Grid.Column="2"
                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
                     VerticalAlignment="Top"
+                    Text="{Binding Path=ToFilter, UpdateSourceTrigger=PropertyChanged}"
                     materialDesign:HintAssist.Hint="Dolazak">
                 </TextBox>
-                <TextBox
-                    FontSize="16"
-                    Margin="15 0 0 0"
-                    Grid.Column="3"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Vreme polaska">
-                </TextBox>
-                <TextBox
-                    FontSize="16"
-                    Margin="15 0 0 0"
-                    Grid.Column="4"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Vreme dolaska">
-                </TextBox>
+                <DatePicker
+                Language="sr"
+                materialDesign:TextFieldAssist.HasClearButton="True"
+                FontSize="16"
+                Margin="15 0 0 0"
+                Grid.Column="3"
+                SelectedDate="{Binding Path=StartDateFilter, UpdateSourceTrigger=PropertyChanged}"
+                materialDesign:HintAssist.Hint="Najraniji datum polaska"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedDatePicker}">
+                </DatePicker>
+                <materialDesign:TimePicker
+                SelectedTime="{Binding Path=StartTimeFilter, UpdateSourceTrigger=PropertyChanged}"
+                Is24Hours="True"
+                FontSize="16"
+                Margin="15 0 0 0"
+                Grid.Column="4"
+                materialDesign:HintAssist.Hint="Vreme"
+                materialDesign:HintAssist.HelperText=""
+                Style="{StaticResource MaterialDesignOutlinedTimePicker}" />
 
             </Grid>
             <DataGrid
