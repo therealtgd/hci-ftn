@@ -15,7 +15,7 @@ namespace isRail.Commands
             switch (video)
             {
                 case "managerEditRideBaseShowcase":
-                    new Video(@"CekamoIliju").Show();
+                    new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\managerEditRideBaseShowcase.wmv").Show();
                     break;
                 case "managerEditRideShowcase":
                     new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\managerEditRideShowcase.wmv").Show();
