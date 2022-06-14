@@ -14,6 +14,13 @@
   <ItemGroup>
     <None Remove="Assets\train-bg.jpg" />
     <None Remove="Assets\train-travel-bg.jpg" />
+    <None Remove="Videos\clientShowcase.wmv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Videos\clientShowcase.wmv">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

@@ -133,7 +133,7 @@
                         <DataTemplate>
                             <Button
                                 FontSize="16"
-                                Click="ButtonDetails_Click"
+                                Command="{Binding ReserveTicketCommand}"
                                 >Rezerviši</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

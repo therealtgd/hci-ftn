@@ -12,6 +12,9 @@
         <util:IntConverter x:Key="intConverter" />
         <util:DoubleConverter x:Key="doubleConverter" />
     </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Gesture="CTRL+H" Command="{Binding VideoCommand}" CommandParameter="managerReportMonthShowcase"/>
+    </UserControl.InputBindings>
     <Grid Margin="30 20 30 20">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />

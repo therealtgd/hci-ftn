@@ -44,6 +44,7 @@ namespace isRail.ViewModels
         public SaveRideChangesCommand SaveRideChangesCommand { get; set; }
         public DiscardRideChangesCommand DiscardRideChangesCommand { get; set; }
         public AddRideCommand AddRideCommand { get; set; }
+        public VideoCommand VideoCommand { get; set; }
 
         public static event Action FinishedDiscardingRideChangesEvent;
 
@@ -67,6 +68,7 @@ namespace isRail.ViewModels
             SaveRideChangesCommand = new SaveRideChangesCommand(this);
             DiscardRideChangesCommand = new DiscardRideChangesCommand(this);
             AddRideCommand = new AddRideCommand(this);
+            VideoCommand = new VideoCommand();
 
             DiscardRideChangesCommand.DiscardRidesChangesEvent += OnDiscardChanges;
         }

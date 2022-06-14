@@ -11,6 +11,7 @@
         <KeyBinding Gesture="CTRL+S" Command="{Binding SaveTrainChangesCommand}"/>
         <KeyBinding Gesture="CTRL+D" Command="{Binding DiscardTrainChangesCommand}"/>
         <KeyBinding Gesture="CTRL+N" Command="{Binding AddTrainCommand}"/>
+        <KeyBinding Gesture="CTRL+H" Command="{Binding VideoCommand}" CommandParameter="managerEditTrainShowcase"/>
     </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>

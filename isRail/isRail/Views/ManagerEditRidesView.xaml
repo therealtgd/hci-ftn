@@ -16,6 +16,7 @@
         <KeyBinding Gesture="CTRL+S" Command="{Binding SaveRideChangesCommand}"/>
         <KeyBinding Gesture="CTRL+D" Command="{Binding DiscardRideChangesCommand}"/>
         <KeyBinding Gesture="CTRL+N" Command="{Binding AddRideCommand}"/>
+        <KeyBinding Gesture="CTRL+H" Command="{Binding VideoCommand}" CommandParameter="managerEditRideShowcase"/>
     </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>

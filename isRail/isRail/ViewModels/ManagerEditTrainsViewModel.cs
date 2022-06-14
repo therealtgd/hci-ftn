@@ -23,7 +23,7 @@ namespace isRail.ViewModels
         public DiscardTrainChangesCommand DiscardTrainChangesCommand { get; set;  }
 
         public AddTrainCommand AddTrainCommand { get; set; }
-
+        public VideoCommand VideoCommand { get; set; }
         public Action FocusAction { get; set; }
 
         private string _train = string.Empty;
@@ -50,8 +50,9 @@ namespace isRail.ViewModels
 
             SaveTrainChangesCommand = new SaveTrainChangesCommand(this);
             DiscardTrainChangesCommand = new DiscardTrainChangesCommand(this);
-            AddTrainCommand = new AddTrainCommand(this);  
-            
+            AddTrainCommand = new AddTrainCommand(this);
+            VideoCommand = new VideoCommand();
+
             DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
             AddTrainCommand.AddedTrainEvent += OnDiscardChanges;
 

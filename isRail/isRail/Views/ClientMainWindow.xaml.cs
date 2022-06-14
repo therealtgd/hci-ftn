@@ -1,4 +1,5 @@
 ﻿using isRail.Commands;
+using isRail.VideoView;
 using isRail.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,8 +29,6 @@ namespace isRail.Views
             InitializeComponent();
 
         }
-
-
 
         private void TabItem_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -71,6 +70,11 @@ namespace isRail.Views
         {
             ClientHelpCommand help = new ClientHelpCommand();
             help.Execute(null);
+        }
+
+        private void Video_Clicked(object sender, MouseButtonEventArgs e)
+        {
+            new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\clientShowcase.wmv").Show();
         }
     }
 }

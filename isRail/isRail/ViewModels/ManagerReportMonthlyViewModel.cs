@@ -1,4 +1,5 @@
-﻿using isRail.Models;
+﻿using isRail.Commands;
+using isRail.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,7 +27,7 @@ namespace isRail.ViewModels
         private ObservableCollection<MonthlyReportViewModel> monthlyReportViews; 
 
         public ICollectionView MonthlyReportsView { get; }
-
+        public VideoCommand VideoCommand { get; set; }
         public ManagerReportMonthlyViewModel(Models.App app)
         {
             App = app;
@@ -34,6 +35,7 @@ namespace isRail.ViewModels
             MonthlyReportsView = CollectionViewSource.GetDefaultView(monthlyReportViews);
             MonthlyReportsView.Filter = Filter;
             MonthFilter = DateTime.Now;
+            VideoCommand = new VideoCommand();
         }
 
         private bool Filter(object obj)

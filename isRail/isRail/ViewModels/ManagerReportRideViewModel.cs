@@ -100,6 +100,7 @@ namespace isRail.ViewModels
                 TicketsCollectionView.Refresh();
             }
         }
+        public VideoCommand VideoCommand { get; set; }
 
         public ManagerReportRideViewModel(Models.App app)
         {
@@ -110,6 +111,7 @@ namespace isRail.ViewModels
             TicketsCollectionView = CollectionViewSource.GetDefaultView(_tickets);
             TicketsCollectionView.Filter = FilterTickets;
             SwapFromToCommand = new SwapFromToCommandRideReport(this);
+            VideoCommand = new VideoCommand();
         }
 
         private bool FilterTickets(object obj)

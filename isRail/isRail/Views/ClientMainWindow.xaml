@@ -88,23 +88,6 @@
                     <local:ClientMapView/>
                     <!--Mapa linija-->
                 </TabItem>
-                <!--Help-->
-                <TabItem MinWidth="130" MouseLeftButtonUp="Help_Clicked">
-                    <TabItem.Header>
-                        <StackPanel
-                            Width="auto"
-                            Height="auto">
-                            <materialDesign:PackIcon
-                                Width="24"
-                                Height="24"
-                                HorizontalAlignment="Center"
-                                Kind="Help" />
-                            <TextBlock
-                                HorizontalAlignment="Center"
-                                Text="Pomoć" />
-                        </StackPanel>
-                    </TabItem.Header>
-                </TabItem>
                 <!--Logout-->
                 <TabItem MinWidth="130" MouseLeftButtonUp="Logout_Clicked">
                     <TabItem.Header>
@@ -137,6 +120,40 @@
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 Text="Odjava i Izlaz" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <!--Video-->
+                <TabItem MinWidth="130" MouseLeftButtonUp="Video_Clicked">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Play" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Demonstracija" />
+                        </StackPanel>
+                    </TabItem.Header>
+                </TabItem>
+                <!--Help-->
+                <TabItem MinWidth="130" MouseLeftButtonUp="Help_Clicked">
+                    <TabItem.Header>
+                        <StackPanel
+                            Width="auto"
+                            Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Help" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Pomoć" />
                         </StackPanel>
                     </TabItem.Header>
                 </TabItem>

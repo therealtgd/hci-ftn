@@ -24,13 +24,14 @@ namespace isRail.VideoView
 		{
 			InitializeComponent();
 
-			videoPlayer.Source = new Uri(videoName, UriKind.Relative);
+			videoPlayer.Source = new Uri(videoName, UriKind.Absolute);
 			videoPlayer.Play();
 
 			DispatcherTimer timer = new DispatcherTimer();
 			timer.Interval = TimeSpan.FromSeconds(1);
 			timer.Tick += timer_Tick;
 			timer.Start();
+			Closed += CloseVideo;
 		}
 
 		void timer_Tick(object sender, EventArgs e)
@@ -58,6 +59,12 @@ namespace isRail.VideoView
 		{
 			videoPlayer.Stop();
 		}
+
+		private void CloseVideo(object? sender, EventArgs e)
+        {
+			videoPlayer.Close();
+        }
+
 	}
 }
 
