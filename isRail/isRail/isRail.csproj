@@ -5,55 +5,6 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <Platforms>AnyCPU;x64</Platforms>
-	<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-	<PublishSingleFile Condition="'$(Configuration)' == 'Release'">true</PublishSingleFile>
-	<PackageIcon>thomas-the-train.png</PackageIcon>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Assets\train-bg.jpg" />
-    <None Remove="Assets\train-travel-bg.jpg" />
-    <None Remove="Videos\clientShowcase.wmv" />
-    <None Remove="Videos\managerEditRideShowcase.wmv" />
-    <None Remove="Videos\managerEditTrainShowcase.wmv" />
-    <None Remove="Videos\managerReportMonthShowcase.wmv" />
-    <None Remove="Videos\managerReportRideShowcase.wmv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Videos\clientShowcase.wmv">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="BingMapsRESTToolkit" Version="1.1.4" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.6.0-ci198" />
-    <PackageReference Include="Microsoft.Maps.MapControl.WPF" Version="1.0.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Assets\thomas-the-train.png" />
-    <Resource Include="Assets\train-bg.jpg" />
-    <Resource Include="Assets\train-travel-bg.jpg" />
-    <Resource Include="Videos\managerEditRideShowcase.wmv" />
-    <Resource Include="Videos\managerEditTrainShowcase.wmv" />
-    <Resource Include="Videos\managerReportMonthShowcase.wmv" />
-    <Resource Include="Videos\managerReportRideShowcase.wmv" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Assets\thomas-the-train.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="Static\ClientHelp.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Static\ManagerHelp.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 
 </Project>

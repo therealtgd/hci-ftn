@@ -53,6 +53,7 @@ namespace isRail.ViewModels
         public static event Action FinishedDiscardingChangesEvent;
 
         private RideBaseViewModel selectedRideBase;
+        public VideoCommand VideoCommand { get; set; }
 
         public RideBaseViewModel SelectedRideBase
         {
@@ -85,7 +86,7 @@ namespace isRail.ViewModels
             SaveRideBaseChanges = new SaveRideBaseChangesCommand(this);
             DiscardRideBaseChangesCommand = new DiscardRideBaseChangesCommand(this);
             AddRideBase = new AddRideBaseCommand(this);
-
+            VideoCommand = new VideoCommand();
             DiscardTrainChangesCommand.DiscardChangesEvent += OnDiscardChanges;
             AddTrainCommand.AddedTrainEvent += OnDiscardChanges;
         }
