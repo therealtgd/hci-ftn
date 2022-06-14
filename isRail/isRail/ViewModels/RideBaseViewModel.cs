@@ -47,13 +47,14 @@ namespace isRail.ViewModels
 
         public override string ToString()
         {
-            string result = From.ToString();
+            string rideStr = "[" + _rideBase.Id.ToString() + "] " + From.ToString();
+
             foreach (Station station in Stations)
-            {
-                result += "-" + station.ToString();
-            }
-            result += "-" + To.ToString();
-            return result;
+                rideStr += " - " + station.ToString();
+
+            rideStr += " - " + To.ToString();
+
+            return rideStr;
         }
     }
 }

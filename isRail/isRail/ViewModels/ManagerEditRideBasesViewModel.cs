@@ -13,10 +13,35 @@ namespace isRail.ViewModels
 {
     public class ManagerEditRideBasesViewModel : ViewModelBase
     {
+        public string toLocationText;
+        public string fromLocationText;
+        public string ToLocationText {
+            get
+            {
+                return toLocationText;
+            }
+            set
+            {
+                toLocationText = value;
+                OnPropertyChanged(nameof(toLocationText));
+            }
+        }
+        public string FromLocationText
+        {
+            get
+            {
+                return fromLocationText;
+            }
+            set
+            {
+                fromLocationText = value;
+                OnPropertyChanged(nameof(fromLocationText));
+            }
+        }
         public Models.App App { get; set; }
 
         public ObservableCollection<RideBaseViewModel> RideBases { get; set; }
-        public ObservableCollection<Station> Stations { get; set; }
+        public ObservableCollection<StationViewModel> Stations { get; set; }
 
         public ICollectionView RideBasesCollectionView { get; set; }
 
@@ -29,25 +54,14 @@ namespace isRail.ViewModels
 
         private RideBaseViewModel selectedRideBase;
 
-        private RideBase _comboBoxSelect;
-        public RideBase ComboBoxSelect
-        {
-            get { return _comboBoxSelect; }
-            set
-            { 
-                _comboBoxSelect = value;
-                SelectedRideBase = new RideBaseViewModel(value, App);
-            }
-        }
-
         public RideBaseViewModel SelectedRideBase
         {
             get { return selectedRideBase; }
             set 
             {
                 selectedRideBase = value;
-                OnPropertyChanged(nameof(selectedRideBase));
                 UpdateGrid();
+                OnPropertyChanged(nameof(selectedRideBase));
             }
         }
 
@@ -60,12 +74,13 @@ namespace isRail.ViewModels
         {
             App = app;
             RideBases = new ObservableCollection<RideBaseViewModel>();
-            Stations = new ObservableCollection<Station>();
+            Stations = new ObservableCollection<StationViewModel>();
 
             foreach (RideBase rideBase in app.RidesMap.Keys)
                 RideBases.Add(new RideBaseViewModel(rideBase, app));
 
             RideBasesCollectionView = CollectionViewSource.GetDefaultView(RideBases);
+            StationCollectionView = CollectionViewSource.GetDefaultView(Stations);
 
             SaveRideBaseChanges = new SaveRideBaseChangesCommand(this);
             DiscardRideBaseChangesCommand = new DiscardRideBaseChangesCommand(this);
@@ -77,9 +92,14 @@ namespace isRail.ViewModels
 
         private void UpdateGrid()
         {
+            FromLocationText = selectedRideBase.From.ToString();
+            ToLocationText = selectedRideBase.To.ToString();
+            Stations.Clear();
             foreach (Station s in selectedRideBase.RideBase.Stations)
-                Stations.Add(new Station(s));
-            StationCollectionView = CollectionViewSource.GetDefaultView(Stations);
+                Stations.Add(new StationViewModel(s, App));
+            
+            StationCollectionView.Refresh();
+            OnPropertyChanged(nameof(Stations));
         }
 
         private void OnDiscardChanges()
