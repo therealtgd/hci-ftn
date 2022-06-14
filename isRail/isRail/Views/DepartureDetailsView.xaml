@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:isRail.Views"
         mc:Ignorable="d"
         Icon="/Assets/thomas-the-train.png"
@@ -10,8 +11,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*"/>
-            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="0.65*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.05*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -49,8 +51,10 @@
                 <Button FontSize="16" Margin="20 0 0 0" Width="100" Command="{Binding ReserveTicketCommand}">Rezerviši</Button>
             </StackPanel>
         </Grid>
-        <Viewbox Grid.Column="2">
-            <!-- Mapa -->
-        </Viewbox>
+        <!-- Mapa -->
+        <m:Map Grid.Column="2" Margin="0 30 0 30" Mode="Road" CredentialsProvider="AqweoZW-LmuREOtkd9FDIqTDbRzG1OH3ORmRbo7l_c9V7-iYEn_CHwJ0Pmz8lmcg"
+                   Center="44.018410656616716, 20.81920991534075" ZoomLevel="6.4" Name="RideMap"
+                   AllowDrop="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        </m:Map>
     </Grid>
 </Window>
