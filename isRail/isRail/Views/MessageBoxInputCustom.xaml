@@ -13,7 +13,9 @@
         TextElement.FontWeight="Regular"
         TextElement.FontSize="10"
         TextOptions.TextFormattingMode="Ideal"
-        TextOptions.TextRenderingMode="Auto">
+        TextOptions.TextRenderingMode="Auto"
+        BorderBrush="{StaticResource BluePrimary}"
+        BorderThickness="2">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="197*"/>

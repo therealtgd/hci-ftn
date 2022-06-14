@@ -89,7 +89,7 @@
                     <!--Mapa linija-->
                 </TabItem>
                 <!--Logout-->
-                <TabItem MinWidth="130" MouseLeftButtonUp="Logout_Clicked">
+                <TabItem VerticalAlignment="Bottom" MinWidth="130" MouseLeftButtonUp="Logout_Clicked">
                     <TabItem.Header>
                         <StackPanel
                             Width="auto"
