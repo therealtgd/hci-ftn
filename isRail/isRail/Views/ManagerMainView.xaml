@@ -96,7 +96,7 @@
                     Icon="{materialDesign:PackIcon Kind=ExitToApp}" />
             </MenuItem>
             <MenuItem
-                Header="Pom_oć"
+                Header="Pom_oć!"
                 HorizontalAlignment="Right"
                 InputGestureText="F1"
                 Command="{Binding ManagerHelpCommand}"/>

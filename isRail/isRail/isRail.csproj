@@ -15,6 +15,10 @@
     <None Remove="Assets\train-bg.jpg" />
     <None Remove="Assets\train-travel-bg.jpg" />
     <None Remove="Videos\clientShowcase.wmv" />
+    <None Remove="Videos\managerEditRideShowcase.wmv" />
+    <None Remove="Videos\managerEditTrainShowcase.wmv" />
+    <None Remove="Videos\managerReportMonthShowcase.wmv" />
+    <None Remove="Videos\managerReportRideShowcase.wmv" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +37,10 @@
     <Resource Include="Assets\thomas-the-train.png" />
     <Resource Include="Assets\train-bg.jpg" />
     <Resource Include="Assets\train-travel-bg.jpg" />
+    <Resource Include="Videos\managerEditRideShowcase.wmv" />
+    <Resource Include="Videos\managerEditTrainShowcase.wmv" />
+    <Resource Include="Videos\managerReportMonthShowcase.wmv" />
+    <Resource Include="Videos\managerReportRideShowcase.wmv" />
   </ItemGroup>
 
   <ItemGroup>

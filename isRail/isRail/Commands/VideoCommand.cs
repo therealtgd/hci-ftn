@@ -15,19 +15,19 @@ namespace isRail.Commands
             switch (video)
             {
                 case "managerEditRideBaseShowcase":
-                    new Video("/Videos/managerEditRideBaseShowcase.wmv").Show();
+                    new Video(@"CekamoIliju").Show();
                     break;
                 case "managerEditRideShowcase":
-                    new Video("/Videos/managerEditRideShowcase.wmv").Show();
+                    new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\managerEditRideShowcase.wmv").Show();
                     break;
                 case "managerEditTrainShowcase":
-                    new Video("/Videos/managerEditTrainShowcase.wmv").Show();
+                    new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\managerEditTrainShowcase.wmv").Show();
                     break;
                 case "managerReportRideShowcase":
-                    new Video("/Videos/managerReportRideShowcase.wmv").Show();
+                    new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\managerReportRideShowcase.wmv").Show();
                     break;
                 case "managerReportMonthShowcase":
-                    new Video("/Videos/managerReportMonthShowcase.wmv").Show();
+                    new Video(@"D:\Projects\C#\hci-ftn\isRail\isRail\Videos\managerReportMonthShowcase.wmv").Show();
                     break;
                 default:
                     break;
