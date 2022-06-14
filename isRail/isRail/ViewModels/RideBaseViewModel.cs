@@ -12,6 +12,9 @@ namespace isRail.ViewModels
     public class RideBaseViewModel : ViewModelBase, INotifyDataErrorInfo
     {
         private RideBase _rideBase { get; set; }
+        public Station From => _rideBase.From;
+        public Station To => _rideBase.To;
+        public List<Station> Stations => _rideBase.Stations;
         public RideBase RideBase
         {
             get
@@ -34,13 +37,24 @@ namespace isRail.ViewModels
             App = app;
         }
 
-        private string _errorMessage;
+        private string? _errorMessage { get; set; }
         public bool HasErrors => !string.IsNullOrEmpty(_errorMessage);
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
         public IEnumerable GetErrors(string? propertyName)
         {
             return _errorMessage;
+        }
+
+        public override string ToString()
+        {
+            string result = From.ToString();
+            foreach (Station station in Stations)
+            {
+                result += "-" + station.ToString();
+            }
+            result += "-" + To.ToString();
+            return result;
         }
     }
 }
