@@ -11,7 +11,7 @@ namespace isRail.ViewModels
 {
     public class RideBaseViewModel : ViewModelBase, INotifyDataErrorInfo
     {
-        private RideBase _rideBase { get; set; }
+        public RideBase _rideBase { get; set; }
         public Station From => _rideBase.From;
         public Station To => _rideBase.To;
         public List<Station> Stations => _rideBase.Stations;
@@ -47,13 +47,14 @@ namespace isRail.ViewModels
 
         public override string ToString()
         {
-            string result = From.ToString();
+            string rideStr = "[" + _rideBase.Id.ToString() + "] " + From.ToString();
+
             foreach (Station station in Stations)
-            {
-                result += "-" + station.ToString();
-            }
-            result += "-" + To.ToString();
-            return result;
+                rideStr += " - " + station.ToString();
+
+            rideStr += " - " + To.ToString();
+
+            return rideStr;
         }
     }
 }

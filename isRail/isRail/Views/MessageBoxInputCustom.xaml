@@ -58,7 +58,7 @@
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
                             Foreground="Black"
                             FontSize="16"
-                            materialDesign:HintAssist.Hint="Voz"
+                            materialDesign:HintAssist.Hint="Naziv"
                             materialDesign:HintAssist.HelperText="Polje je obavezno">
                             <TextBox.Text>
                                 <Binding

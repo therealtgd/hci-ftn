@@ -8,7 +8,8 @@
              xmlns:local="clr-namespace:isRail.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             DragOver="UserControl_DragOver">
+             DragOver="UserControl_DragOver"
+             Background="White">
     <UserControl.InputBindings>
         <KeyBinding Gesture="CTRL+S" Command="{Binding SaveRideBaseChangesCommand}"/>
         <KeyBinding Gesture="CTRL+D" Command="{Binding DiscardRideBaseChangesCommand}"/>
@@ -40,8 +41,8 @@
                   Margin="30 10 15 10"
                   x:Name="RideBaseComboBox"
                   materialDesign:HintAssist.Hint="Odabir linije"
-                  ItemsSource="{Binding RideBasesCollectionView}"
-                  SelectedItem="{Binding ComboBoxSelect}"
+                  ItemsSource="{Binding RideBases}"
+                  SelectedItem="{Binding SelectedRideBase}"     
                   Style="{StaticResource MaterialDesignOutlinedComboBox}" SelectionChanged="OutlinedComboBox_SelectionChanged"/>
         <TextBlock Grid.Row="0" 
                    VerticalAlignment="Center"
@@ -49,9 +50,10 @@
                    FontSize="20"
                    x:Name="RideBaseTextBlock"
                    ></TextBlock>
+        <!--Visibility="Hidden"-->
         <Grid
             x:Name="FromToSelectGrid"
-            Visibility="Hidden"
+
             VerticalAlignment="Bottom"
             Margin="30 100 15 20">
             <Grid.ColumnDefinitions>
@@ -79,7 +81,8 @@
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 FontSize="20"
-                x:Name="FromTextBlock"></TextBlock>
+                x:Name="FromTextBlock"
+                Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=FromLocationText}"></TextBlock>
             </StackPanel>
 
             <StackPanel 
@@ -91,34 +94,63 @@
                 HorizontalAlignment="Center">
                 Dolazak</TextBlock>
                 <materialDesign:PackIcon
+                x:Name="ToLocation"
                 Height="30"
                 Width="30"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Kind="MapMarker"/>
+                Kind="MapMarker"
+                MouseMove="ToLocationSelect_MouseMove"/>
                 <TextBlock 
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 FontSize="20"
-                x:Name="ToTextBlock"></TextBlock>
+                x:Name="ToTextBlock"
+                Text="{Binding UpdateSourceTrigger=PropertyChanged, Path=ToLocationText}"></TextBlock>
             </StackPanel>
         </Grid>
-
-
-
         <DataGrid 
                   x:Name="StationDataGrid"
                   Margin="30 0 15 20"
                   Grid.Row="1"
                   Grid.RowSpan="2"
+                  AutoGenerateColumns="False"
                   AlternatingRowBackground="LightGray"
                   CanUserAddRows="True"
                   CanUserDeleteRows="True"
                   CanUserReorderColumns="False"
                   ItemsSource="{Binding StationCollectionView}"
-                  
+                  MouseMove="StationDataGrid_MouseMove"
                   >
-            <DataGridColumnHeader>Međustanice</DataGridColumnHeader>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Foreground" Value="{StaticResource BluePrimary}"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding Name}"
+                    Header="Međustanica"
+                    Width="*">
+                </DataGridTextColumn>
+                <DataGridTemplateColumn
+                    Header="Lokacija"
+                    x:Name="StationLocation"
+                    Width="0.5*">
+                    <DataGridTemplateColumn.CellTemplate
+                        >
+                        <DataTemplate>
+                            <materialDesign:PackIcon
+                
+                Height="15"
+                Width="15"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Kind="MapMarker"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
         
         <m:Map Grid.Row="0"
@@ -146,13 +178,13 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button
-                Margin="30 0 0 20"
+                Margin="30 0 0 0"
                 Grid.Column="0"
                 FontSize="16"
                 Command="{Binding AddRideBaseCommand}"
                 >Dodaj novu liniju</Button>
             <Button
-                Margin="0 0 30 20"
+                Margin="0 0 30 0"
                 Grid.Column="2"
                 FontSize="16"
                 Background="LightGray"
@@ -160,7 +192,7 @@
                 Command="{Binding DiscardRideBaseChangesCommand}"
                 >Odbaci promene</Button>
             <Button
-                Margin="0 0 30 20"
+                Margin="0 0 30 0"
                 Grid.Column="3"
                 FontSize="16"
                 Command="{Binding SaveRideBaseChangesCommand}"

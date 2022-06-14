@@ -21,7 +21,7 @@ namespace isRail.Commands
             _managerEditRideBasesViewModel = managerEditRideBasesViewModel;
             foreach (RideBaseViewModel rB in _managerEditRideBasesViewModel.RideBases)
                 rB.PropertyChanged += OnPropertyChanged;
-            SaveRideBaseChangesCommand.SaveChangesEvent += OnSaveChanges;
+            SaveRideBaseChangesCommand.SaveRideBaseChangesEvent += OnSaveChanges;
             _managerEditRideBasesViewModel.RideBases.CollectionChanged += OnCollectionChanged;
             ManagerEditRideBasesViewModel.FinishedDiscardingChangesEvent += OnFinishedDiscardingChanges;
         }

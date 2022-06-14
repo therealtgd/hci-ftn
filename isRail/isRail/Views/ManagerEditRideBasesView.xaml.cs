@@ -2,6 +2,7 @@
 using isRail.Models;
 using isRail.Utils;
 using isRail.ViewModels;
+using MaterialDesignThemes.Wpf;
 using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,11 @@ namespace isRail.Views
     /// </summary>
     public partial class ManagerEditRideBasesView : UserControl
     {
+
+        public Station currentStation;
+        public bool from;
+        public bool to;
+        public bool interStation;
         public ManagerEditRideBasesView()
         {
             InitializeComponent();
@@ -43,17 +49,21 @@ namespace isRail.Views
 
             SimpleWaypoint newStationWaypoint = new SimpleWaypoint(pinLocation.Latitude, pinLocation.Longitude);
 
+            MessageBoxInputCustom messageBox = new MessageBoxInputCustom("Izmena imena stanice", "Potvrdi");
+            messageBox.ShowDialog();
+            string newStationName = messageBox.InputValue;
+
+            UpdateSelectedStationLocation(sender, newStationWaypoint, newStationName);
 
         }
 
         private void OutlinedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RideBase ride = (RideBase)RideBaseComboBox.SelectedItem;
+            RideBase ride = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase;
             if (ride != null)
             {
+
                 RideBaseTextBlock.Text = "Linija [" + ride.Id.ToString() + "]";
-                FromTextBlock.Text = ride.From.ToString();
-                ToTextBlock.Text = ride.To.ToString();
                 ShowRideLineOnMap(ride);
                 FromToSelectGrid.Visibility = Visibility.Visible;
                 StationDataGrid.Visibility = Visibility.Visible;
@@ -65,7 +75,7 @@ namespace isRail.Views
 
             
         }
-
+        
         private void ShowRideLineOnMap(RideBase ride)
         {
             RideBaseMap.Children.Clear();
@@ -83,13 +93,84 @@ namespace isRail.Views
         {
             if(e.LeftButton == MouseButtonState.Pressed)
             {
+                currentStation = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).From;
+                from = true;
                 DragDrop.DoDragDrop(FromLocation, FromLocation, DragDropEffects.Move);
             }
+            from = false;
+        }
+
+        private void ToLocationSelect_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                currentStation = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).To;
+                to = true;
+                DragDrop.DoDragDrop(ToLocation, ToLocation, DragDropEffects.Move);
+            }
+            to = false;
+            
+        }
+
+        private void StationDataGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                //currentStation = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).Stations[StationDataGrid.SelectedIndex];
+                //interStation = true;
+                //DragDrop.DoDragDrop((DataGrid)sender, sender, DragDropEffects.Move);
+            }
+            interStation = false;
         }
 
         private void UserControl_DragOver(object sender, DragEventArgs e)
         {
             e.Effects = DragDropEffects.Move;
+
+        }
+
+        private void UpdateSelectedStationLocation(object sender, SimpleWaypoint waypoint, string name)
+        {
+            Station station = new Station(name, waypoint);
+
+            if(to)
+            {
+                RideBase old = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase;
+                ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase = new RideBase(
+                    old.Id,
+                    station,
+                    old.From,
+                    old.Stations);
+            } else if(from)
+            {
+                RideBase old = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase;
+                ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase = new RideBase(
+                    old.Id,
+                    old.To,
+                    station,
+                    old.Stations);
+
+            } else if(interStation)
+            {
+                RideBase old = ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase;
+
+                int oldIndex = old.Stations.IndexOf(currentStation);
+                List<Station> newStations = new List<Station>(old.Stations);
+                newStations.RemoveAt(oldIndex);
+                newStations.Insert(oldIndex, station);
+
+                ((RideBaseViewModel)RideBaseComboBox.SelectedItem).RideBase = new RideBase(
+                    old.Id,
+                    old.To,
+                    old.From,
+                    newStations);
+            }
+            
+
+        }
+
+        private void StationDataGrid_DragOver(object sender, DragEventArgs e)
+        {
 
         }
     }
