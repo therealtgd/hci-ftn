@@ -70,6 +70,7 @@ namespace isRail.ViewModels
             AddRideCommand = new AddRideCommand(this);
             VideoCommand = new VideoCommand();
 
+            SelectedRideBase = _rideBases[0];
             DiscardRideChangesCommand.DiscardRidesChangesEvent += OnDiscardChanges;
         }
 
